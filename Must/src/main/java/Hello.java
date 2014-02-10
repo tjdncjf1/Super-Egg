@@ -28,6 +28,8 @@ public class Hello {
 	  System.out.println("hi4");
 	  System.out.println("hi5");
 	  System.out.println("hi5");
+	  System.out.println("hi6");
+	  System.out.println("hi6");
 	  
   }
 }
