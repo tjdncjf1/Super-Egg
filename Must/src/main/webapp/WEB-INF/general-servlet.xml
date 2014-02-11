@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/jee
+        http://www.springframework.org/schema/jee/spring-jee.xsd">
+
+	<mvc:annotation-driven
+		content-negotiation-manager="contentNegotiationManager" />
+
+	<bean id="contentNegotiationManager"
+		class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+		<property name="favorPathExtension" value="false" />
+		<property name="favorParameter" value="true" />
+		<property name="mediaTypes">
+			<value>
+				json=application/json
+				xml=application/xml
+				html=text/html
+				atom=application/atom+xml
+			</value>
+		</property>
+	</bean>
+
+	<!-- Front Controller의 조수들 -->
+	<!-- spms.controls에 있는 것만 생성하라 -->
+	<context:component-scan base-package="spms.controls" />
+
+	<bean
+		class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+		<property name="viewResolvers">
+			<list>
+				<bean class="org.springframework.web.servlet.view.BeanNameViewResolver" />
+				<bean
+					class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+					<property name="prefix" value="/WEB-INF/view/" />
+					<property name="suffix" value=".jsp" />
+				</bean>
+			</list>
+		</property>
+		<property name="defaultViews">
+			<list>
+				<bean
+					class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- JSON 출력 전 -->
+	<!-- jsp로 포워딩 해줌. 기존에 있는 것을 교체 
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" 
+		/> <property name="prefix" value="/WEB-INF/view/" /> <property name="suffix" 
+		value=".jsp" /> </bean> -->
+
+	<!-- 쪼개가지고 파트를 보내줌. 객체를 활성화 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- one of the properties available; the maximum file size in bytes -->
+		<!-- <property name="maxUploadSize" value="100000" /> -->
+		<!-- <property name="maxInMemorySize" value="100000" /> -->
+	</bean>
+
+	<!-- Spring 2.5 까지 설정법 <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"> 
+		<property name="webBindingInitializer"> <bean class="spms.propertyeditors.SpmsBindingInitializer"/> 
+		</property> </bean> -->
+
+	<!-- Spring 3.1부터는 다음과 같이 설정, 단 <mvc:annotation-driven/> 태그를 선언해야 한다. -->
+	<bean
+		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+		<property name="webBindingInitializer">
+			<bean class="spms.propertyeditors.SpmsBindingInitializer" />
+		</property>
+	</bean>
+
+</beans>
