@@ -30,7 +30,7 @@
 		</property>
 	</bean>
 
-	<context:component-scan base-package="spms.controls" />
+<!-- 	<context:component-scan base-package="spms.controls" /> -->
 
 	<bean
 		class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
@@ -65,15 +65,15 @@
 		<!-- <property name="maxInMemorySize" value="100000"/> -->
 	</bean>
 	<!-- Spring 2.5 까지 설정법 <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"> 
-		<property name="webBindingInitializer"> <bean class="spms.propertyeditors.SpmsBindingInitializer"/> 
-		</property> </bean> -->
+		<property name="webBindingInitializer"> <bean cl"spms.propertyeditors.SpmsBindingInitializer"/>  
+		</property> -->
 	<!-- Spring 3.1부터는 다음과 같이 설정, 단 <mvc:annotation-driven/> 태그를 선언해야 한다. -->
-	<bean
+	<!-- <bean
 		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
 		<property name="webBindingInitializer">
-			<bean class="spms.propertyeditors.SpmsBindingInitializer" />
-		</property>
-	</bean>
+			<bean class="spms.propertyeditors.SpmsBindingInitializer" /> -->
+	<!-- 	</property> -->
+	<!-- </bean> -->
 
 </beans>
 
