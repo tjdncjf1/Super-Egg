@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en" style="background-color: #2b3340;">
+<head>
+<meta charset="utf-8">
+
+<style>
+* {
+	border-radius: 3px;
+	box-sizing: border-box;
+	margin-bottom: 4px;
+}
+
+#accordion {
+  width: 100%
+  margin: 50px auto;
+}
+
+#accordion p {
+	color: white;
+	width: 100%;
+  font-size: 10pt;
+  line-height: 16pt;
+  margin: 0px;
+  padding: 10px;
+}
+
+#accordion .header {
+	width: 100%;
+	height: 60px;
+}
+
+#accordion .header:first-of-type {
+	background-color: #29d1ed;
+}
+
+#accordion .header:nth-of-type(2) {
+	background-color: #2d99e1;
+}
+
+#accordion .header:nth-of-type(3) {
+	background-color: #2a6cB8;
+}
+
+#accordion .header:nth-of-type(4) {
+	background-color: #315ea2;
+}
+
+#accordion .header .name {
+	color: white;
+	font-weight: bold;
+  position: relative;
+  left: 10px;
+  top: 10px;  
+}
+
+#accordion .header .persent {
+	color: white;
+	font-weight: bold;
+  font-size: 1.5em;
+	float: right;
+	margin-top: 15px;
+	margin-right: 10px;
+}
+
+#accordion .header .price {
+  color: white;
+  font-weight: bold;
+  position: relative;
+  left: 10px;
+  top: 10px;  
+}
+</style>
+
+<title>jQuery UI Accordion - Default functionality</title>
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script>
+	$(function() {
+		$("#accordion").accordion();
+	});
+</script>
+</head>
+<body>
+
+	<!-- <h1 style="color: white; text-align: center; margin: 10px;">Item
+		Name</h1>
+	<div id="accordion">
+		<div class="header">
+			<span class="name">IPHONE5</span>
+			<span class="persent">28%</span><br> 
+			<span class="price">500,000</span>
+		</div> -->
+		<p>Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum
+			sit amet purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris
+			turpis porttitor velit, faucibus interdum tellus libero ac justo.
+			Vivamus non quam. In suscipit faucibus urna.</p>
+		<div class="header">
+			<span class="name">IPHONE5</span>
+			<span class="persent">28%</span><br>  
+			<span class="price">500,000</span>
+		</div>
+		<p style="color: white;">Sed non urna. Donec et ante. Phasellus eu
+			ligula. Vestibulum sit amet purus. Vivamus hendrerit, dolor at
+			aliquet laoreet, mauris turpis porttitor velit, faucibus interdum
+			tellus libero ac justo. Vivamus non quam. In suscipit faucibus urna.
+		</p>
+		<div class="header">
+			<span class="name">IPHONE5</span> 
+			<span class="persent">28%</span><br> 
+			<span class="price">500,000</span>
+		</div>
+		<p>Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum
+			sit amet purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris
+			turpis porttitor velit, faucibus interdum tellus libero ac justo.
+			Vivamus non quam. In suscipit faucibus urna.</p>
+		<div class="header">
+			<span class="name">IPHONE5</span> 
+			<span class="persent">28%</span><br> 
+			<span class="price">500,000</span>
+		</div>
+		<p>Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum
+			sit amet purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris
+			turpis porttitor velit, faucibus interdum tellus libero ac justo.
+			Vivamus non quam. In suscipit faucibus urna.</p>
+	</div>
+
+</body>
+</html>
