@@ -1,0 +1,66 @@
+@CHARSET "UTF-8";
+* {
+  border-radius: 3px;
+  box-sizing: border-box;
+  margin-bottom: 4px;
+}
+
+#accordion {
+  width: 100%
+  margin: 50px auto;
+}
+
+#accordion p {
+  color: white;
+  width: 100%;
+  font-size: 10pt;
+  line-height: 16pt;
+  margin: 0px;
+  padding: 10px;
+}
+
+#accordion .header {
+  width: 100%;
+  height: 60px;
+}
+
+ .header:first-of-type {
+  background-color: #29d1ed;
+}
+
+#accordion .header:nth-of-type(2) {
+  background-color: #2d99e1;
+}
+
+#accordion .header:nth-of-type(3) {
+  background-color: #2a6cB8;
+}
+
+#accordion .header:nth-of-type(4) {
+  background-color: #315ea2;
+}
+
+#accordion .header .name {
+  color: white;
+  font-weight: bold;
+  position: relative;
+  left: 10px;
+  top: 10px;  
+}
+
+#accordion .header .persent {
+  color: white;
+  font-weight: bold;
+  font-size: 1.5em;
+  float: right;
+  margin-top: 15px;
+  margin-right: 10px;
+}
+
+#accordion .header .price {
+  color: white;
+  font-weight: bold;
+  position: relative;
+  left: 10px;
+  top: 10px;  
+}
