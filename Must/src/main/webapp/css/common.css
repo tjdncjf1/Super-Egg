@@ -24,19 +24,19 @@
   height: 60px;
 }
 
- .header:first-of-type {
+#accordion .header:first-child {
   background-color: #29d1ed;
 }
 
-#accordion .header:nth-of-type(2) {
+#accordion .header:nth-child(3) {
   background-color: #2d99e1;
 }
 
-#accordion .header:nth-of-type(3) {
+#accordion .header:nth-child(5) {
   background-color: #2a6cB8;
 }
 
-#accordion .header:nth-of-type(4) {
+#accordion .header:nth-child(7) {
   background-color: #315ea2;
 }
 
@@ -63,4 +63,30 @@
   position: relative;
   left: 10px;
   top: 10px;  
+}
+
+#accordion .contents .sPrice {
+    font: 12px sans-serif;
+    color: white;
+}
+ 
+#accordion .contents em.bullet {
+    width: 12px;
+    height: 12px;
+    margin: 0 5px;
+    background: white;
+    display: inline-block;
+ 
+    -webkit-box-shadow: inset 1px 1px 1px rgba(255,255,255, 0.4);
+    -moz-box-shadow: inset 1px 1px 1px rgba(255,255,255, 0.4);
+    box-shadow: inset 1px 1px 1px rgba(255,255,255, 0.4);
+ 
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+ #accordion .contents img {
+    -webkit-box-shadow: 2px 2px 6px rgba(0,0,0, .5);
+    -moz-box-shadow: 2px 2px 6px rgba(0,0,0, .5);
+    box-shadow: 2px 2px 6px rgba(0,0,0, .5);
 }
