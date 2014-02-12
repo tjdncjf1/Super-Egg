@@ -15,13 +15,17 @@
   margin: 50px auto;
 }
 
-#accordion p {
+#accordion .contents {
 	color: white;
 	width: 100%;
   font-size: 10pt;
   line-height: 16pt;
   margin: 0px;
-  padding: 10px;
+  padding: 5px;
+}
+
+#accordion .contents p {
+  margin: 0px;
 }
 
 #accordion .header {
@@ -29,23 +33,23 @@
 	height: 60px;
 }
 
-#accordion .header:first-of-type {
+.header:FIRST-CHILD {
 	background-color: #29d1ed;
 }
 
-#accordion .header:nth-of-type(2) {
+.header:nth-child(3) {
 	background-color: #2d99e1;
 }
 
-#accordion .header:nth-of-type(3) {
+.header:nth-child(5) {
 	background-color: #2a6cB8;
 }
 
-#accordion .header:nth-of-type(4) {
+.header:nth-child(7) {
 	background-color: #315ea2;
 }
 
-#accordion .header .name {
+.header .name {
 	color: white;
 	font-weight: bold;
   position: relative;
@@ -53,7 +57,7 @@
   top: 10px;  
 }
 
-#accordion .header .persent {
+.header .persent {
 	color: white;
 	font-weight: bold;
   font-size: 1.5em;
@@ -62,13 +66,14 @@
 	margin-right: 10px;
 }
 
-#accordion .header .price {
+.header .price {
   color: white;
   font-weight: bold;
   position: relative;
   left: 10px;
   top: 10px;  
 }
+
 </style>
 
 <title>jQuery UI Accordion - Default functionality</title>
@@ -76,7 +81,7 @@
 <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 <script>
 	$(function() {
-		$("#accordion").accordion();
+		$("#accordion").accordion({active:'false', collapsible:'true'});
 	});
 </script>
 </head>
@@ -102,10 +107,12 @@
       icons.play();
     </script>
 		</div> 
-		<p>Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum
-			sit amet purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris
-			turpis porttitor velit, faucibus interdum tellus libero ac justo.
-			Vivamus non quam. In suscipit faucibus urna.</p>
+		<div class="contents">
+			<p>Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum
+				sit amet purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris
+				turpis porttitor velit, faucibus interdum tellus libero ac justo.
+				Vivamus non quam. In suscipit faucibus urna.</p>
+	  </div>
 		<div class="header">
 			<span class="name">IPHONE5</span>
 			<span class="persent">28%</span><br>  
@@ -123,29 +130,59 @@
       icons.play();
     </script>
 		</div>
+		<div class="contents">
 		<p style="color: white;">Sed non urna. Donec et ante. Phasellus eu
 			ligula. Vestibulum sit amet purus. Vivamus hendrerit, dolor at
 			aliquet laoreet, mauris turpis porttitor velit, faucibus interdum
 			tellus libero ac justo. Vivamus non quam. In suscipit faucibus urna.
 		</p>
+		</div>
 		<div class="header">
 			<span class="name">IPHONE5</span> 
 			<span class="persent">28%</span><br> 
 			<span class="price">500,000</span>
+			<figure class="icons" style="position: relative; left: 70%; top: -40px; ">
+      <canvas id="cloudy" width="30" height="30"></canvas>
+      </figure>
+      <script src="skycons.js"></script>
+      <script>
+      var icons = new Skycons(),
+          list  = ["cloudy"], i;
+      for(i = list.length; i--; )
+        icons.set(list[i], list[i]);
+
+      icons.play();
+    </script>
 		</div>
-		<p>Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum
-			sit amet purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris
-			turpis porttitor velit, faucibus interdum tellus libero ac justo.
-			Vivamus non quam. In suscipit faucibus urna.</p>
+		<div class="contents">
+			<p>Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum
+				sit amet purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris
+				turpis porttitor velit, faucibus interdum tellus libero ac justo.
+				Vivamus non quam. In suscipit faucibus urna.</p>
+	  </div>
 		<div class="header">
 			<span class="name">IPHONE5</span> 
 			<span class="persent">28%</span><br> 
 			<span class="price">500,000</span>
+			<figure class="icons" style="position: relative; left: 70%; top: -40px; ">
+      <canvas id="sleet" width="30" height="30"></canvas>
+      </figure>
+      <script src="skycons.js"></script>
+      <script>
+      var icons = new Skycons(),
+          list  = ["sleet"], i;
+      for(i = list.length; i--; )
+        icons.set(list[i], list[i]);
+
+      icons.play();
+    </script>
 		</div>
+		<div class="contents">
 		<p>Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum
 			sit amet purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris
 			turpis porttitor velit, faucibus interdum tellus libero ac justo.
 			Vivamus non quam. In suscipit faucibus urna.</p>
+		</div>
 	</div>
 
 </body>
