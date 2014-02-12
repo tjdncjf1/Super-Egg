@@ -7,25 +7,25 @@
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 <script>
-	$(function() {
-		$("#accordion").accordion({active:'true', collapsible:'true'});
-	});
+  $(function() {
+    $("#accordion").accordion({active:'true', collapsible:'true'});
+  });
 </script>
 </head>
 <body>
 
-	<h1 style="color: white; text-align: center; margin: 10px;">Item
-		Name</h1>
-	<div id="accordion">
-		<div class="header">
-			<span class="name">IPHONE5</span>
-			<span class="persent">28%</span><br> 
-			<span class="price">500,000</span>
-			<figure class="icons" style="position: relative; left: 70%; top: -40px; ">
-			<canvas id="clear-day" width="30" height="30"></canvas>
-			</figure>
-			<script src="skycons.js"></script>
-			<script>
+  <h1 style="color: white; text-align: center; margin: 10px;">Item
+    Name</h1>
+  <div id="accordion">
+    <div class="verygood">
+      <span class="name">IPHONE5</span>
+      <span class="persent">28%</span><br> 
+      <span class="price">500,000</span>
+      <figure class="icons" style="position: relative; left: 70%; top: -40px; ">
+      <canvas id="clear-day" width="30" height="30"></canvas>
+      </figure>
+      <script src="skycons.js"></script>
+      <script>
       var icons = new Skycons(),
           list  = ["clear-day"], i;
       for(i = list.length; i--; )
@@ -33,18 +33,18 @@
 
       icons.play();
     </script>
-		</div> 
-		<div class="contents">
-		<img src="image/images-8.jpg" alt="" width="100%"> 
+    </div> 
+    <div class="contents">
+    <img src="image/images-8.jpg" alt="" width="100%"> 
     <span class="iName">NIKE</span>
     <span class="sPrice">500,000</span><em class="bullet"></em><span>가격변경</span>
     <p>                      그래프                             </p>
     </div>
-		<div class="header">
-			<span class="name">IPHONE5</span>
-			<span class="persent">28%</span><br>  
-			<span class="price">500,000</span>
-			<figure class="icons" style="position: relative; left: 70%; top: -40px; ">
+    <div class="good">
+      <span class="name">IPHONE5</span>
+      <span class="persent">28%</span><br>  
+      <span class="price">500,000</span>
+      <figure class="icons" style="position: relative; left: 70%; top: -40px; ">
       <canvas id="partly-cloudy-day" width="30" height="30"></canvas>
       </figure>
       <script src="skycons.js"></script>
@@ -56,19 +56,19 @@
 
       icons.play();
     </script>
-		</div>
-		<div class="contents">
-		<p style="color: white;">Sed non urna. Donec et ante. Phasellus eu
-			ligula. Vestibulum sit amet purus. Vivamus hendrerit, dolor at
-			aliquet laoreet, mauris turpis porttitor velit, faucibus interdum
-			tellus libero ac justo. Vivamus non quam. In suscipit faucibus urna.
-		</p>
-		</div>
-		<div class="header">
-			<span class="name">IPHONE5</span> 
-			<span class="persent">28%</span><br> 
-			<span class="price">500,000</span>
-			<figure class="icons" style="position: relative; left: 70%; top: -40px; ">
+    </div>
+    <div class="contents">
+    <p>Sed non urna. Donec et ante. Phasellus eu
+      ligula. Vestibulum sit amet purus. Vivamus hendrerit, dolor at
+      aliquet laoreet, mauris turpis porttitor velit, faucibus interdum
+      tellus libero ac justo. Vivamus non quam. In suscipit faucibus urna.
+    </p>
+    </div>
+    <div class="bad">
+      <span class="name">IPHONE5</span> 
+      <span class="persent">28%</span><br> 
+      <span class="price">500,000</span>
+      <figure class="icons" style="position: relative; left: 70%; top: -40px; ">
       <canvas id="cloudy" width="30" height="30"></canvas>
       </figure>
       <script src="skycons.js"></script>
@@ -80,18 +80,18 @@
 
       icons.play();
     </script>
-		</div>
-		<div class="contents">
-			<p>Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum
-				sit amet purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris
-				turpis porttitor velit, faucibus interdum tellus libero ac justo.
-				Vivamus non quam. In suscipit faucibus urna.</p>
-	  </div>
-		<div class="header">
-			<span class="name">IPHONE5</span> 
-			<span class="persent">28%</span><br> 
-			<span class="price">500,000</span>
-			<figure class="icons" style="position: relative; left: 70%; top: -40px; ">
+    </div>
+    <div class="contents">
+      <p>Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum
+        sit amet purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris
+        turpis porttitor velit, faucibus interdum tellus libero ac justo.
+        Vivamus non quam. In suscipit faucibus urna.</p>
+    </div>
+    <div class="verybad">
+      <span class="name">IPHONE5</span> 
+      <span class="persent">28%</span><br> 
+      <span class="price">500,000</span>
+      <figure class="icons" style="position: relative; left: 70%; top: -40px; ">
       <canvas id="sleet" width="30" height="30"></canvas>
       </figure>
       <script src="skycons.js"></script>
@@ -103,14 +103,14 @@
 
       icons.play();
     </script>
-		</div>
-		<div class="contents">
-		<p>Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum
-			sit amet purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris
-			turpis porttitor velit, faucibus interdum tellus libero ac justo.
-			Vivamus non quam. In suscipit faucibus urna.</p>
-		</div>
-	</div>
+    </div>
+    <div class="contents">
+    <p>Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum
+      sit amet purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris
+      turpis porttitor velit, faucibus interdum tellus libero ac justo.
+      Vivamus non quam. In suscipit faucibus urna.</p>
+    </div>
+  </div>
 
 </body>
 </html>
