@@ -70,6 +70,17 @@
     color: white;
 }
  
+#accordion .contents .iName {
+     color: red;
+   font: 20px sans-serif;
+    
+}
+
+#accordion .contents .sPrice {
+    font: 12px sans-serif;
+    color: white;
+} 
+ 
 #accordion .contents em.bullet {
     width: 12px;
     height: 12px;
