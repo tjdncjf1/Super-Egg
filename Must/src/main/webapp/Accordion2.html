@@ -5,14 +5,43 @@
 <title>jQuery UI Accordion - Default functionality</title>
 <link rel="stylesheet" href="css/common.css">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="Chart.js"></script>
+<script src="add.js"></script>
 <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script type="text/javascript"></script>
 <script>
   $(function() {
     $("#accordion").accordion({active:'true', collapsible:'true'});
   });
+  
+  function createChart() {
+  	var data = {
+  	  labels : ["January","February","March","April","May","June","July"],
+  	  datasets : [
+  	    {
+  	      fillColor : "rgba(220,220,220,0.5)",
+  	      strokeColor : "rgba(220,220,220,1)",
+  	      pointColor : "rgba(220,220,220,1)",
+  	      pointStrokeColor : "#fff",
+  	      data : [65,59,90,81,56,55,40]
+  	    },
+  	   /*  {
+  	      fillColor : "rgba(151,187,205,0.5)",
+  	      strokeColor : "rgba(151,187,205,1)",
+  	      pointColor : "rgba(151,187,205,1)",
+  	      pointStrokeColor : "#fff",
+  	      data : [28,48,40,19,96,27,100]
+  	    } */
+  	  ]
+  	}
+  	var cht = document.getElementById('myChart');
+  	var ctx = cht.getContext('2d');
+  	var LineChart = new Chart(ctx).Line(data);
+  	}
+  	
 </script>
 </head>
-<body>
+<body onload="createChart();">
 
   <h1 style="color: white; text-align: center; margin: 10px;">Item
     Name</h1>
@@ -36,9 +65,7 @@
     </div> 
     <div class="contents">
     <img src="image/images-8.jpg" alt="" width="100%"> 
-    <span class="iName">NIKE</span>
-    <span class="sPrice">500,000</span><em class="bullet"></em><span>가격변경</span>
-    <p>                      그래프                             </p>
+    <canvas id="myChart" width="480" height="300"></canvas>
     </div>
     <div class="good">
       <span class="name">IPHONE5</span>
@@ -111,6 +138,10 @@
       Vivamus non quam. In suscipit faucibus urna.</p>
     </div>
   </div>
+  <form>
+  <input id="b1" type="button" value="등록">
+  </form>
+  
 
 </body>
 </html>
