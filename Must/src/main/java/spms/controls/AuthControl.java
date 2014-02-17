@@ -19,7 +19,7 @@ import spms.vo.Member;
 
 @Controller
 @RequestMapping("/auth")
-@SessionAttributes("loginUser") // 모델에 들어 있는 값 중에서 loginUser는 세션에 보관하라.
+@SessionAttributes("loginUser")
 public class AuthControl {
 
 	@Autowired(required=false)

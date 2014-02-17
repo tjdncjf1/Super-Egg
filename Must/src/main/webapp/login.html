@@ -18,6 +18,23 @@
   }
 </style>
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+$(function(){
+	$('#loginButton').click(function(){
+		$.ajax ({
+			url: 'auth/login.do',
+			type: 'POST',
+			data: {
+				email: $('#email').val, 
+				password: $('#password').val 
+			},
+			success: function (members) {
+				location.href= 'main.html';
+			}});
+	});
+});
+
+</script>
 </head>
 <body>
 <div id="loginWindow">
@@ -25,7 +42,7 @@
   <form>
     <label>이메일:</label><input type="text" name="email" id="email"><br>
     <label>비밀번호:</label><input type="password" name="password" id="password"><br>
-    <input type="submit" value="로그인">
+    <input type="button" value="로그인" id="loginButton">
     <a href="join.html">아직 회원이 아니세요?</a>
   </form>
 </div>

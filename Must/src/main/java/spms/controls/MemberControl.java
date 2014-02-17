@@ -184,40 +184,4 @@ public class MemberControl {
 			.setError(ex.getMessage());
 		}
 	}
-
-	//	@RequestMapping("/ajax/list")
-	//	// 프런트 콘트롤러가 리턴 타입만 보더라도 '아.. jsp로 가라는게 아니구나. 바로 리턴해야되는구나'라고 안다.
-	//	ResponseEntity는 응답 하는 객체이므로 @RequestBody를 할 필요가 없다.
-	//	public ResponseEntity<String> ajaxList(
-	//			HttpServletResponse response,
-	//			Model model) throws Exception {
-	//		// 헤더의 정보를 담음
-	//		HttpHeaders headers = new HttpHeaders();
-	//		headers.add("Content-Type", "text/plain;charset=UTF-8");
-	//		return new ResponseEntity<String>(
-	//					new Gson().toJson(memberDao.selectList()),
-	//					headers, 
-	//					HttpStatus.OK);
-	//	}
-
-	/*
-	@RequestMapping("/ajax/list")
-	// jsp가 아니라 응답 데이터야라고 알려줌
-	@ResponseBody
-	// 리턴 타입이 String이면 jsp로 포워딩 하는 걸로 인식
-	public String ajaxList(
-			HttpServletResponse response,
-			Model model) throws Exception {
-			// 보내주긴 하는데 한글이 깨짐..
-		return new Gson().toJson(memberDao.selectList());
-	}
-	 */
-
-	/*
-	@RequestMapping("/ajax/list")
-	public String ajaxList(Model model) throws Exception {
-		model.addAttribute("members", memberDao.selectList());
-		return "ajax/member/list";
-	}
-	 */
 }
