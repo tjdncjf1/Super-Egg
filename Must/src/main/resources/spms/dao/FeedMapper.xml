@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="spms.dao.FeedDao">
+  <resultMap type="feed" id="feedResultMap">
+    <id property="no"               column="FNO" />
+    <result property="contents"     column="CONTENTS" />
+    <result property="createdDate"  column="CDATE" />
+    <result property="writerNo"     column="MNO" />
+    <result property="projectNo"    column="PNO" />
+    <association property="writer" javaType="member">
+      <result property="no"     column="MNO"/>
+      <result property="name"   column="MNAME"/>
+      <result property="photo"  column="PHOTO"/>
+      <result property="email"  column="EMAIL"/>
+    </association>
+  </resultMap>
+
+
+<!-- generatedkey는 자동으로 제너레이션된 키값을 담아줌. (번호 : 자동증가) -->
+  <insert id="insert" parameterType="feed" 
+    useGeneratedKeys="true" keyProperty="no" keyColumn="FNO">
+    insert into FEEDS(CONTENTS,CDATE,MNO,PNO) 
+    values(#{contents},now(),#{writerNo},#{projectNo})
+  </insert>
+
+  <insert id="insertFile" parameterType="attachFile">
+    insert into ATT_FILES(FNO,FILE_PATH) 
+    values(#{feedNo},#{filePath})
+  </insert>
+    
+  <select id="feedList" parameterType="int" resultMap="feedResultMap">
+		select t1.MNAME, t1.PHOTO, t2.CONTENTS, t2.CDATE
+		from MEMBERS t1 inner join FEEDS t2
+		on t1.MNO = t2.MNO
+		  inner join PRJ_MEMS t3
+		  on t2.PNO = t3.PNO
+		where t3.PNO = #{value};
+  </select>
+    
+</mapper>

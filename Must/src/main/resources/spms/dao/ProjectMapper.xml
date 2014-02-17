@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="spms.dao.ProjectDao">
+  <resultMap type="project" id="projectResultMap">
+    <id property="no"             column="PNO"/>
+    <result property="title"      column="TITLE"/>
+    <result property="startDate"  column="SDATE"/>
+    <result property="endDate"    column="EDATE"/>
+    <result property="contents"   column="CONTENTS"/>
+    <result property="state"      column="STATE"/>
+    <result property="tags"       column="TAGS"/>
+  </resultMap>
+  
+  <resultMap type="projectMember" id="projectMemberResultMap">
+    <id     property="memberNo"   column="MNO"/>
+    <result property="projectNo"  column="PNO"/>
+    <result property="title"      column="TITLE"/>
+    <result property="role"       column="ROLE"/>
+  </resultMap>
+
+	<select id="selectList" parameterType="map" resultMap="projectResultMap">
+		  select PNO, TITLE, SDATE, EDATE, STATE 
+		  from PROJECTS
+		  <if test="keywords != null">
+      <where>  
+        <if test="search == 'all' or search == 'title'">
+          <foreach  collection="keywords" item="keyword">
+          or TITLE like concat('%', #{keyword}, '%')
+          </foreach>
+        </if>
+        <if test="search == 'all' or search == 'description'">
+          <foreach  collection="keywords" item="keyword">
+          or CONTENTS like concat('%', #{keyword}, '%')
+          </foreach>
+        </if>
+      </where>
+      </if>
+	</select>
+	
+	<select id="selectOne" parameterType="int" resultMap="projectResultMap">
+		select PNO, TITLE, CONTENTS, SDATE, EDATE, STATE, TAGS
+    from PROJECTS
+    where PNO=#{value}
+	</select>
+	
+	<delete id="delete" parameterType="int">
+	 delete from PROJECTS where PNO=#{value}
+	</delete>
+
+  <insert id="insert" parameterType="project">
+    insert into PROJECTS(TITLE,CONTENTS,SDATE,EDATE,STATE,TAGS)
+    values(#{title},#{contents},
+           #{startDate},#{endDate},#{state},#{tags})
+  </insert>
+
+  <update id="update" parameterType="project">
+    update PROJECTS 
+    <set>
+	    <if test="title != null">TITLE=#{title},</if> 
+	    <if test="contents != null">CONTENTS=#{contents},</if> 
+	    <if test="startDate != null">SDATE=#{startDate},</if> 
+	    <if test="endDate != null">EDATE=#{endDate},</if> 
+	    <if test="state != -1">STATE=#{state},</if> 
+	    <if test="tags != null">TAGS=#{tags}</if> 
+    </set>
+    where PNO=#{no}
+  </update>
+  
+    <select id="selectMyProjects" parameterType="int" 
+      resultMap="projectMemberResultMap">
+      select A.MNO, B.PNO, B.TITLE, A.ROLE
+			from PRJ_MEMS A right outer join PROJECTS B
+			on A.PNO=B.PNO
+			where A.MNO=#{value}
+			order by B.TITLE;
+    </select>
+  
+  
+</mapper>
