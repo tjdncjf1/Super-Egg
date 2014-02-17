@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Main</title>
+<link rel="stylesheet" href="css/common.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="Chart.js"></script>
+<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script>
+$(function() {
+  $("#accordion").accordion({active:'false', collapsible:'true'});
+}); 
+
+</script>
+</head>
+<body>
+	<a href="search.html">요기</a>
+	<div id="accordion">
+		<div class="verygood">
+			<span class="name">IPHONE5</span> <span class="persent">28%</span><br>
+			<span class="price">500,000</span>
+			<figure class="icons"
+				style="position: relative; left: 70%; top: -40px;">
+				<canvas id="clear-day" width="30" height="30"></canvas>
+			</figure>
+			<script src="skycons.js"></script>
+			<script>
+      var icons = new Skycons(),
+          list  = ["clear-day"], i;
+      for(i = list.length; i--; )
+        icons.set(list[i], list[i]);
+
+      icons.play();
+    </script>
+		</div>
+		<div class="contents">
+			<img src="image/images-8.jpg" alt="" width="100%">
+			<canvas id="myChart" width="480" height="300"></canvas>
+		</div>
+	</div>
+</body>
+</html>
