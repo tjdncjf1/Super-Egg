@@ -4,11 +4,25 @@
 <meta charset="UTF-8">
 <title>Search</title>
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+$(function(){
+	$('#searchButton').click(function(){
+		$.getJSON('http://api.danawa.com/api/search/product/info', 
+				{key: '8f90ed2000bd7654c51e81a09eb9dd31', limit_no: '3', charset: 'utf8', mediatype: 'json',	
+			keyword: $('#searchValue').val()},
+				function(data){
+			$.each(data, function(key, value){
+				console.log(value);
+			});
+		});
+	});
+});
+</script>
 </head>
 <body>
   <form id="search">
     <input type="search" id="searchValue">
-    <input type="button" value="검색">
+    <input type="button" value="검색" id="searchButton">
   </form>
   <hr>
   <div id="show" style="height: 500px;"></div>

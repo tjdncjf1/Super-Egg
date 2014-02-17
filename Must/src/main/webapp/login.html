@@ -29,7 +29,7 @@ $(function(){
 				password: $('#password').val 
 			},
 			success: function (members) {
-				location.href= 'main.html';
+				location.href= 'main.html?email=' + $('#email').val;
 			}});
 	});
 });
