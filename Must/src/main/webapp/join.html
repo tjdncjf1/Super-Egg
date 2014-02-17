@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Join</title>
+<style>
+  #loginWindow {
+    border: 2px solid orange;
+    position: absolute;
+    top: 30%;
+    left: 16%;
+    padding: 50px;
+  }
+  #loginWindow > h1 {
+    text-align: center;
+    margin: 0 auto;
+  }
+  #joinButton {
+    float: right;
+  }
+</style>
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+$(function(){
+  $('#joinButton').click(function(){
+    $.ajax ({
+      url: 'auth/login.do',
+      type: 'POST',
+      data: {
+        email: $('#email').val, 
+        password: $('#password').val 
+      },
+      success: function (members) {
+        location.href= 'main.html';
+      }});
+  });
+});
+
+</script>
+</head>
+<body>
+<div id="loginWindow">
+  <h1>Must</h1>
+  <form>
+    <label>이메일:</label><input type="text" name="email" id="email">
+    <input type="checkbox" id="checkEmail"><br>
+    <label>비밀번호:</label><input type="password" name="password" id="password"><br>
+    <input type="button" value="회원가입" id="joinButton">
+  </form>
+</div>
+</body>
+</html>
