@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns="http://java.sun.com/xml/ns/javaee"
-	xsi:schemaLocation="
-    http://java.sun.com/xml/ns/javaee 
-    http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+                      http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	id="WebApp_ID" version="3.0">
-	<display-name>web02</display-name>
-
-	<context-param>
-		<param-name>mybatisConfig</param-name>
-		<param-value>spms/dao/mybatis-config.xml</param-value>
-	</context-param>
+	<display-name>Must</display-name>
 
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
@@ -21,7 +15,6 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 
-	<!-- 필터 선언 -->
 	<filter>
 		<filter-name>CharEncodingFilter</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -31,35 +24,30 @@
 		</init-param>
 	</filter>
 
-	<!-- 필터 URL 매핑 : 어느 URL에 대해 필터를 적용할 지 설정함 -->
 	<filter-mapping>
 		<filter-name>CharEncodingFilter</filter-name>
 		<url-pattern>*</url-pattern>
 	</filter-mapping>
 
 	<servlet>
-	<servlet-name>general</servlet-name>
-	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-	<init-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>WEB-INF/general-servlet.xml</param-value>
-	</init-param>
-	<load-on-startup>1</load-on-startup>
-</servlet>
+		<servlet-name>general</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>WEB-INF/general-servlet.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>general</servlet-name>
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
 
-
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
-
-	<!-- <jsp-config> <taglib> <taglib-uri>/BitTagLibrary</taglib-uri> <taglib-location>/WEB-INF/tags/bit.tld</taglib-location> 
-		</taglib> </jsp-config> -->
 
 	<resource-ref>
 		<res-ref-name>jdbc/spmsdb</res-ref-name>
@@ -68,7 +56,3 @@
 	</resource-ref>
 
 </web-app>
-
-
-
-

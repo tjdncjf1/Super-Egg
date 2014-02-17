@@ -30,7 +30,9 @@
 		</property>
 	</bean>
 
-<!-- 	<context:component-scan base-package="spms.controls" /> -->
+	<!-- Front Controller의 조수들 -->
+	<!-- spms.controls에 있는 것만 생성하라 -->
+	<context:component-scan base-package="spms.controls" />
 
 	<bean
 		class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
@@ -52,36 +54,15 @@
 		</property>
 	</bean>
 
-	<!-- JSON 출력 전 -->
-	<!-- <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
-		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" 
-		/> <property name="prefix" value="/WEB-INF/view/" /> <property name="suffix" 
-		value=".jsp" /> </bean> -->
-
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<!-- one of the properties available; the maximum file size in bytes -->
-		<!-- <property name="maxUploadSize" value="100000"/> -->
-		<!-- <property name="maxInMemorySize" value="100000"/> -->
 	</bean>
-	<!-- Spring 2.5 까지 설정법 <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"> 
-		<property name="webBindingInitializer"> <bean cl"spms.propertyeditors.SpmsBindingInitializer"/>  
-		</property> -->
-	<!-- Spring 3.1부터는 다음과 같이 설정, 단 <mvc:annotation-driven/> 태그를 선언해야 한다. -->
-	<!-- <bean
+
+	<bean
 		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
 		<property name="webBindingInitializer">
-			<bean class="spms.propertyeditors.SpmsBindingInitializer" /> -->
-	<!-- 	</property> -->
-	<!-- </bean> -->
-	<!--  -->
-	<!--  -->
+			<bean class="spms.propertyeditors.SpmsBindingInitializer" />
+		</property>
+	</bean>
 
 </beans>
-
-
-
-
-
-
-
