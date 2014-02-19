@@ -7,16 +7,45 @@
 <script>
 $(function(){
 	$('#searchButton').click(function(){
-		$.getJSON('http://api.danawa.com/api/search/product/info', 
-				{key: '8f90ed2000bd7654c51e81a09eb9dd31', limit_no: '3', charset: 'utf8', mediatype: 'json',	
-			keyword: $('#searchValue').val()},
-				function(data){
-			$.each(data, function(key, value){
-				console.log(value);
-			});
-		});
+
+		$.ajax({ 
+      type: "GET"
+     ,url: "http://api.danawa.com/api/search/product/info?key=64218597d3f1fd458bd1b24c62f439f4&limit_no=3&charset=utf8&mediatype=json&keyword=플스"
+     ,async: false 
+     ,dataType: "json"
+     ,success: response_json 
+ }); 
+   
+ function response_json(json) 
+ { 
+     var product_list = json.productList; 
+     var product_count =product_list.length; 
+     $.each(product_list, function(key){ 
+         console.log(product_list[key].prod_name);
+        /*  var friend_name = friend_info.name; 
+         var friend_phone = friend_info.phone; 
+         var friend_address = friend_info.address; 
+         var friend_birth = friend_info.birth;    
+
+         //family 의 수만큼 루프를 돌아 이름을 구한다. 
+         var family_name = ""; 
+         var family_list = friend_info.family; 
+
+         //"family":{"family_name_1":"\ucc44\uc724","family_name_2":"\ucc44\ub9ac"} 
+         //idx의 값은  family_name_1 , family_name_2 가 된다.                       
+         $.each(family_list,function(idx){ 
+             family_name += family_list[idx] + "<br/>"; 
+         });                  
+           
+         var friend_date = friend_info.date; 
+                           
+         $("tbody").append(html); */                 
+     }); 
+ } 
+	
 	});
 });
+
 </script>
 </head>
 <body>
