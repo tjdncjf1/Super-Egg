@@ -19,7 +19,7 @@
 <script>
 $(function(){
   $("#searchButton").click(function() {
-      var keyword = $("#uid").val();
+      var keyword = $("#searchValue").val();
        
       if(!keyword) {
           alert("검색어를 입력하세요.");
@@ -31,17 +31,17 @@ $(function(){
           proxy_url += "key=c1b406b32dbbbbeee5f2a36ddc14067f";
           proxy_url += "&target=shop";
           proxy_url += "&query="+ keyword;
-       
+       console.log(encodeURIComponent(proxy_url));
+          
       $.ajax({
           url: "proxy.jsp",
-          type: "post",
+          type: "get",
           data: {"url" : proxy_url},
           dataType: "xml",
           /* contentType: "application/x-www-form-urlencoded; charset=UTF-8", */
           timeout:30000,
           success: function(data){
               $(data).find("item").each(function(){
-                   
                    
                   var title = $(this).find("title").text();
                   var link = $(this).find("link").text();
@@ -59,7 +59,10 @@ $(function(){
                   html += "</li>";
                    
                   $("#result").empty(html);
-              });
+              }); 
+              
+          
+              
           },
            
           error: function(xhr, message, errorThrown){
