@@ -1,59 +1,111 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Search</title>
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<script>
-$(function(){
-	$('#searchButton').click(function(){
-
-		$.ajax({ 
-      type: "GET"
-     ,url: "http://api.danawa.com/api/search/product/info?key=64218597d3f1fd458bd1b24c62f439f4&limit_no=3&charset=utf8&mediatype=json&keyword=플스"
-     ,async: false 
-     ,dataType: "json"
-     ,success: response_json 
- }); 
-   
- function response_json(json) 
- { 
-     var product_list = json.productList; 
-     var product_count =product_list.length; 
-     $.each(product_list, function(key){ 
-         console.log(product_list[key].prod_name);
-        /*  var friend_name = friend_info.name; 
-         var friend_phone = friend_info.phone; 
-         var friend_address = friend_info.address; 
-         var friend_birth = friend_info.birth;    
-
-         //family 의 수만큼 루프를 돌아 이름을 구한다. 
-         var family_name = ""; 
-         var family_list = friend_info.family; 
-
-         //"family":{"family_name_1":"\ucc44\uc724","family_name_2":"\ucc44\ub9ac"} 
-         //idx의 값은  family_name_1 , family_name_2 가 된다.                       
-         $.each(family_list,function(idx){ 
-             family_name += family_list[idx] + "<br/>"; 
-         });                  
-           
-         var friend_date = friend_info.date; 
-                           
-         $("tbody").append(html); */                 
-     }); 
- } 
-	
-	});
-});
-
-</script>
+  <meta charset="utf-8">
+  <title>jQuery.getJSON demo</title>
+  <link rel="stylesheet" href="css/colorbox.css" />
+  <style>
+  img {
+    height: 8em;
+  }
+  #result {
+    position: relative; 
+  }
+  .flickr_image { float: left; }
+  #contentsImg {
+    margin-left: 5%;
+  }
+  </style>
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="js/jquery.colorbox.js"></script>
 </head>
 <body>
-  <form id="search">
-    <input type="search" id="searchValue">
+
+<script>
+$(function(){
+  $("#searchButton").click(function() {
+      var keyword = $("#searchValue").val();
+       
+      if(!keyword) {
+          alert("검색어를 입력하세요.");
+          return false;
+      }
+       
+      // proxy에 전달할 URL
+      var proxy_url = "http://openapi.naver.com/search?";
+          proxy_url += "key=be6c30428660950b9ece4f651a0d2dba";
+          proxy_url += "&target=shop";
+          proxy_url += "&display=10";
+          proxy_url += "&query="+ keyword;
+       /* console.log(encodeURIComponent(proxy_url)); */
+          
+      $.ajax({
+          url: "proxy.jsp",
+          type: "get",
+          data: {"url" : proxy_url},
+          dataType: "xml",
+          success: function(data){
+                  console.log(data);
+                  $("#result").empty();
+                  $("#v1").empty();
+                  var count = 0;
+              $(data).find("item").each(function(){
+                  var title = $(this).find("title").text();
+                  var image = $(this).find("image").text();
+                  var min_price = $(this).find("lprice").text();
+                  var high_price = $(this).find("hprice").text();
+                  var link = $(this).find("link").text();
+                  var pId = $(this).find("productId").text();
+                  var contents = "<div id='content" + count + "'>"; 
+                  contents += "<img src='" + image + "' id='contentsImg' /><br>";	
+                  contents += "<label style= 'float: left';>최저가:" + min_price + "</label>";
+                  contents += "<label style= 'float: right';>최고가:" + high_price + "</label><br>";
+                  contents += "<input type='button' value='등록' style='float: right;'>";
+                  contents += "</div>";
+                  /* $(contents).appendTo('#v1'); */
+                  $('#v1').append(contents);
+                  
+                  var html = "<div>";
+                  html += "<a title='" + title + "' class='lightbox' href='#content" + count++ + "'>";
+                  html += "<img src='" + image + "'/>";
+                  html += "</a>";
+                  html += "<label style='font-size: 0.5em; position: relative; bottom: 5em;'><b>" + title + "</b></label><br>";
+                  html += "</div>";
+                  $(html).appendTo('#result');
+              });
+              
+              $('.lightbox').colorbox({
+              	transition:'fade', 
+                width: '55%', 
+                height: '50%',
+                inline: true,
+                onComplete: function(){
+                  // 이미지 클릭했을 때 close
+                  $('#contentsImg').unbind().click($.colorbox.close);
+                  /* console.log($('#content')); */
+                }});
+              
+          },
+           
+          error: function(xhr, message, errorThrown){
+              var msg = xhr.status + " / " + message + " / " + errorThrown;
+               
+              alert(msg);
+               
+          }
+      });
+       return false;
+  });
+});
+</script>
+ <input type="search" id="searchValue">
     <input type="button" value="검색" id="searchButton">
-  </form>
-  <hr>
-  <div id="show" style="height: 500px;"></div>
+    <div id="result"></div>
+    
+    <div id = "v1"></div>
 </body>
 </html>
+
+
+
+
