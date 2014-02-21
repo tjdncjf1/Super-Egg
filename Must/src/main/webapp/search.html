@@ -57,10 +57,14 @@ $(function(){
                   var link = $(this).find("link").text();
                   var pId = $(this).find("productId").text();
                   var contents = "<div id='content" + count + "'>"; 
+                  contents += "<form>";	
                   contents += "<img src='" + image + "' id='contentsImg' /><br>";	
-                  contents += "<label style= 'float: left';>최저가:" + min_price + "</label>";
-                  contents += "<label style= 'float: right';>최고가:" + high_price + "</label><br>";
-                  contents += "<input type='button' value='등록' style='float: right;'>";
+                  contents += "<p style='font-size:1em;'><b>Now Price:</b></p>";
+                  contents += "<p style='font-size:1em;'><b>" + min_price + "</b></p>";
+                  contents += "<p style='font-size:1em;'><b>Wish Price:</b></p>";
+                  contents += "<input type='num' name='wishPrice'><br>";
+                  contents += "<input type='submit' value='등록'>";
+                  contents += "</form>";
                   contents += "</div>";
                   /* $(contents).appendTo('#v1'); */
                   $('#v1').append(contents);
@@ -102,7 +106,7 @@ $(function(){
     <input type="button" value="검색" id="searchButton">
     <div id="result"></div>
     
-    <div id = "v1"></div>
+    <div id = "v1" style="display: none;"></div>
 </body>
 </html>
 
