@@ -6,16 +6,15 @@
   <link rel="stylesheet" href="colorbox.css" />
   <style>
   img {
-    height: 200px;
+    height: 8em;
   }
   #result {
     position: relative; 
   }
   .flickr_image { float: left; }
   #contentsImg {
-    margin-left: 35%;
+    margin-left: 5%;
   }
-  
   </style>
     <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="jquery.colorbox.js"></script>
@@ -55,30 +54,30 @@ $(function(){
                   var high_price = $(this).find("hprice").text();
                   var contents = "<div id='content'>"; 
                   contents += "<img src='" + image + "' id='contentsImg' /><br>";	
-                  contents += "<label style= 'float: left';>" + min_price + "</label>";
-                  contents += "<label style= 'float: right';>" + high_price + "</label><br>";
-                  contents += "<input type='button' value='등록'";
+                  contents += "<label style= 'float: left';>최저가:" + min_price + "</label>";
+                  contents += "<label style= 'float: right';>최고가:" + high_price + "</label><br>";
+                  contents += "<input type='button' value='등록' style='float: right;'>";
                   contents += "</div>";
                   $(contents).appendTo('#v1');
                   
-                  var html = "<span>";
+                  var html = "<div style='position: relative;'>";
                   html += "<a title='" + title + "' + class='lightbox' href='#content'>";
-                  html += "<img src='" + image + "'/><br>";
+                  html += "<img src='" + image + "'/>";
                   html += "</a>";
-                  html += "<label><b>" + title + "</b></label><br>";
-                  html += "</span>";
+                  html += "<label style='font-size: 0.5em;'><b>" + title + "</b></label><br>";
+                  html += "</div>";
                   $(html).appendTo('#result');
               });
               
               $('.lightbox').colorbox({
               	transition:'fade', 
-                width: '60%', 
-                height: '60%',
+                width: '55%', 
+                height: '50%',
                 inline: true,
                 onComplete: function(){
                   // 이미지 클릭했을 때 close
-                  /* $('.cboxPhoto').unbind().click($.colorbox.close); */
-                  console.log($('#content'));
+                  $('#contentsImg').unbind().click($.colorbox.close);
+                  /* console.log($('#content')); */
                 }});
               
           },
