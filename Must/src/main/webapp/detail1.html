@@ -3,18 +3,24 @@
 <head>
   <meta charset="utf-8">
   <title>jQuery.getJSON demo</title>
+  <link rel="stylesheet" href="colorbox.css" />
   <style>
   img {
-    height: 100px;
-    float: left;
+    height: 200px;
   }
+  #result {
+    position: relative; 
+  }
+  .flickr_image { float: left; }
+  #contentsImg {
+    margin-left: 35%;
+  }
+  
   </style>
-  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
- <!--   <script src="xml2json.js"></script>  -->
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="jquery.colorbox.js"></script>
 </head>
 <body>
- 
-<div id="images"></div>
 
 <script>
 $(function(){
@@ -28,40 +34,52 @@ $(function(){
        
       // proxy에 전달할 URL
       var proxy_url = "http://openapi.naver.com/search?";
-          proxy_url += "key=c1b406b32dbbbbeee5f2a36ddc14067f";
+          proxy_url += "key=be6c30428660950b9ece4f651a0d2dba";
           proxy_url += "&target=shop";
+          proxy_url += "&display=10";
           proxy_url += "&query="+ keyword;
-       console.log(encodeURIComponent(proxy_url));
+       /* console.log(encodeURIComponent(proxy_url)); */
           
       $.ajax({
           url: "proxy.jsp",
           type: "get",
           data: {"url" : proxy_url},
           dataType: "xml",
-          /* contentType: "application/x-www-form-urlencoded; charset=UTF-8", */
-          timeout:30000,
           success: function(data){
+                  console.log(data);
+                  $("#result").empty();
               $(data).find("item").each(function(){
-                   
                   var title = $(this).find("title").text();
-                  var link = $(this).find("link").text();
-                  var pubDate = $(this).find("pubDate").text();
-                  var maker = $(this).find("maker").text();
                   var image = $(this).find("image").text();
-                  var type = $(this).find("type").text();
-                   
-                  var html = "<li>";
-                  html += "<a href='" + link + "'>";
-                  html += "<img src='" + image + "'/>";
-                  html += "<h2>" + title + "<h2>";
-                  html += "<p>" + maker + "/" + pubDate + "</p>";
-                  html += "</a>";                         
-                  html += "</li>";
-                   
-                  $("#result").empty(html);
-              }); 
+                  var min_price = $(this).find("lprice").text();
+                  var high_price = $(this).find("hprice").text();
+                  var contents = "<div id='content'>"; 
+                  contents += "<img src='" + image + "' id='contentsImg' /><br>";	
+                  contents += "<label style= 'float: left';>" + min_price + "</label>";
+                  contents += "<label style= 'float: right';>" + high_price + "</label><br>";
+                  contents += "<input type='button' value='등록'";
+                  contents += "</div>";
+                  $(contents).appendTo('#v1');
+                  
+                  var html = "<span>";
+                  html += "<a title='" + title + "' + class='lightbox' href='#content'>";
+                  html += "<img src='" + image + "'/><br>";
+                  html += "</a>";
+                  html += "<label><b>" + title + "</b></label><br>";
+                  html += "</span>";
+                  $(html).appendTo('#result');
+              });
               
-          
+              $('.lightbox').colorbox({
+              	transition:'fade', 
+                width: '60%', 
+                height: '60%',
+                inline: true,
+                onComplete: function(){
+                  // 이미지 클릭했을 때 close
+                  /* $('.cboxPhoto').unbind().click($.colorbox.close); */
+                  console.log($('#content'));
+                }});
               
           },
            
@@ -72,11 +90,15 @@ $(function(){
                
           }
       });
+       return false;
   });
 });
 </script>
  <input type="search" id="searchValue">
     <input type="button" value="검색" id="searchButton">
+    <div id="result"></div>
+    
+    <div id = "v1" style="display:none;"></div>
 </body>
 </html>
 
