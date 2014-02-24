@@ -1,9 +1,9 @@
-package spms.dao;
+package must.dao;
 
 import java.util.List;
 import java.util.Map;
 
-import spms.vo.Member;
+import must.vo.Member;
 
 // 규칙들  
 // MemberMapper.xml에 MemberDao가 네임스페이스여야 한다.

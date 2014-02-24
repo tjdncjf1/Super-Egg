@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>jQuery.getJSON demo</title>
-  <link rel="stylesheet" href="css/colorbox.css" />
+  <title>Must</title>
   <style>
   img {
     height: 8em;
@@ -16,8 +15,9 @@
     margin-left: 5%;
   }
   </style>
-    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="js/jquery.colorbox.js"></script>
+  <link rel="stylesheet" href="css/colorbox.css" />
+  <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="js/jquery.colorbox.js"></script>
 </head>
 <body>
 
@@ -50,6 +50,8 @@ $(function(){
                   $("#v1").empty();
                   var count = 0;
               $(data).find("item").each(function(){
+              	  var xml = $(this);
+              	  console.log(xml);
                   var title = $(this).find("title").text();
                   var image = $(this).find("image").text();
                   var min_price = $(this).find("lprice").text();

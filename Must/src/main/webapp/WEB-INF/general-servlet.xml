@@ -32,7 +32,7 @@
 
 	<!-- Front Controller의 조수들 -->
 	<!-- spms.controls에 있는 것만 생성하라 -->
-	<context:component-scan base-package="spms.controls" />
+	<context:component-scan base-package="must.controls" />
 
 	<bean
 		class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
@@ -61,7 +61,7 @@
 	<bean
 		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
 		<property name="webBindingInitializer">
-			<bean class="spms.propertyeditors.SpmsBindingInitializer" />
+			<bean class="must.propertyeditors.MustBindingInitializer" />
 		</property>
 	</bean>
 

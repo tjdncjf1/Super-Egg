@@ -1,4 +1,4 @@
-package spms.propertyeditors;
+package must.propertyeditors;
 
 import java.text.SimpleDateFormat;
 
@@ -7,7 +7,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.support.WebBindingInitializer;
 import org.springframework.web.context.request.WebRequest;
 
-public class SpmsBindingInitializer implements WebBindingInitializer {
+public class MustBindingInitializer implements WebBindingInitializer {
 
 	@Override
 	public void initBinder(WebDataBinder binder, WebRequest request) {

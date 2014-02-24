@@ -1,9 +1,13 @@
-package spms.controls;
+package must.controls;
 
 import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.ServletContext;
+
+import must.dao.MemberDao;
+import must.vo.JsonResult;
+import must.vo.Member;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-
-import spms.dao.MemberDao;
-import spms.vo.JsonResult;
-import spms.vo.Member;
 
 @Controller
 @RequestMapping("/member") 

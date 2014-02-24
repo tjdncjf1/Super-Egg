@@ -1,4 +1,4 @@
-package spms.vo;
+package must.vo;
 
 import java.io.Serializable;
 

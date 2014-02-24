@@ -1,4 +1,4 @@
-package spms.vo;
+package must.vo;
 
 public class JsonResult {
 	public static final int SUCCESS = 0;

@@ -1,4 +1,4 @@
-package spms.propertyeditors;
+package must.propertyeditors;
 
 import java.beans.PropertyEditorSupport;
 

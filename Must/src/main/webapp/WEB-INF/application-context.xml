@@ -15,7 +15,7 @@
         http://www.springframework.org/schema/jee
         http://www.springframework.org/schema/jee/spring-jee.xsd">
         
-  <context:component-scan base-package="spms">
+  <context:component-scan base-package="must">
     <context:exclude-filter type="regex" expression=".*mysql.*"/>
     <context:exclude-filter type="regex" expression=".*oracle.*"/>
     <context:exclude-filter type="regex" expression=".*mssql.*"/>
@@ -26,16 +26,16 @@
       class="org.mybatis.spring.SqlSessionFactoryBean">
     <property name="dataSource" ref="dataSource" />
     <property name="mapperLocations" 
-      value="classpath*:spms/dao/*Mapper.xml"/>
-    <property name="typeAliasesPackage" value="spms.vo"/>
+      value="classpath*:must/dao/*Mapper.xml"/>
+    <property name="typeAliasesPackage" value="must.vo"/>
   </bean>
   
   <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-    <property name="basePackage" value="spms.dao" />
+    <property name="basePackage" value="must.dao" />
   </bean>
   
   <jee:jndi-lookup id="dataSource" 
-      jndi-name="java:comp/env/jdbc/spmsdb"/>
+      jndi-name="java:comp/env/jdbc/must"/>
   
   <!-- 애노테이션으로 트랜잭션 설정하는 것을 활성화시킴 -->
   <tx:annotation-driven transaction-manager="txManager"/>

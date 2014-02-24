@@ -1,4 +1,4 @@
-package spms.vo;
+package must.vo;
 
 public class Role {
 	public static final int GUEST = 0;
