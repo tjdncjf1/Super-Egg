@@ -47,7 +47,7 @@ $(function(){
           dataType: "xml",
           success: function(data){
                   console.log(data);
-                  $("#result").empty();
+                  $("#portfolio-items").empty();
                   var count = 0;
               $(data).find("item").each(function(){
               	  var xml = $(this);
@@ -60,17 +60,7 @@ $(function(){
                   var pId = $(this).find("productId").text();
              
                   
-                  var html = "<li class='item'>";
-                  html += "<figure>";
-                  html += "<figure>";
-                  html += "<div class='view'>";
-                  html += "<img src='" + image + "'/>";
-                  html += "</div>";
-                  html += "<figcaption>";
-                  html += "<p><span>" + title + "</span></p>";
-                  html += "</figcaption>";
-                  html += "</figure>";
-                  html += "<div class='date'>" + min_price + "</div>";
+                  var html = "<li class='item'><figure><div class='view'><img src='" + image + "'/></div><figcaption><p><span>" + title + "</span></p><p><span>최저가 :" + min_price + "</span></p><div class='date'>" + min_price + "</div></li>";
                   $(html).appendTo('.portfolio-items').click(function(){
                 	  
                 	  
