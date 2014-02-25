@@ -5,22 +5,87 @@
 <meta charset="UTF-8">
 <title>Must</title>
 <style>
-  #loginWindow {
-    border: 2px solid orange;
+.title {
+position: fixed;
+ font-size: 140px;
+ color: #fff;
+ margin: 0 auto;
+ text-align: center;
+ text-transform: capitalize;
+ font-family: "맑은 고딕";
+ font-weight: 200;
+ font-style: italic;
+ top: 10%;
+ left: 68px;
+}
+div{
     position: absolute;
-    top: 30%;
-    left: 16%;
+    bottom: 6px;
+    left: 19%;
     padding: 50px;
+    
   }
-  #loginWindow > h1 {
-    text-align: center;
-    margin: 0 auto;
-  }
+#aaa {
+background:-webkit-gradient(
+linear,
+  left top,
+  right top,
+  color-stop(0, #99FDA4),
+  color-stop(1, #3D7DCC)
+);
+background-image: -webkit-linear-gradient(right top , #99FDA4 0%, #3D7DCC 100%);
+opacity:0.2;
+}  
+
+
+.login {
+ color: #ffffff;
+ font-family: "맑은 고딕";
+ font-style: italic;
+ font-size: 42px;
+ position: fixed;
+ bottom: 20%;
+ left: 70px;
+}
+#email, #password {
+background-color: transparent;
+border:none;
+border-color:white;
+    font-size: 15px;
+  text-transform: lowercase;
+   /* border-bottom: none; */
+   /* opacity:0; */
+ position: fixed;
+ right: 40px;
+}
+#loginSubmit {
+ color: #fff;
+ font-family: "맑은 고딕";
+ font-style: italic;
+   font-size: 88px;
+    position: fixed;
+   bottom: 9%;
+   left: 22%;
+}
+
+#loginAdd {
+ font-size: 20px;
+  position: fixed;
+ 
+}
+
+a:link {
+text-decoration: none;
+position: fixed;
+bottom: 2%;
+left: 28%;
+}
+
 </style>
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script>
 $(function(){
-	$('#loginButton').click(function(){
+	$('#loginSubmit').click(function(){
 		$.ajax ({
 			url: 'auth/login.do',
 			type: 'POST',
@@ -36,14 +101,14 @@ $(function(){
 
 </script>
 </head>
-<body>
-<div id="loginWindow">
-  <h1>Must</h1>
-  <form>
-    <label>이메일:</label><input type="text" name="email" id="email"><br>
-    <label>비밀번호:</label><input type="password" name="password" id="password"><br>
-    <input type="button" value="로그인" id="loginButton">
-    <a href="join.html">아직 회원이 아니세요?</a>
+<body id="aaa">
+<div>
+  <h1 class="title">Must</h1>
+  <form action="" class="login">
+    <label for="email">email</label><input id="email" type="text" name="email"><br>
+    <label for="password">password</label><input id="password" type="password" name="password"><br>
+    <label for="loginSubmit"></label><a href="main.html" id="loginSubmit">LOGIN</a><br>
+    <a href="join1.html" id="loginAdd">아직 회원이 아니세요?</a>
   </form>
 </div>
 </body>

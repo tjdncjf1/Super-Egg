@@ -17,7 +17,6 @@
   }
   </style>
   <link rel="stylesheet" href="css/styles.css" />
-  <script src="jquery-1.9.1.min.js"></script>
   <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 </head>
 <body>
@@ -32,7 +31,6 @@ $(function(){
           return false;
       }
        
-      // proxy에 전달할 URL
       var proxy_url = "http://openapi.naver.com/search?";
           proxy_url += "key=be6c30428660950b9ece4f651a0d2dba";
           proxy_url += "&target=shop";
@@ -47,36 +45,38 @@ $(function(){
           dataType: "xml",
           success: function(data){
                   console.log(data);
-                  $("#portfolio-items").empty();
-                  var count = 0;
+                  $(".portfolio-items").empty();
               $(data).find("item").each(function(){
-              	  var xml = $(this);
-              	  console.log(xml);
                   var title = $(this).find("title").text();
                   var image = $(this).find("image").text();
                   var min_price = $(this).find("lprice").text();
                   var high_price = $(this).find("hprice").text();
                   var link = $(this).find("link").text();
                   var pId = $(this).find("productId").text();
-             
                   
                   var html = "<li class='item'><figure><div class='view'><img src='" + image + "'/></div><figcaption><p><span>" + title + "</span></p><p><span>최저가 :" + min_price + "</span></p><div class='date'>" + min_price + "</div></li>";
-                  $(html).appendTo('.portfolio-items').click(function(){
-                	  
-                	  
-                  });
-                  
+                  $(html).click(function(){
+                  	$.ajax({
+                  		url: 'main.html',
+                  		type: 'get',
+                  		data: {
+                  			title: title,
+                  			image: image,
+                  			min_price: min_price,
+                  			high_price: high_price,
+                  			link: link,
+                  			pId: pId
+                  		},
+                  		success: function(data){
+                  			location.href='main.html';
+                  		}
+                  	});
+                  }).appendTo('.portfolio-items');
               });
-              
-            
-              
           },
-           
           error: function(xhr, message, errorThrown){
               var msg = xhr.status + " / " + message + " / " + errorThrown;
-               
               alert(msg);
-               
           }
       });
        return false;
@@ -86,8 +86,6 @@ $(function(){
  <input type="search" id="searchValue">
     <input type="button" value="검색" id="searchButton">
     <ul class="portfolio-items"></ul>
-    
-    
     
   <script src="js/jquery-1.8.2.min.js"></script>
   <script src="js/modernizr-1.5.min.js"></script>
