@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>Must</title>
   <style>
   img {
@@ -15,9 +16,9 @@
     margin-left: 5%;
   }
   </style>
-  <link rel="stylesheet" href="css/colorbox.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <script src="jquery-1.9.1.min.js"></script>
   <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="js/jquery.colorbox.js"></script>
 </head>
 <body>
 
@@ -36,7 +37,7 @@ $(function(){
           proxy_url += "key=be6c30428660950b9ece4f651a0d2dba";
           proxy_url += "&target=shop";
           proxy_url += "&display=10";
-          proxy_url += "&query="+ keyword;
+          proxy_url += "&query="+ encodeURIComponent(keyword);
        /* console.log(encodeURIComponent(proxy_url)); */
           
       $.ajax({
@@ -47,7 +48,6 @@ $(function(){
           success: function(data){
                   console.log(data);
                   $("#result").empty();
-                  $("#v1").empty();
                   var count = 0;
               $(data).find("item").each(function(){
               	  var xml = $(this);
@@ -58,38 +58,27 @@ $(function(){
                   var high_price = $(this).find("hprice").text();
                   var link = $(this).find("link").text();
                   var pId = $(this).find("productId").text();
-                  var contents = "<div id='content" + count + "'>"; 
-                  contents += "<form>";	
-                  contents += "<img src='" + image + "' id='contentsImg' /><br>";	
-                  contents += "<p style='font-size:1em;'><b>Now Price:</b></p>";
-                  contents += "<p style='font-size:1em;'><b>" + min_price + "</b></p>";
-                  contents += "<p style='font-size:1em;'><b>Wish Price:</b></p>";
-                  contents += "<input type='num' name='wishPrice'><br>";
-                  contents += "<input type='submit' value='등록'>";
-                  contents += "</form>";
-                  contents += "</div>";
-                  /* $(contents).appendTo('#v1'); */
-                  $('#v1').append(contents);
+             
                   
-                  var html = "<div>";
-                  html += "<a title='" + title + "' class='lightbox' href='#content" + count++ + "'>";
+                  var html = "<li class='item'>";
+                  html += "<figure>";
+                  html += "<figure>";
+                  html += "<div class='view'>";
                   html += "<img src='" + image + "'/>";
-                  html += "</a>";
-                  html += "<label style='font-size: 0.5em; position: relative; bottom: 5em;'><b>" + title + "</b></label><br>";
                   html += "</div>";
-                  $(html).appendTo('#result');
+                  html += "<figcaption>";
+                  html += "<p><span>" + title + "</span></p>";
+                  html += "</figcaption>";
+                  html += "</figure>";
+                  html += "<div class='date'>" + min_price + "</div>";
+                  $(html).appendTo('.portfolio-items').click(function(){
+                	  
+                	  
+                  });
+                  
               });
               
-              $('.lightbox').colorbox({
-              	transition:'fade', 
-                width: '55%', 
-                height: '50%',
-                inline: true,
-                onComplete: function(){
-                  // 이미지 클릭했을 때 close
-                  $('#contentsImg').unbind().click($.colorbox.close);
-                  /* console.log($('#content')); */
-                }});
+            
               
           },
            
@@ -106,9 +95,15 @@ $(function(){
 </script>
  <input type="search" id="searchValue">
     <input type="button" value="검색" id="searchButton">
-    <div id="result"></div>
+    <ul class="portfolio-items"></ul>
     
-    <div id = "v1" style="display: none;"></div>
+    
+    
+  <script src="js/jquery-1.8.2.min.js"></script>
+  <script src="js/modernizr-1.5.min.js"></script>
+  <script src="js/jquery.mousewheel.js"></script>
+  <script src="js/scripts.js"></script>
+    
 </body>
 </html>
 
