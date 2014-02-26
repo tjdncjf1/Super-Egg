@@ -1,4 +1,5 @@
 $(function() {
+	
 	var list = '<div id="st-accordion" class="st-accordion">';
 	list += '<ul><li><a href="#">Photography<span class="st-arrow">Open or Close</span></a>';
 	list += '<div class="st-content">';
@@ -10,6 +11,10 @@ $(function() {
 	$('#st-accordion').accordion({
 		oneOpenedItem : true
 	});
+	
+	
+
+	
 	
 	
 });
