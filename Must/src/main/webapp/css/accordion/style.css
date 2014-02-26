@@ -1,5 +1,5 @@
 /* Flexible Slide-to-top Accordion Style*/
-.wrapper{
+#list{
 	width:90%;
 	max-width:800px;
 	margin:30px auto;
@@ -33,7 +33,7 @@
 	transition: color 0.2s ease-in-out;
 }
 .st-accordion ul li > a span{
-	background: transparent url(../images/down.png) no-repeat center center;
+	background: transparent url(../../images/down.png) no-repeat center center;
 	text-indent:-9000px;
 	width: 26px;
 	height: 14px;
