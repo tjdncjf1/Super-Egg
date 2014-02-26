@@ -3,15 +3,19 @@
 <head>
   <meta charset="utf-8">
   <title>Must</title>
+  <style>
+    img {
+      width: 10%;
+    }
+  </style>
   <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 </head>
 <body>
 
 <script>
-var searchItem = [];
-
 $(function(){
   $("#searchButton").click(function() {
+  	  $('#search-items').show();
       var keyword = $("#searchValue").val();
       if(!keyword) {
           alert("검색어를 입력하세요.");
@@ -32,39 +36,66 @@ $(function(){
           async: false,
           success: function(data){
                   console.log(data);
-                  $(searchItem).empty();
-                  $('.portfolio-items').empty();
+                  $('#search-items').empty();
+                  $('#detail-items').empty();
               $(data).find("item").each(function(i){
                   var title = $(this).find("title").text();
                   var image = $(this).find("image").text();
                   var min_price = $(this).find("lprice").text();
                   var link = $(this).find("link").text();
                   var pId = $(this).find("productId").text();
-                  searchItem.push(new item(title,image,min_price,link,pId));
                   
                   var output ='';
-                  output += '<img src="' + searchItem[i].이미지주소 + '"/>';
-                  $(output).appendTo('.portfolio-items');
+                  output += '<img src="' + image + '" class="select' + i + '"/>';
+                  $(output).click(function(){
+                  	
+                    // detail 쪽 div에 아이템 상세정보 표시
+                    detail(title, image, min_price, link, pId); 
+                    
+                  	$('#search-items').hide();
+                  	$('#detail-items').show();
+                  }).appendTo('#search-items');
                   
-              });
+              }); 
           },
       });
        return false;
   });
 });
 
-function item(title, image, min_price, link, pId) {
-  this.제목 = title;
-  this.이미지주소 = image;
-  this.최저가격 = min_price;
-  this.주소 = link;
-  this.상품코드 = pId;
+function detail(title, image, min_price, link, pId) {
+  var ot = '';
+  ot += '<img src="' + image + '"/>';
+  ot += '<p><h2>' + title + '</h2></p>';
+  ot += '<p><h3>최저가: ' + min_price + '</h3></p>';
+  ot += '<p><h3>상품코드: ' + pId + '</h3></p>';
+  ot += '<input type="button" value="등록" class="reg_button">';
+  $(ot).appendTo('#detail-items');
+  
+  $('.reg_button').click(function(){
+  	$.ajax ({
+  		url: 'regItem.do',
+  		type: 'get',
+  		data: {
+  			title: title,
+  			image: image,
+  			min_price: min_price,
+  			link: link,
+  			pId: pId
+  		},
+  		success: function(){
+  			
+  		}
+  	});
+  });
 }
+
 </script>
  <input type="search" id="searchValue">
  <input type="button" value="검색" id="searchButton">
- <div class="portfolio-items"></div>
-    
+ <div id="search-items" style="display: none;"></div>
+ <div id="detail-items" style="display: none;"></div>
+ <div id="list-items"   style="display: none;"></div>
 </body>
 </html>
 
