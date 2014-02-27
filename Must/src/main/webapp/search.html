@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html>
 <head>
   <meta charset="utf-8">
   <title>Must</title>
@@ -33,7 +33,6 @@ $(function(){
           type: "get",
           data: {"url" : proxy_url},
           dataType: "xml",
-          async: false,
           success: function(data){
                   console.log(data);
                   $('#search-items').empty();
@@ -41,7 +40,7 @@ $(function(){
               $(data).find("item").each(function(i){
                   var title = $(this).find("title").text();
                   var image = $(this).find("image").text();
-                  var min_price = $(this).find("lprice").text();
+                  var min_price = parseInt($(this).find("lprice").text());
                   var link = $(this).find("link").text();
                   var pId = $(this).find("productId").text();
                   
@@ -56,8 +55,7 @@ $(function(){
                   }).appendTo('#search-items');
                   
               }); 
-          },
-      });
+          }});
        return false;
   });
 });
@@ -67,15 +65,20 @@ function detail(title, image, min_price, link, pId) {
   ot += '<img src="' + image + '"/>';
   ot += '<p><h2>' + title + '</h2></p>';
   ot += '<p><h3>최저가: ' + min_price + '</h3></p>';
-  ot += '<h3>희망가격: <input type="text" id="wishPrice"><br></h3>'
+  ot += '<h3>희망가격: <input type="number" id="wishPrice"><br></h3>'
   ot += '<p><h3>상품코드: ' + pId + '</h3></p>';
   ot += '<input type="button" value="등록" class="reg_button">';
   $(ot).appendTo('#detail-items');
+  
+  console.log(typeof min_price);
+  console.log(typeof parseInt($('#wishPrice').val()));
+  console.log(typeof new Date());
   
   $('#search-items').hide();
   $('#detail-items').show();
  
   $('.reg_button').click(function() {
+  	confirm('등록하시겠습니까?');
     $.ajax({
       url : 'item/addItem.do',
       type : 'get',
@@ -83,15 +86,18 @@ function detail(title, image, min_price, link, pId) {
         title : title,
         image : image,
         min_price : min_price,
-        wish_price : $('#wishPrice').val(),
+        wish_price : parseInt($('#wishPrice').val()),
         link : link,
-        pId : parseInt(pId)
+        pId : pId,
+        reg_date : new Date()
       },
       success : function() {
         $('#detail-items').hide();
         $('#list-items').show();
-      }
-    });
+      },
+      error : function() {
+      	alert('시스템이 바쁩니다. \n나중에 다시 시도해 주세요!');
+      }});
   });
   
 }
@@ -101,10 +107,8 @@ function detail(title, image, min_price, link, pId) {
  <input type="button" value="검색" id="searchButton">
  <div id="search-items" style="display: none;"></div>
  <div id="detail-items" style="display: none;"></div>
- <div id="list-items"   style="display: none;"></div>
+ <div id="list-items"   style="display: none;">으허허</div>
 </body>
 </html>
-
-
 
 

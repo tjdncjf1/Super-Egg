@@ -1,16 +1,27 @@
 package must.vo;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Item implements Serializable { 
   private static final long serialVersionUID = 1L; 
 
-  protected int     pId;
+  protected String  pId;
   protected String  title;
 	protected String  image;
 	protected int 		min_price;
 	protected int 		wish_price;
 	protected String  link; 
+	protected Date    reg_date;
+	
+	public String getpId() {
+		return pId;
+	}
+	
+	public Item setpId(String pId) {
+		this.pId = pId;
+		return this;
+	}
 	
 	public String getTitle() {
 		return title;
@@ -39,6 +50,15 @@ public class Item implements Serializable {
 		return this;
 	}
 	
+	public int getWish_price() {
+		return wish_price;
+	}
+	
+	public Item setWish_price(int wish_price) {
+		this.wish_price = wish_price;
+		return this;
+	}
+	
 	public String getLink() {
 		return link;
 	}
@@ -48,14 +68,15 @@ public class Item implements Serializable {
 		return this;
 	}
 	
-	public int getpId() {
-		return pId;
+	public Date getReg_date() {
+		return reg_date;
 	}
 	
-	public Item setpId(int pId) {
-		this.pId = pId;
+	public Item setReg_date(Date reg_date) {
+		this.reg_date = reg_date;
 		return this;
 	}
+	
 	
 	
 	

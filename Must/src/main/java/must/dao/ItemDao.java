@@ -4,7 +4,7 @@ import must.vo.Item;
 
 public interface ItemDao {
 	
-	public int insert(Item item) throws Exception;
+	public void insert(Item item) throws Exception;
 
 
 
