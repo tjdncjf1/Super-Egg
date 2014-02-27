@@ -5,76 +5,57 @@ import java.io.Serializable;
 public class Item implements Serializable { 
   private static final long serialVersionUID = 1L; 
 
-  protected int 		no;
-	protected String  name;
-	protected int 		age;
-	protected String  email; 
-	protected String  tel;
-	protected String  password;
-	protected String 	photo;	
+  protected String  title;
+	protected String  image;
+	protected int 		min_price;
+	protected String  link; 
+	protected int     pId;
 	
-	public String getName() {
-		return name;
+	public String getTitle() {
+		return title;
 	}
 	
-	public Item setName(String name) {
-		this.name = name;
+	public Item setTitle(String title) {
+		this.title = title;
 		return this;
 	}
 	
-	public int getAge() {
-		return age;
+	public String getImage() {
+		return image;
 	}
 	
-	public Item setAge(int age) {
-		if (age > 7 && age < 101) {
-			this.age = age;
-		} else {
-			this.age = 20;
-		}
+	public Item setImage(String image) {
+		this.image = image;
 		return this;
 	}
 	
-	public String getEmail() {
-		return email;
+	public int getMin_price() {
+		return min_price;
 	}
 	
-	public Item setEmail(String email) {
-		this.email = email;
+	public Item setMin_price(int min_price) {
+		this.min_price = min_price;
 		return this;
 	}
 	
-	public String getTel() {
-		return tel;
+	public String getLink() {
+		return link;
 	}
 	
-	public Item setTel(String tel) {
-		this.tel = tel;
+	public Item setLink(String link) {
+		this.link = link;
 		return this;
 	}
-	public int getNo() {
-		return no;
+	
+	public int getpId() {
+		return pId;
 	}
-	public Item setNo(int no) {
-		this.no = no;
+	
+	public Item setpId(int pId) {
+		this.pId = pId;
 		return this;
 	}
-	public String getPassword() {
-		return password;
-	}
-	public Item setPassword(String password) {
-		this.password = password;
-		return this;
-	}
-
-	public String getPhoto() {
-		return photo;
-	}
-
-	public Item setPhoto(String photo) {
-		this.photo = photo;
-		return this;
-	}
+	
 	
 	
 	
