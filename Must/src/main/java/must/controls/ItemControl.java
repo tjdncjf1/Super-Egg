@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import must.vo.JsonResult;
-
 @Controller
 @RequestMapping("/item") 
 public class ItemControl {
@@ -17,14 +15,11 @@ public class ItemControl {
 	ItemDao itemDao;
 
 	@RequestMapping("/addItem") 
-	public Object insert(Item item) throws Exception {
+	public void insert(Item item) throws Exception {
 		try {
 			itemDao.insert(item);
-			return new JsonResult().setResultStatus(JsonResult.SUCCESS);
-
 		} catch (Throwable ex) {
-			return new JsonResult().setResultStatus(JsonResult.FAILURE)
-					.setError(ex.getMessage());
+			ex.printStackTrace();
 		}
 	}
 

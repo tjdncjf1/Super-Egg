@@ -90,15 +90,10 @@ function detail(title, image, min_price, link, pId) {
         link : link,
         pId : pId,
         reg_date : new Date()
-      },
-      success : function(data) {
-        $('#detail-items').hide();
-        $('#list-items').show();
-      },
-      error : function(data) {
-      	console.log(data);
-      	alert('시스템이 바쁩니다. \n나중에 다시 시도해 주세요!');
-      }}); 
+      }}).done(function(){
+      	  $('#detail-items').hide();
+      	  $('#list-items').show();
+      }); 
   });
   
 }
