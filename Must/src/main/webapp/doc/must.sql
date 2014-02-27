@@ -13,8 +13,8 @@ DROP TABLE IF EXISTS `PRICE_CHANGES` RESTRICT;
 -- 회원정보
 CREATE TABLE `USER` (
   `UNO`    INTEGER     NOT NULL, -- 회원번호
-  `UEMAIL` VARCHAR(40) NULL,     -- 이메일
-  `UPW`    VARCHAR(20) NULL      -- 비밀번호
+  `UEMAIL` VARCHAR(40) NOT NULL, -- 이메일
+  `UPW`    VARCHAR(20) NOT NULL  -- 비밀번호
 );
 
 -- 회원정보
@@ -32,13 +32,13 @@ CREATE UNIQUE INDEX `UIX_USER`
 
 -- 상품정보
 CREATE TABLE `ITEM` (
-  `PROD_ID`   INTEGER      NOT NULL, -- 상품코드
-  `IMAGE_URL` VARCHAR(255) NULL,     -- 이미지경로
-  `MIN_PRICE` INTEGER      NULL,     -- 최소가
-  `AVG_PRICE` INTEGER      NULL,     -- 평균가
-  `SHOT`      INTEGER      NULL,     -- 단종여부
-  `INPUT_D`   DATE         NULL,     -- 등록일
-  `DANAWAURL` VARCHAR(255) NULL      -- 상품페이지 경로
+  `PROD_ID`    VARCHAR(50)  NOT NULL, -- 상품코드
+  `TITLE`      VARCHAR(50)  NOT NULL, -- 상품명
+  `IMAGE_URL`  VARCHAR(255) NULL,     -- 이미지경로
+  `MIN_PRICE`  INTEGER      NOT NULL, -- 최소가
+  `WISH_PRICE` INTEGER      NOT NULL, -- 희망가
+  `LINK`       VARCHAR(255) NOT NULL, -- 상품페이지 경로
+  `REG_DATE`   DATE         NOT NULL  -- 등록일
 );
 
 -- 상품정보
@@ -50,10 +50,10 @@ ALTER TABLE `ITEM`
 
 -- 상품 리스트
 CREATE TABLE `USER_ITEM_LIST` (
-  `PROD_ID`    INTEGER NOT NULL, -- 상품코드
-  `UNO`        INTEGER NOT NULL, -- 회원번호
-  `WISH_PRICE` INTEGER NULL,     -- 희망가격
-  `REG_DATE`   DATE    NULL      -- 등록일
+  `PROD_ID`    VARCHAR(50) NOT NULL, -- 상품코드
+  `UNO`        INTEGER     NOT NULL, -- 회원번호
+  `WISH_PRICE` INTEGER     NOT NULL, -- 희망가격
+  `REG_DATE`   DATE        NOT NULL  -- 등록일
 );
 
 -- 상품 리스트
@@ -66,10 +66,10 @@ ALTER TABLE `USER_ITEM_LIST`
 
 -- 가격변동내역
 CREATE TABLE `PRICE_CHANGES` (
-  `COL`     INTEGER NOT NULL, -- 일련번호
-  `PROD_ID` INTEGER NULL,     -- 상품코드
-  `PRICE`   INTEGER NULL,     -- 가격
-  `STIME`   DATE    NULL      -- 조사시각
+  `COL`     INTEGER     NOT NULL, -- 일련번호
+  `PROD_ID` VARCHAR(50) NOT NULL, -- 상품코드
+  `PRICE`   INTEGER     NOT NULL, -- 가격
+  `STIME`   DATE        NOT NULL  -- 조사시각
 );
 
 -- 가격변동내역

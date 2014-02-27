@@ -50,10 +50,9 @@ $(function(){
                   $(output).click(function(){
                   	
                     // detail 쪽 div에 아이템 상세정보 표시
+                    // 서버에 아이템 등록
                     detail(title, image, min_price, link, pId); 
                     
-                  	$('#search-items').hide();
-                  	$('#detail-items').show();
                   }).appendTo('#search-items');
                   
               }); 
@@ -73,23 +72,28 @@ function detail(title, image, min_price, link, pId) {
   ot += '<input type="button" value="등록" class="reg_button">';
   $(ot).appendTo('#detail-items');
   
-  $('.reg_button').click(function(){
-  	$.ajax ({
-  		url: 'item/addItem.do',
-  		type: 'get',
-  		data: {
-  			title: title,
-  			image: image,
-  			min_price: min_price,
-  			wish_price: $('#wishPrice').val(),
-  			link: link,
-  			pId: pId
-  		},
-  		success: function(data){
-  			
-  		}
-  	});
+  $('#search-items').hide();
+  $('#detail-items').show();
+ 
+  $('.reg_button').click(function() {
+    $.ajax({
+      url : 'item/addItem.do',
+      type : 'get',
+      data : {
+        title : title,
+        image : image,
+        min_price : min_price,
+        wish_price : $('#wishPrice').val(),
+        link : link,
+        pId : parseInt(pId)
+      },
+      success : function() {
+        $('#detail-items').hide();
+        $('#list-items').show();
+      }
+    });
   });
+  
 }
 
 </script>
