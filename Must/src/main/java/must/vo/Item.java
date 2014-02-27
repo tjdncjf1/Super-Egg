@@ -5,11 +5,12 @@ import java.io.Serializable;
 public class Item implements Serializable { 
   private static final long serialVersionUID = 1L; 
 
+  protected int     pId;
   protected String  title;
 	protected String  image;
 	protected int 		min_price;
+	protected int 		wish_price;
 	protected String  link; 
-	protected int     pId;
 	
 	public String getTitle() {
 		return title;

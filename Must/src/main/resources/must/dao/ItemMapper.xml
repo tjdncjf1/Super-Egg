@@ -2,61 +2,19 @@
 <!DOCTYPE mapper
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="must.dao.MemberDao">
-  <resultMap type="member" id="memberResultMap">
-    <id property="no"             column="MNO"/>
-    <result property="name"       column="MNAME"/>
-    <result property="email"      column="EMAIL"/>
-    <result property="tel"        column="TEL"/>
-    <result property="age"        column="AGE"/>
-    <result property="password"   column="PWD"/>
-    <result property="photo"      column="PHOTO"/>
+<mapper namespace="must.dao.ItemDao">
+  <resultMap type="item" id="itemResultMap">
+    <id property="pId"             column="PROD_ID"/>
+    <result property="title"       column="TITLE"/>
+    <result property="image"       column="IMAGE_URL"/>
+    <result property="min_price"   column="MIN_PRICE"/>
+    <result property="wish_price"  column="W_PRICE"/>
+    <result property="link"        column="LINK"/>
   </resultMap>
 
-	<select id="selectList" resultMap="memberResultMap">
-		select MNO, MNAME, EMAIL, TEL
-		from MEMBERS
+	<select id="insert" parameterType="item">
+		insert PROD_ID, TITLE, IMAGE_URL, MIN_PRICE, W_PRICE, LINK
+		from ITEM
 	</select>
 	
-	<select id="selectOne" parameterType="int" resultMap="memberResultMap">
-		select MNO, MNAME, EMAIL, TEL, AGE, PHOTO
-		from MEMBERS
-		where MNO=#{value}
-	</select>
-	
-	<delete id="delete" parameterType="int">
-	 delete from MEMBERS where MNO=#{no}
-	</delete>
-
-  <insert id="insert" parameterType="member">
-    INSERT INTO MEMBERS(MNAME,EMAIL,TEL,AGE,PHOTO,PWD) 
-    VALUES(#{name},#{email},#{tel},#{age},#{photo},#{password})
-  </insert>
-
-  <update id="update" parameterType="member">
-    update MEMBERS set 
-    MNAME=#{name}, 
-    EMAIL=#{email}, 
-    TEL=#{tel}, 
-    AGE=#{age},
-    PHOTO=#{photo} 
-    where MNO=#{no}
-  </update>
-  
-  <select id="selectByEmailPassword" 
-  parameterType="map" 
-  resultMap="memberResultMap">
-    select MNO, MNAME, EMAIL, PHOTO
-    from MEMBERS 
-    where EMAIL=#{email} and PWD=#{password}
-  </select>
-  
-  <select id="selectListByProject" parameterType="int" 
-      resultMap="memberResultMap">
-    select T1.MNO, T2.MNAME, T2.PHOTO
-		from PRJ_MEMS T1 left outer join MEMBERS T2
-		using (MNO)
-		where T1.PNO=#{value}
-		order by T2.MNAME;
-  </select>
 </mapper>
