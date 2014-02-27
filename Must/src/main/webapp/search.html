@@ -8,7 +8,12 @@
       width: 10%;
     }
   </style>
-  <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<link rel="stylesheet" type="text/css" href="css/accordion/demo.css" />
+<link rel="stylesheet" type="text/css" href="css/accordion/style.css" />
+<link href='http://fonts.googleapis.com/css?family=Josefin+Slab:400,700' rel='stylesheet' type='text/css' />
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="js/accordion/jquery.accordion.js"></script>
+<script type="text/javascript" src="js/accordion/jquery.easing.1.3.js"></script>
 </head>
 <body>
 
@@ -45,7 +50,7 @@ $(function(){
                   var pId = $(this).find("productId").text();
                   
                   var output ='';
-                  output += '<img src="' + image + '" class="select' + i + '"/>';
+                  output += '<img src="' + image + '"/>';
                   $(output).click(function(){
                   	
                     // detail 쪽 div에 아이템 상세정보 표시
@@ -60,6 +65,7 @@ $(function(){
   });
 });
 
+// 상세 정보
 function detail(title, image, min_price, link, pId) {
   var ot = '';
   ot += '<img src="' + image + '"/>';
@@ -90,17 +96,33 @@ function detail(title, image, min_price, link, pId) {
         link : link,
         pId : pId,
         reg_date : new Date()
-      }}).done(function(){
-      	  $('#detail-items').hide();
-      	  $('#list-items').show();
-      }); 
-  });
+      },
+      success : function(){
+      	$('#detail-items').hide();
+      	$('#list-items').show();
+      },
+      error : function() {
+      	alert('시스템이 바쁩니다.\n나중에 다시 시도해 주세요!');
+      }
+    });  
+  }); // 등록 버튼 클릭 괄호 
   
-}
+} // 디테일 괄호
+
+function list() {
+  $.ajax({
+  	url: 'item/list.do',
+  	type: 'get',
+  	success: function(data){
+  		
+  	} // success 괄호
+  });	// $.ajax 괄호
+} // list 괄호 
 
 </script>
  <input type="search" id="searchValue">
  <input type="button" value="검색" id="searchButton">
+ <hr>
  <div id="search-items" style="display: none;"></div>
  <div id="detail-items" style="display: none;"></div>
  <div id="list-items"   style="display: none;">으허허</div>
