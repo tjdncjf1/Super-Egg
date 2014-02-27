@@ -65,7 +65,7 @@ function detail(title, image, min_price, link, pId) {
   ot += '<img src="' + image + '"/>';
   ot += '<p><h2>' + title + '</h2></p>';
   ot += '<p><h3>최저가: ' + min_price + '</h3></p>';
-  ot += '<h3>희망가격: <input type="number" id="wishPrice"><br></h3>'
+  ot += '<h3>희망가격: <input type="number" id="wishPrice"><br></h3>';
   ot += '<p><h3>상품코드: ' + pId + '</h3></p>';
   ot += '<input type="button" value="등록" class="reg_button">';
   $(ot).appendTo('#detail-items');
@@ -91,13 +91,14 @@ function detail(title, image, min_price, link, pId) {
         pId : pId,
         reg_date : new Date()
       },
-      success : function() {
+      success : function(data) {
         $('#detail-items').hide();
         $('#list-items').show();
       },
-      error : function() {
+      error : function(data) {
+      	console.log(data);
       	alert('시스템이 바쁩니다. \n나중에 다시 시도해 주세요!');
-      }});
+      }}); 
   });
   
 }
