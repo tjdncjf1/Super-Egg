@@ -57,8 +57,15 @@ $(function(){
                     // 서버에 아이템 등록
                     detail(title, image, min_price, link, pId); 
                     
+                    // list-items div에 아코디언 출력
+                    itemlist();
+                    
+                      
+                    
                   }).appendTo('#search-items');
-                  
+                  $('#st-accordion').accordion({
+                    oneOpenedItem : true
+                  });
               }); 
           }});
        return false;
@@ -108,24 +115,40 @@ function detail(title, image, min_price, link, pId) {
   }); // 등록 버튼 클릭 괄호 
   
 } // 디테일 괄호
-
-function list() {
+/*
+function itemlist() {
   $.ajax({
   	url: 'item/list.do',
   	type: 'get',
-  	success: function(data){
+  	success: function(items){
+  		console.log(items);
+  		var item = null;
+  		for (var i = 0; i < items.length; i++) {
+  			item = items[i];
+  		  var accor = '<div id="st-accordion" class="st-accordion">';
+  		  accor += '<ul><li><a href="#">' + item.title + '<span class="st-arrow">Open or Close</span></a>';
+  		  accor += '<div class="st-content">';	
+  			accor += '<img src="' + item.image + '" alt="image01"/></div></li></ul></div>';
+  		  accor += '<p>최저가: ' + item.min_price '</p>';
+  		  accor += '<p>최저가: ' + item.wish_price '</p>'; 
+  		  $(accor).appendTo('#list-items');
+  		}
+  		
+  	  $('#st-accordion').accordion({
+  	    oneOpenedItem : true
+  	  });
   		
   	} // success 괄호
   });	// $.ajax 괄호
 } // list 괄호 
-
+*/
 </script>
  <input type="search" id="searchValue">
  <input type="button" value="검색" id="searchButton">
  <hr>
  <div id="search-items" style="display: none;"></div>
  <div id="detail-items" style="display: none;"></div>
- <div id="list-items"   style="display: none;">으허허</div>
+ <div id="list-items"   style="display: none;"></div>
 </body>
 </html>
 

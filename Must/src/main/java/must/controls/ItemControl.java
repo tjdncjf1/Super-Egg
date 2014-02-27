@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import must.vo.JsonResult;
+
 @Controller
 @RequestMapping("/item") 
 public class ItemControl {
@@ -23,7 +25,17 @@ public class ItemControl {
 		}
 	}
 	
-	
+	@RequestMapping(value="/list", produces="application/json")
+	public Object list() throws Exception {
+		try {
+			return new JsonResult().setResultStatus(JsonResult.SUCCESS)
+					.setData(itemDao.selectList());
+		} catch (Throwable ex) {
+			return new JsonResult()
+			.setResultStatus(JsonResult.FAILURE)
+			.setError(ex.getMessage());
+		}
+	}
 	
 	
 
