@@ -30,7 +30,10 @@ $(function(){
                   var pId = $(this).find("productId").text();
                   
                   var output ='';
-                  output += '<img src="' + image + '"/>';
+                  output += '<figure>';
+                  output += '<img src="' + image + '"/><br>';
+                  output += '<figcaption> '+ title + '</figcaption> ';
+                  output += '</figure>';
                   $(output).click(function(){
                   	
                     // detail 쪽 div에 아이템 상세정보 표시
