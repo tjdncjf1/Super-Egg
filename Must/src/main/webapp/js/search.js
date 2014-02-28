@@ -32,8 +32,9 @@ $(function(){
                   var output ='';
                   output += '<figure>';
                   output += '<img src="' + image + '"/><br>';
-                  output += '<figcaption> '+ title + '</figcaption> ';
-                  output += '</figure>';
+                  output += '<figcaption> '+ title + '</figcaption><br>';
+                  output += '<figcaption style = "float: right;">'+ min_price + '원</figcaption>';
+                  output += '</figure> ';
                   $(output).click(function(){
                   	
                     // detail 쪽 div에 아이템 상세정보 표시
@@ -52,11 +53,12 @@ function detail(title, image, min_price, link, pId) {
 	$('#detail-items').empty();
 	
   var ot = '';
+  ot += '<h1>' + title + '</h1>';
   ot += '<img src="' + image + '"/>';
-  ot += '<p><h2>' + title + '</h2></p>';
-  ot += '<p><h3>최저가: ' + min_price + '</h3></p>';
-  ot += '<h3>희망가격: <input type="number" id="wishPrice"><br></h3>';
-  ot += '<p><h3>상품코드: ' + pId + '</h3></p>';
+  ot += '<h3>NOW PRICE</h3>';
+  ot += '<h3 style ="text-align: right">'+ min_price + '</h3>';
+  ot += '<h3>WISH PRICE</h3>';
+  ot += '<input type="text" id="wishPrice" value="가격">';
   ot += '<input type="button" value="등록" class="reg_button">';
   $(ot).appendTo('#detail-items');
   

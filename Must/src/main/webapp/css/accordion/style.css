@@ -14,13 +14,13 @@
     border-bottom: 1px solid #c7deef;
     border-top:1px solid #fff;
     overflow: hidden;
+    
 }
 .st-accordion ul li:first-child{
     border-top:none;
 }
 .st-accordion ul li > a {
-	font-family: 'Josefin Slab', Georgia, serif;
-	text-shadow: 1px 1px 1px #fff;
+	font-family: '';
 	font-size: 18px;
 	display: block;
 	position: relative;
@@ -31,6 +31,7 @@
 	-o-transition: color 0.2s ease-in-out;
 	-ms-transition: color 0.2s ease-in-out;
 	transition: color 0.2s ease-in-out;
+	color: white;
 }
 .st-accordion ul li > a span{
 	background: transparent url(../../images/down.png) no-repeat center center;

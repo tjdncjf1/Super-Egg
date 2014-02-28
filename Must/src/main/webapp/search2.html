@@ -5,6 +5,12 @@
   <title>Must</title>
 <link rel="stylesheet" type="text/css" href="css/accordion/demo.css" />
 <link rel="stylesheet" type="text/css" href="css/accordion/style.css" />
+<<<<<<< HEAD
+<link rel="stylesheet" type="text/css" href="css/accordion/search.css" />
+<link rel="stylesheet" type="text/css" href="css/accordion/detail.css" />
+<link rel="stylesheet" type="text/css" href="css/accordion/common.css" />
+=======
+>>>>>>> branch 'master' of https://github.com/tjdncjf1/Super-Egg.git
 <link rel="stylesheet" type="text/css" href="css/search.css" />
 <link href='http://fonts.googleapis.com/css?family=Josefin+Slab:400,700' rel='stylesheet' type='text/css' />
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
@@ -48,7 +54,8 @@ $(function(){
                   var output ='';
                   output += '<figure>';
                   output += '<img src="' + image + '"/><br>';
-                  output += '<figcaption> '+ title + '</figcaption> ';
+                  output += '<figcaption> '+ title + '</figcaption><br>';
+                  output += '<figcaption style = "float: right;">'+ min_price + '원</figcaption>';
                   output += '</figure> ';
                   $(output).click(function(){
                   	
@@ -74,11 +81,12 @@ $(function(){
 // 상세 정보
 function detail(title, image, min_price, link, pId) {
   var ot = '';
+  ot += '<h1>' + title + '</h1>';
   ot += '<img src="' + image + '"/>';
-  ot += '<p><h2>' + title + '</h2></p>';
-  ot += '<p><h3>최저가: ' + min_price + '</h3></p>';
-  ot += '<h3>희망가격: <input type="number" id="wishPrice"><br></h3>';
-  ot += '<p><h3>상품코드: ' + pId + '</h3></p>';
+  ot += '<h3>NOW PRICE</h3>';
+  ot += '<h3 style ="text-align: right">'+ min_price + '</h3>';
+  ot += '<h3>WISH PRICE</h3>';
+  ot += '<input type="text" id="wishPrice" value="가격">';
   ot += '<input type="button" value="등록" class="reg_button">';
   $(ot).appendTo('#detail-items');
   
