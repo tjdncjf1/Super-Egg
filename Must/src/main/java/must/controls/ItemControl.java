@@ -1,5 +1,7 @@
 package must.controls;
 
+import java.util.HashMap;
+
 import must.dao.ItemDao;
 import must.vo.Item;
 
@@ -16,6 +18,18 @@ public class ItemControl {
 	@Autowired(required=false)
 	ItemDao itemDao;
 
+	@RequestMapping("/update") 
+	public void update(String pId, int wish_price) throws Exception {
+		try {
+			HashMap<String, Object> sqlparamMap = new HashMap<String, Object>();
+			sqlparamMap.put("pId", pId);
+			sqlparamMap.put("wish_price", wish_price);
+			itemDao.update(sqlparamMap);
+		} catch (Throwable ex) {
+			ex.printStackTrace();
+		}
+	}
+	
 	@RequestMapping("/addItem") 
 	public void insert(Item item) throws Exception {
 		try {

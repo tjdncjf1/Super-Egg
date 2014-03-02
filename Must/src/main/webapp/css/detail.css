@@ -5,7 +5,6 @@
 	color : white;
 	display: block;
 	margin:0 auto; 
-	
 }
 
 #detail-items h1 {
@@ -22,14 +21,13 @@
 #detail-items h3 {
   font-size: 2em;
   margin :  auto 10px;
+  color: white;
 }
 
 #detail-items input {
-	
-	margin-left: 100px;
+	float: right;
 	border-color: transparent;
 	background-color: transparent;
 	font-size: 2em;
-	
 }
 

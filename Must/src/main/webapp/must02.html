@@ -3,11 +3,16 @@
 <head>
   <meta charset="utf-8">
   <title>Must</title>
+<link rel="stylesheet" type="text/css" href="css/accordion/demo.css" />
+<link rel="stylesheet" type="text/css" href="css/accordion/style.css" />
 <link rel="stylesheet" type="text/css" href="css/search.css" />
 <link rel="stylesheet" type="text/css" href="css/detail.css" />
 <link rel="stylesheet" type="text/css" href="css/common.css" />
+<link href='http://fonts.googleapis.com/css?family=Josefin+Slab:400,700' rel='stylesheet' type='text/css' />
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-<script type="text/javascript" src="js/list.js"></script>
+<script type="text/javascript" src="js/accordion/jquery.accordion.js"></script>
+<script type="text/javascript" src="js/accordion/jquery.easing.1.3.js"></script>
+<script type="text/javascript" src="js/accordion/list.js"></script>
 <script type="text/javascript">
 $(function(){
   $('#searchwindow').click(function(){
@@ -21,23 +26,6 @@ $(function(){
     $('.searchImg').empty();
     $('#list-items').show();
   });
-  
-  
-  String.prototype.comma = function() {
-    tmp = this.split('.');
-    var str = new Array();
-    var v = tmp[0].replace(/,/gi,'');
-    for(var i=0; i<=v.length; i++) {
-        str[str.length] = v.charAt(v.length-i);
-        if(i%3==0 && i!=0 && i!=v.length) {
-            str[str.length] = '.';
-        }
-    }
-    str = str.reverse().join('').replace(/\./gi,',');
-    return (tmp.length==2) ? str + '.' + tmp[1] : str;
-}
-  
-  
 });
 </script>
 <script type="text/javascript" src="js/search.js"></script>

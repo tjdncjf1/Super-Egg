@@ -13,14 +13,20 @@
     <result property="reg_date"    column="REG_DATE"/>
   </resultMap>
 
-    <select id="selectList" resultMap="itemResultMap">
+  <select id="selectList" resultMap="itemResultMap">
     select PROD_ID, TITLE, IMAGE_URL, MIN_PRICE, WISH_PRICE, LINK, REG_DATE
     from ITEM
   </select>
   
-	<select id="insert" parameterType="item">
+	<insert id="insert" parameterType="item">
 		insert into ITEM (PROD_ID, TITLE, IMAGE_URL, MIN_PRICE, WISH_PRICE, LINK, REG_DATE)
 		values (#{pId}, #{title}, #{image}, #{min_price}, #{wish_price}, #{link}, #{reg_date})
-	</select>
+	</insert>
+	
+	<update id="update" parameterType="map">
+    update ITEM set 
+    WISH_PRICE=#{wish_price} 
+    where PROD_ID=#{pId}
+  </update>
 	
 </mapper>

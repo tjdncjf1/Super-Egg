@@ -1,5 +1,5 @@
 $(function(){
-  $("#searchButton").click(function() {
+  $("#sbSearch").submit(function() {
       var keyword = $("#searchValue").val();
       
       if(!keyword) {
@@ -33,7 +33,7 @@ $(function(){
                   output += '<figure>';
                   output += '<img src="' + image + '"/><br>';
                   output += '<figcaption> '+ title + '</figcaption><br>';
-                  output += '<figcaption style = "float: right;">'+ min_price + '원</figcaption>';
+                  output += '<figcaption style = "float: right;">'+ commaNum(min_price) + '원</figcaption>';
                   output += '</figure> ';
                   $(output).click(function(){
                   	
@@ -46,26 +46,63 @@ $(function(){
           }});
        return false;
   });
+  
+  // 숫자 콤마 넣기
+  function commaNum(num) {
+  	var len, point, str;  
+    
+    num = num + "";  
+    point = num.length % 3  
+    len = num.length;  
+
+    str = num.substring(0, point);  
+    while (point < len) {  
+        if (str != "") str += ",";  
+        str += num.substring(point, point + 3);  
+        point += 3;  
+    }  
+    return str;  
+  };
+  
+  
 });
 
 // 상세 정보
 function detail(title, image, min_price, link, pId) {
+	
+  // 숫자 콤마 넣기
+  function commaNum(num) {
+  	var len, point, str;  
+    
+    num = num + "";  
+    point = num.length % 3  
+    len = num.length;  
+
+    str = num.substring(0, point);  
+    while (point < len) {  
+        if (str != "") str += ",";  
+        str += num.substring(point, point + 3);  
+        point += 3;  
+    }  
+    return str;  
+  };
+	
 	$('#detail-items').empty();
 	
   var ot = '';
   ot += '<h1>' + title + '</h1>';
   ot += '<img src="' + image + '"/>';
   ot += '<h3>NOW PRICE</h3>';
-  ot += '<h3 style ="text-align: right">'+ min_price + '</h3>';
+  ot += '<h3 style ="text-align: right">'+ commaNum(min_price) + '원</h3>';
   ot += '<h3>WISH PRICE</h3>';
-  ot += '<input type="text" id="wishPrice" value="가격">';
-  ot += '<input type="button" value="등록" class="reg_button">';
+  ot += '<input type="text" id="wishPrice" placeholder="가격을 입력하세요."><br>';
+  ot += '<input type="button" value="등록" id="regButton">';
   $(ot).appendTo('#detail-items');
   
   $('#search-items').hide();
   $('#detail-items').show();
  
-  $('.reg_button').click(function() {
+  $('#regButton').click(function() {
   	confirm('등록하시겠습니까?');
     $.ajax({
       url : 'item/addItem.do',

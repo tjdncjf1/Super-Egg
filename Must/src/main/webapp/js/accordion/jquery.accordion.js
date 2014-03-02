@@ -34,7 +34,7 @@
 		}
 	};
 
-	$.fn.smartresize 			= function( fn ) {
+	$.fn.smartresize = function( fn ) {
 		return fn ? this.bind( "smartresize", fn ) : this.trigger( "smartresize", ["execAsap"] );
 	};
 	
