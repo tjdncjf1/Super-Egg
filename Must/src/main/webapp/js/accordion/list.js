@@ -7,7 +7,7 @@ $(function() {
 	  		var accor = '<div id="st-accordion" class="st-accordion"><ul></ul></div>';
 	  		$(accor).appendTo('#list-items');
 	  		$.each(items.jsonResult.data, function(index, item){
-	  		  var list = '<li><a href="#">' + item.title + '<span class="st-arrow">Open or Close</span></a>';
+	  		  var list = '<li><a href="#" class="dotta">' + item.title + '<span class="st-arrow">Open or Close</span></a>';
 	  		  list += '<div class="st-content">';	
 	  		  list += '<img src="' + item.image + '" alt="image01"/>';
 	  		  list += '<form id=sbUpdate><p>최저가: <input type="number" value=' + item.min_price + '></p>';

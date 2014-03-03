@@ -16,6 +16,7 @@
   <select id="selectList" resultMap="itemResultMap">
     select PROD_ID, TITLE, IMAGE_URL, MIN_PRICE, WISH_PRICE, LINK, REG_DATE
     from ITEM
+    order by REG_DATE desc
   </select>
   
 	<insert id="insert" parameterType="item">

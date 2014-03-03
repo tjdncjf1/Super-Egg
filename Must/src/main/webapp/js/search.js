@@ -99,7 +99,8 @@ function detail(title, image, min_price, link, pId) {
   
   $('#search-items').hide();
   $('#detail-items').show();
- 
+  console.log(new Date());
+  
   $('#regButton').click(function() {
   	confirm('등록하시겠습니까?');
     $.ajax({
