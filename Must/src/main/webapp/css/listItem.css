@@ -1,0 +1,39 @@
+ul.items {
+	list-style-type: none;
+}
+
+.viewImg {
+	background: white;
+	margin-top: 10px;
+	margin-left: -20px;
+	max-height: 180px;
+	max-width: 100%;
+	box-shadow: 2px 2px 2px black;
+	border-radius: 5px;
+}
+
+.itemSpace {
+	margin-top: 4em;
+}
+
+.itemSpace>span {
+	font-weight: 800;
+	margin: -25px 0px 5px -20px;
+	color: #5E696B;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+	-ms-text-overflow: ellipsis;
+	white-space: nowrap;
+	position: relative;
+	float: left;
+	width: 60%;
+	height: auto;
+}
+
+.image {
+	position: relative;
+	width: 11em;
+	height: 180px;
+	border-radius: 5px 0 0 5px;
+}

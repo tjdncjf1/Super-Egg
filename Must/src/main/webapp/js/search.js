@@ -64,7 +64,6 @@ $(function(){
     return str;  
   };
   
-  
 });
 
 // 상세 정보
@@ -77,7 +76,6 @@ function detail(title, image, min_price, link, pId) {
     num = num + "";  
     point = num.length % 3  
     len = num.length;  
-
     str = num.substring(0, point);  
     while (point < len) {  
         if (str != "") str += ",";  

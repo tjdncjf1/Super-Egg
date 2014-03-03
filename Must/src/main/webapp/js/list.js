@@ -11,12 +11,13 @@ $(function() {
 	  			listItem += '<li><div class="itemSpace">';
 	  			listItem += '<span>' + item.title + '</span>';
 	  			listItem += '<div class="viewImg">';
-	  			listItem += '<img src="' + item.image + ;
+	  			listItem += '<img src="' + item.image + '" class="image"><hr>';
+	  			listItem += '</div></div></li></ul></div>';
 	  			
+	  			$(listItem).appendTo('#list-items');
 	  			
-	  			.appendTo('#list-items');
-	  			
-	  		  $('#sbUpdate').submit(function(){
+	  		  /*
+	  		    $('#sbUpdate').submit(function(){
 	  		  	$.ajax({
 	  		  		url: 'item/update.do',
 	  		  		type: 'get',
@@ -30,7 +31,8 @@ $(function() {
 	  		  	}); // ajax 괄호
 	  		  	return false;
 	  		  }); // submit 괄호
-	  		}); // each 괄호
+*/	  		
+	  			}); // each 괄호
 	  		
 	  	} // success 괄호
 	  });	// $.ajax 괄호
