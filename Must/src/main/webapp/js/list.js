@@ -5,7 +5,16 @@ $(function() {
 	  	success: function(items){
 	  		console.log(items);
 	  		$.each(items.jsonResult.data, function(index, item){
-
+	  			
+	  			var listItem = '';
+	  			listItem += '<ul class="items">';
+	  			listItem += '<li><div class="itemSpace">';
+	  			listItem += '<span>' + item.title + '</span>';
+	  			listItem += '<div class="viewImg">';
+	  			listItem += '<img src="' + item.image + ;
+	  			
+	  			
+	  			.appendTo('#list-items');
 	  			
 	  		  $('#sbUpdate').submit(function(){
 	  		  	$.ajax({

@@ -3,6 +3,36 @@
 <head>
   <meta charset="utf-8">
   <title>Must</title>
+  <style>
+    ul.items {
+      list-style-type: none;
+    }
+    .viewImg {
+      background: white;
+      margin-top: 10px;
+      margin-left: -20px;
+      max-height: 180px;
+      max-width: 100%;
+      box-shadow: 2px 2px 2px black;
+      border-radius: 4px;
+    }
+    .viewImg hr {
+      border-style: dotted;
+      border-width: 1px 0px 0px 0px;
+      border-color: white;
+      height: 1px;
+    }
+    .itemSpace > span {
+      margin-bottom: 5px;
+      margin-left: -20px;
+      color: white;
+    }
+    .image {
+      position: relative;
+      width: 11em;
+      height: 180px;
+    }
+  </style>
 <link rel="stylesheet" type="text/css" href="css/search.css" />
 <link rel="stylesheet" type="text/css" href="css/detail.css" />
 <link rel="stylesheet" type="text/css" href="css/common.css" />
@@ -15,29 +45,13 @@ $(function(){
     $('#detail-items').hide();
     $('#search-items').show();
   });
+  
   $('#listwindow').click(function(){
     $('#search-items').hide();
     $('#detail-items').hide();
     $('.searchImg').empty();
     $('#list-items').show();
   });
-  
-  
-  String.prototype.comma = function() {
-    tmp = this.split('.');
-    var str = new Array();
-    var v = tmp[0].replace(/,/gi,'');
-    for(var i=0; i<=v.length; i++) {
-        str[str.length] = v.charAt(v.length-i);
-        if(i%3==0 && i!=0 && i!=v.length) {
-            str[str.length] = '.';
-        }
-    }
-    str = str.reverse().join('').replace(/\./gi,',');
-    return (tmp.length==2) ? str + '.' + tmp[1] : str;
-}
-  
-  
 });
 </script>
 <script type="text/javascript" src="js/search.js"></script>
@@ -46,7 +60,19 @@ $(function(){
 
 <input type="button" value="검색창가기" id="searchwindow">
 <input type="button" value="목록가기" id="listwindow"><br>
- <div id="list-items"></div>
+ <div id="list-items">
+ <ul class="items">
+  <li>
+    <div class= "itemSpace">
+      <span>Lanai Rooftop Lounge</span>
+      <div class= "viewImg">
+        <img src="images/1.jpg" class= "image">
+        <hr>
+      </div>
+    </div>
+  </li> 
+ </ul>
+ </div>
  
  <div id="search-items" style="display: none;">
  <div id="search-bar">
@@ -58,7 +84,6 @@ $(function(){
  </div>
  <div class="searchImg"></div>
  </div>
- 
  <div id="detail-items" style="display: none;"></div>
 </body>
 </html>
