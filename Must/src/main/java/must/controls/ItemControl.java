@@ -39,6 +39,15 @@ public class ItemControl {
 		}
 	}
 	
+	@RequestMapping("/delete") 
+	public void delete(String pId) throws Exception {
+		try {
+			itemDao.delete(pId);
+		} catch (Throwable ex) {
+			ex.printStackTrace();
+		}
+	}
+	
 	@RequestMapping(value="/list", produces="application/json")
 	public Object list() throws Exception {
 		try {
