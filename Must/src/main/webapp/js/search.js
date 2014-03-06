@@ -69,7 +69,7 @@ $(function(){
 // 상세 정보
 function detail(title, image, min_price, link, pId) {
 	
-  // 숫자 콤마 넣기
+  // 숫자 콤마 넣기`
   function commaNum(num) {
   	var len, point, str;  
     
@@ -102,7 +102,6 @@ function detail(title, image, min_price, link, pId) {
   console.log(new Date());
   
   $('#regButton').click(function() {
-  	confirm('등록하시겠습니까?');
     $.ajax({
       url : 'item/addItem.do',
       type : 'get',
