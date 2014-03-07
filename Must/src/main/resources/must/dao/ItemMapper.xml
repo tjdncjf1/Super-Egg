@@ -31,7 +31,7 @@
 	
 	<update id="update" parameterType="map">
     update ITEM set 
-    WISH_PRICE=#{wish_price} 
+    MIN_PRICE=#{lPrice} 
     where PROD_ID=#{pId}
   </update>
 	

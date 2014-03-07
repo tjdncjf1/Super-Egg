@@ -23,7 +23,9 @@ $(function(){
                   $('.searchImg').empty();
                   $('#detail-items').empty();
               $(data).find("item").each(function(i){
-                  var title = $(this).find("title").text();
+                  var aa = $(this).find("title").text();
+                  var bb = aa.split("<b>").join("");
+                  var title = bb.split("</b>").join("");
                   var image = $(this).find("image").text();
                   var min_price = parseInt($(this).find("lprice").text());
                   var link = $(this).find("link").text();
@@ -99,7 +101,7 @@ function detail(title, image, min_price, link, pId) {
   
   $('#search-items').hide();
   $('#detail-items').show();
-  console.log(new Date());
+//  console.log(new Date());
   
   $('#regButton').click(function() {
     $.ajax({

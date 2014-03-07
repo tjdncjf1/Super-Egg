@@ -12,6 +12,5 @@ public interface ItemDao {
 	public void delete(String pId) throws Exception;
 	public void update(Map<String, Object> sqlparamMap) throws Exception;
 
-
 }
 

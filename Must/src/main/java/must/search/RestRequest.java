@@ -30,9 +30,11 @@ public class RestRequest {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder builder = factory.newDocumentBuilder();
 		Document doc = builder.parse(conn.getInputStream());
-
+		
 		//channel노드를 객체화 하기
 		Node node = doc.getElementsByTagName("channel").item(0);
+		System.out.println(node);
+		System.out.println(node.getChildNodes().getLength());
 		for (int i=0 ;i< node.getChildNodes().getLength();i++) {
 			Node channelNode = node.getChildNodes().item(i);
 			String nodeName = channelNode.getNodeName();
@@ -45,10 +47,13 @@ public class RestRequest {
 				{
 					Node itemNode = channelNode.getChildNodes().item(j);
 					//title노드 일 경우 출력
-					if("title".equals(itemNode.getNodeName()))
-						System.out.println("itemNode.getTextContent()");
+//					if("title".equals(itemNode.getNodeName()))
+//						System.out.println("itemNode.getTextContent()");
 				}
 			}
 		}
 	}
+	public static void main(String[] args) throws IOException, ParserConfigurationException, SAXException {
+	  RestRequest rr = new RestRequest();
+  }
 }

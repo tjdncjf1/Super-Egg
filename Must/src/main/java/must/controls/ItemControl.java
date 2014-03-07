@@ -32,6 +32,9 @@ public class ItemControl {
 	@RequestMapping("/addItem") 
 	public void insert(Item item) throws Exception {
 		try {
+//			String cTitle = item.getTitle();
+			
+			
 			itemDao.insert(item);
 		} catch (Throwable ex) {
 			ex.printStackTrace();
