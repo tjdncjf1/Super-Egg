@@ -27,8 +27,7 @@ public class SearchBot {
 	@Autowired(required=false)
 	ItemDao itemDao;
 
-	// 3600000
-	@Scheduled(fixedDelay=5000)
+	@Scheduled(fixedDelay=3600000)
 	public void doSchedule() throws ParserConfigurationException, SAXException, IOException {
 
 		try {
@@ -59,26 +58,33 @@ public class SearchBot {
 	        
 	        // item 노드들일 경우
 	        if ("item".equals(nodeName)) {
+	        	int lowPrice = 0;
+	        	String productId = null;
+	        	HashMap<String, Object> uItem = new HashMap<>();
 	        	
 	        	// item 노드의 자식노드를 검색
 	        	for (int k = 0; k < channelNode.getChildNodes().getLength(); k++) {
 	            Node itemNode = channelNode.getChildNodes().item(k);
-	            int lowPrice = 0;
-	            String productId = null;
 	            
 	            if ("lprice".equals(itemNode.getNodeName())) {
-	            	lowPrice = Integer.parseInt(itemNode.getNodeValue());
+	            	lowPrice = Integer.parseInt(itemNode.getTextContent());
+	            	uItem.put("lPrice", lowPrice);
 	            }
 	            
 	            if ("productId".equals(itemNode.getNodeName())) {
-	            	productId = itemNode.getNodeValue();
+	            	productId = itemNode.getTextContent();
+	            	uItem.put("pId", productId);
 	            }
 	            
-	            HashMap<String, Object> uItem = new HashMap<>();
-	            uItem.put("lPrice", lowPrice);
-	            uItem.put("pId", productId);
-	            itemDao.update(uItem);
-
+	            if (uItem.size() == 2) {
+		            itemDao.update(uItem);
+		            uItem.remove("lPrice");
+		            uItem.remove("pId");
+	            }
+	            
+	            
+	            
+	            
 	        	}
 	        }
         }
