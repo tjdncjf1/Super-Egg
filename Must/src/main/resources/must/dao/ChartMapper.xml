@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="must.dao.ChartDao">
+  <resultMap type="chart" id="chartResultMap">
+    <id property="no"              column="COL"/>
+    <result property="pId"         column="PROD_ID"/>
+    <result property="nprice"      column="PRICE"/>
+    <result property="cdate"       column="STIME"/>
+  </resultMap>
+
+	<insert id="insert" parameterType="chart">
+		insert into PRICE_CHANGES (PROD_ID, PRICE, STIME)
+		values (#{pId}, #{nprice}, #{cdate})
+	</insert>
+
+	<select id="cItem" parameterType="String">
+	   select * from PRICE_CHANGES
+     where PROD_ID = #{pId};
+	</select>
+	
+<!-- 	<delete id="delete" parameterType="string">
+		delete from ITEM
+		where PROD_ID=#{pId}
+	</delete> -->
+	
+</mapper>

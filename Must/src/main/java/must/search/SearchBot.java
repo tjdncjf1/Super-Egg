@@ -5,13 +5,16 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import must.dao.ChartDao;
 import must.dao.ItemDao;
+import must.vo.Chart;
 import must.vo.Item;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +29,24 @@ public class SearchBot {
 
 	@Autowired(required=false)
 	ItemDao itemDao;
-
-	@Scheduled(fixedDelay=3600000)
+	
+	@Autowired(required=false)
+	ChartDao chartDao;
+	
+	//3600000
+	@Scheduled(fixedDelay=10000)
 	public void doSchedule() throws ParserConfigurationException, SAXException, IOException {
 
 		try {
 			ArrayList<Item> sItem = (ArrayList<Item>)itemDao.selectList();
+			ArrayList<Chart> sList = null;
 			for (int i = 0; i < sItem.size(); i++){
+				sList = (ArrayList<Chart>) chartDao.cItem(sItem.get(i).getpId());
+				
+				if (sList.size() == 24) {
+	        sList.get(sList.size()-1).get 
+				}
+				
 				String requestUrl = "";
 				requestUrl += "http://openapi.naver.com/search?";
 				requestUrl += "key=be6c30428660950b9ece4f651a0d2dba"; 
@@ -61,6 +75,7 @@ public class SearchBot {
 	        	int lowPrice = 0;
 	        	String productId = null;
 	        	HashMap<String, Object> uItem = new HashMap<>();
+	        	Chart cp = new Chart();
 	        	
 	        	// item 노드의 자식노드를 검색
 	        	for (int k = 0; k < channelNode.getChildNodes().getLength(); k++) {
@@ -69,11 +84,16 @@ public class SearchBot {
 	            if ("lprice".equals(itemNode.getNodeName())) {
 	            	lowPrice = Integer.parseInt(itemNode.getTextContent());
 	            	uItem.put("lPrice", lowPrice);
+	            	cp.setNprice(lowPrice);
 	            }
 	            
 	            if ("productId".equals(itemNode.getNodeName())) {
 	            	productId = itemNode.getTextContent();
 	            	uItem.put("pId", productId);
+	            	if (sItem.get(i).getpId().equals(productId)) {
+	            		cp.setpId(sItem.get(i).getpId())
+	            			.setCdate(new Date(System.currentTimeMillis()));
+	            	}
 	            }
 	            
 	            if (uItem.size() == 2) {
@@ -81,6 +101,15 @@ public class SearchBot {
 		            uItem.remove("lPrice");
 		            uItem.remove("pId");
 	            }
+	            
+	            if (cp.getpId() != null && cp.getNprice() != 0 
+	            		&& cp.getCdate() != null) {
+	            	chartDao.insert(cp);
+	            	cp.setCdate(null)
+	            		.setNprice(0)
+	            		.setpId(null);
+	            }
+	            
 	            
 	            
 	            
