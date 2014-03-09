@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Join</title>
-<style>
+<!-- <style>
 .title {
 position: fixed;
  font-size: 140px;
@@ -83,34 +83,29 @@ left: 28%;
   #joinButton {
     float: right;
   }
+</style> -->
+<style>
+input.error, textarea.error{
+  border:1px dashed red;
+}
+label.error{
+  /* display:block; */
+  margin-left: 10px;
+  color:red;
+}
 </style>
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<script>
-$(function(){
-  $('#joinButton').click(function(){
-    $.ajax ({
-      url: 'auth/login.do',
-      type: 'POST',
-      data: {
-        email: $('#email').val, 
-        password: $('#password').val 
-      },
-      success: function (members) {
-        location.href= 'main.html';
-      }});
-  });
-});
-
-</script>
+<script type="text/javascript" src="js/jquery.validate.js"></script>
+<script type="text/javascript" src="js/check.js"></script>
 </head>
 <body id="aaa">
 <div>
  <h1 class="title">Must</h1>
-  <form action="" class="login">
-      <hr>
-    <label for="email">email</label><br><input type="text" name="email" id="email"><br>
-    <label for="password">password</label><br><input type="password" name="password" id="password"><br>
-    <input type="button" value="회원가입" id="joinButton">
+  <form id="valiex" method="post"><hr>
+    <label for="email">이메일</label><br><input type="text" name="email" id="email"><br>
+    <label for="password">비밀번호</label><br><input type="password" name="password" id="password"><br>
+    <label for="pwchk">비밀번호 확인</label><br><input type="password" name="pwchk" id="pwchk"><br>
+    <input type="submit" value="회원가입">
   </form>
 </div>
 </body>
