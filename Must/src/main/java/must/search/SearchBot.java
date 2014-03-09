@@ -5,16 +5,13 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import must.dao.ChartDao;
 import must.dao.ItemDao;
-import must.vo.Chart;
 import must.vo.Item;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,11 +27,11 @@ public class SearchBot {
 	@Autowired(required=false)
 	ItemDao itemDao;
 	
-	@Autowired(required=false)
-	ChartDao chartDao;
+//	@Autowired(required=false)
+//	ChartDao chartDao;
 	
 	//3600000
-	@Scheduled(fixedDelay=3600000)
+	@Scheduled(fixedDelay=10000)
 	public void doSchedule() throws ParserConfigurationException, SAXException, IOException {
 
 		try {
@@ -54,7 +51,7 @@ public class SearchBot {
 				requestUrl += "&display=10";
 				requestUrl += "&query=" + URLEncoder.encode(sItem.get(i).getTitle(),"UTF-8");
 				URL url = new URL(requestUrl);
-				System.out.println(requestUrl);
+//				System.out.println(requestUrl);
 				
 				//API 요청 및 반환
 				URLConnection conn = url.openConnection();
@@ -64,8 +61,8 @@ public class SearchBot {
 				
 				//channel노드를 객체화 하기
 				Node node = doc.getElementsByTagName("channel").item(0);
-				System.out.println("1" + node);
-				System.out.println("2" + node.getChildNodes().getLength());
+//				System.out.println("1" + node);
+//				System.out.println("2" + node.getChildNodes().getLength());
 				for (int j = 0; j < node.getChildNodes().getLength(); j++) {
 	        Node channelNode = node.getChildNodes().item(j);
 	        String nodeName = channelNode.getNodeName();
@@ -75,7 +72,7 @@ public class SearchBot {
 	        	int lowPrice = 0;
 	        	String productId = null;
 	        	HashMap<String, Object> uItem = new HashMap<>();
-	        	Chart cp = new Chart();
+//	        	Chart cp = new Chart();
 	        	
 	        	// item 노드의 자식노드를 검색
 	        	for (int k = 0; k < channelNode.getChildNodes().getLength(); k++) {
@@ -84,16 +81,16 @@ public class SearchBot {
 	            if ("lprice".equals(itemNode.getNodeName())) {
 	            	lowPrice = Integer.parseInt(itemNode.getTextContent());
 	            	uItem.put("lPrice", lowPrice);
-	            	cp.setNprice(lowPrice);
+//	            	cp.setNprice(lowPrice);
 	            }
 	            
 	            if ("productId".equals(itemNode.getNodeName())) {
 	            	productId = itemNode.getTextContent();
 	            	uItem.put("pId", productId);
-	            	if (sItem.get(i).getpId().equals(productId)) {
-	            		cp.setpId(sItem.get(i).getpId())
-	            			.setCdate(new Date(System.currentTimeMillis()));
-	            	}
+//	            	if (sItem.get(i).getpId().equals(productId)) {
+//	            		cp.setpId(sItem.get(i).getpId())
+//	            			.setCdate(new Date(System.currentTimeMillis()));
+//	            	}
 	            }
 	            
 	            if (uItem.size() == 2) {
@@ -102,13 +99,13 @@ public class SearchBot {
 		            uItem.remove("pId");
 	            }
 	            
-	            if (cp.getpId() != null && cp.getNprice() != 0 
-	            		&& cp.getCdate() != null) {
-	            	chartDao.insert(cp);
-	            	cp.setCdate(null)
-	            		.setNprice(0)
-	            		.setpId(null);
-	            }
+//	            if (cp.getpId() != null && cp.getNprice() != 0 
+//	            		&& cp.getCdate() != null) {
+//	            	chartDao.insert(cp);
+//	            	cp.setCdate(null)
+//	            		.setNprice(0)
+//	            		.setpId(null);
+//	            }
 	            
 	            
 	            
