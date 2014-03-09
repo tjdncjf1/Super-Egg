@@ -34,18 +34,18 @@ public class SearchBot {
 	ChartDao chartDao;
 	
 	//3600000
-	@Scheduled(fixedDelay=10000)
+	@Scheduled(fixedDelay=3600000)
 	public void doSchedule() throws ParserConfigurationException, SAXException, IOException {
 
 		try {
 			ArrayList<Item> sItem = (ArrayList<Item>)itemDao.selectList();
-			ArrayList<Chart> sList = null;
+//			ArrayList<Chart> sList = null;
 			for (int i = 0; i < sItem.size(); i++){
-				sList = (ArrayList<Chart>) chartDao.cItem(sItem.get(i).getpId());
+//				sList = (ArrayList<Chart>) chartDao.cItem(sItem.get(i).getpId());
 				
-				if (sList.size() == 24) {
-	        sList.get(sList.size()-1).get 
-				}
+//				if (sList.size() == 24) {
+//	        sList.get(sList.size()-1).get 
+//				}
 				
 				String requestUrl = "";
 				requestUrl += "http://openapi.naver.com/search?";
