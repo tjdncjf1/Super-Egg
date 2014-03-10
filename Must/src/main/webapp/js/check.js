@@ -8,8 +8,14 @@ $(function(){
 		rules: {
 			email: {
 				required: true,
-				email: true
-//				remote: {type:'post', url:'check.js'}
+				email: true,
+				remote: {
+					type:'post', 
+					url:'user/check.do?email=' + $('#email').val()
+//					data: {
+//						email: $('#email').val()
+//					}
+				}
 			},
 			password: {
 				required: true,
@@ -26,8 +32,8 @@ $(function(){
 		messages: {
 			email: {
 				required: '이메일을 입력하세요',
-				email: '이메일을 바르게 입력하세요'
-//				remote: 
+				email: '이메일을 바르게 입력하세요',
+				remote: '입력하신 이메일은 이미 존재하는 이메일입니다.'
 			},
 			password: {
 				required: '비밀번호를 입력하세요',

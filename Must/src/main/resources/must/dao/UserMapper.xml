@@ -14,4 +14,10 @@
 		values (#{email}, #{password})
 	</insert>
 	
+	<select id="selectList" resultMap="userResultMap">
+    select * from USER	    
+	</select>
+	
+	
+	
 </mapper>
