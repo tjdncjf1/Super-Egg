@@ -1,4 +1,9 @@
 $(function(){
+	
+	$.validator.addMethod("password",function(value,element){ 
+    return this.optional(element) || /^(?=.*\d)(?=.*[a-z])/i.test(value); 
+    },"알파벳과 숫자만 사용가능합니다."); 
+	
 	$('#valiex').validate({
 		rules: {
 			email: {
@@ -8,13 +13,13 @@ $(function(){
 			},
 			password: {
 				required: true,
-				minlength: 6,
-				maxlength: 12
+				minlength: 8,
+				maxlength: 16,
 			},
 			pwchk: {
 				required: true,
-				minlength: 6,
-				maxlength: 12,
+				minlength: 8,
+				maxlength: 16,
 				equalTo: '#password'
 			}
 		},
@@ -26,13 +31,13 @@ $(function(){
 			},
 			password: {
 				required: '비밀번호를 입력하세요',
-				minlength: '6자 이상으로 입력하세요',
-				maxlength: '12자 이하로 입력하세요'
+				minlength: '8자 이상으로 입력하세요',
+				maxlength: '16자 이하로 입력하세요',
 			},
 			pwchk: {
 				required: '비밀번호를 입력하세요',
-				minlength: '6자 이상으로 입력하세요',
-				maxlength: '12자 이하로 입력하세요',
+				minlength: '8자 이상으로 입력하세요',
+				maxlength: '16자 이하로 입력하세요',
 				equalTo: '비밀번호가 서로 일치하지 않습니다.'
 			}
 		},

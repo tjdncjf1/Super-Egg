@@ -31,7 +31,7 @@ public class SearchBot {
 //	ChartDao chartDao;
 	
 	//3600000
-	@Scheduled(fixedDelay=10000)
+	@Scheduled(fixedDelay=3600000)
 	public void doSchedule() throws ParserConfigurationException, SAXException, IOException {
 
 		try {
