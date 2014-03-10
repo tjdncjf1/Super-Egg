@@ -10,11 +10,12 @@ $(function(){
 				required: true,
 				email: true,
 				remote: {
-					type:'post', 
-					url:'user/check.do?email=' + $('#email').val()
-//					data: {
-//						email: $('#email').val()
-//					}
+					url:'user/check.do',
+					data: {
+						email: function() {
+							return $('#email').val();
+						}
+					}
 				}
 			},
 			password: {
