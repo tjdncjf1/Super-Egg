@@ -35,6 +35,24 @@ $(function(){
 				maxlength: '12자 이하로 입력하세요',
 				equalTo: '비밀번호가 서로 일치하지 않습니다.'
 			}
+		},
+		
+		submitHandler: function(){
+			$.ajax({
+				url: 'user/add.do',
+				type: 'post',
+				data: {
+					email: $('#email').val(),
+					password: $('#password').val()
+				},
+				success: function(){
+					location.href='must.html'
+				},
+	      error : function() {
+	      	alert('시스템이 바쁩니다.\n나중에 다시 시도해 주세요!');
+	      }
+			});
 		}
+		
 	});
 });

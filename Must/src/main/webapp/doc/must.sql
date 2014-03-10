@@ -30,15 +30,18 @@ CREATE UNIQUE INDEX `UIX_USER`
     `UEMAIL` ASC -- 이메일
   );
 
+ALTER TABLE `USER`
+  MODIFY COLUMN `UNO` INTEGER NOT NULL AUTO_INCREMENT;
+
 -- 상품정보
 CREATE TABLE `ITEM` (
   `PROD_ID`    VARCHAR(100) NOT NULL, -- 상품코드
   `TITLE`      VARCHAR(200) NOT NULL, -- 상품명
   `IMAGE_URL`  VARCHAR(255) NULL,     -- 이미지경로
-  `MIN_PRICE`  INTEGER      NOT NULL, -- 최소가
+  `MIN_PRICE`  INTEGER      NOT NULL, -- 현재최소가
   `WISH_PRICE` INTEGER      NOT NULL, -- 희망가
-  `LINK`       VARCHAR(255) NOT NULL, -- 상품페이지 경로
-  `REG_DATE`   DATE         NOT NULL  -- 등록일
+  `REG_DATE`   DATETIME     NOT NULL, -- 등록일
+  `LINK`       VARCHAR(255) NOT NULL  -- 상품페이지 경로
 );
 
 -- 상품정보
@@ -53,7 +56,7 @@ CREATE TABLE `USER_ITEM_LIST` (
   `PROD_ID`    VARCHAR(100) NOT NULL, -- 상품코드
   `UNO`        INTEGER      NOT NULL, -- 회원번호
   `WISH_PRICE` INTEGER      NOT NULL, -- 희망가격
-  `REG_DATE`   DATE         NOT NULL  -- 등록일
+  `REG_DATE`   DATETIME     NOT NULL  -- 등록일
 );
 
 -- 상품 리스트
@@ -66,17 +69,17 @@ ALTER TABLE `USER_ITEM_LIST`
 
 -- 가격변동내역
 CREATE TABLE `PRICE_CHANGES` (
-  `COL`     INTEGER      NOT NULL, -- 일련번호
   `PROD_ID` VARCHAR(100) NOT NULL, -- 상품코드
+  `CNO`     INTEGER      NOT NULL, -- 일련번호
   `PRICE`   INTEGER      NOT NULL, -- 가격
-  `STIME`   DATE         NOT NULL  -- 조사시각
+  `STIME`   DATETIME     NOT NULL  -- 조사시각
 );
 
 -- 가격변동내역
 ALTER TABLE `PRICE_CHANGES`
   ADD CONSTRAINT `PK_PRICE_CHANGES` -- 가격변동내역 기본키
     PRIMARY KEY (
-      `COL` -- 일련번호
+      `PROD_ID` -- 상품코드
     );
 
 -- 상품 리스트
