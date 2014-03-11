@@ -4,11 +4,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Locale;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -40,17 +39,15 @@ public class SearchBot {
 	public void doSchedule() throws ParserConfigurationException, SAXException, IOException {
 
 		try {
-			SimpleDateFormat dateFormatter = new SimpleDateFormat("dd", Locale.KOREA);
+			Calendar todayDateCal = Calendar.getInstance();
 			ArrayList<Item> sItem = (ArrayList<Item>)itemDao.selectList();
 			ArrayList<Chart> sList = null;
 			for (int i = 0; i < sItem.size(); i++){
 				sList = (ArrayList<Chart>) chartDao.cItem(sItem.get(i).getpId());
 				for (int z = 0; z < sList.size(); z++) {
-	        System.out.println(sList.get(z).getHtime());
+//	        System.out.println(sList.get(z).getHtime());
+					todayDateCal.setTime(sList.get(z).getHtime());
         }
-//				if (sList.size() == 24) {
-//	        sList.get(sList.size()-1).get 
-//				}
 				
 				String requestUrl = "";
 				requestUrl += "http://openapi.naver.com/search?";
