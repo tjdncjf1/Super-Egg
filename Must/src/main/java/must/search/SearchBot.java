@@ -33,20 +33,30 @@ public class SearchBot {
 	ItemDao itemDao;
 	
 	@Autowired(required=false)
-	HourChartDao chartDao;
+	HourChartDao hourChartDao;
 	
 	public String dFormat(Date d) {
 		DateFormat df = new SimpleDateFormat("HH");
 		return df.format(d);
 	}
 	
-	@Scheduled(cron="0 0 16 * * ?")
+	@Scheduled(cron="0 0 18 * * ?")
 	public void doDaySchedule() throws ParserConfigurationException, SAXException, IOException {
 		
 		try {
-	    
-			
-			
+			ArrayList<Item> sItem = (ArrayList<Item>)itemDao.selectList();
+			ArrayList<Chart> hList = null;
+			for (int i = 0; i < sItem.size(); i++) {
+	      hList = (ArrayList<Chart>) hourChartDao.selectList(sItem.get(i).getpId());
+	      int min = hList.get(0).getPrice();
+	      for (int j = 1; j < hList.size(); j++) {
+	      	if (hList.get(j).getPrice() < min) {
+	      		min = hList.get(j).getPrice();
+	      	}
+	      }
+	      
+	      
+      }
 			
 			
 			
@@ -122,7 +132,7 @@ public class SearchBot {
 	            // 실시간으로 검색되는 시점의 시간과 해당 상품코드, 가격이 다 지정됐을 때만 hour_insert에 추가
 	            if (cp.getpId() != null && cp.getPrice() != 0 
 	            		&& cp.getTime() != null) {
-	            	chartDao.insert(cp);
+	            	hourChartDao.insert(cp);
 	            	cp.setTime(null)
 	            		.setPrice(0)
 	            		.setpId(null);
