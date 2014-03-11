@@ -6,20 +6,10 @@ import java.util.Date;
 public class Chart implements Serializable{
   private static final long serialVersionUID = 1L;
 
-  protected int no;
   protected String pId;
-  protected int nprice;
-  protected Date cdate;
+  protected int hPrice;
+  protected Date hTime;
   
-	public int getNo() {
-		return no;
-	}
-	
-	public Chart setNo(int no) {
-		this.no = no;
-		return this;
-	}
-	
 	public String getpId() {
 		return pId;
 	}
@@ -29,21 +19,21 @@ public class Chart implements Serializable{
 		return this;
 	}
 	
-	public int getNprice() {
-		return nprice;
+	public int getHprice() {
+		return hPrice;
 	}
 	
-	public Chart setNprice(int nprice) {
-		this.nprice = nprice;
+	public Chart setHprice(int hPrice) {
+		this.hPrice = hPrice;
 		return this;
 	}
 	
-	public Date getCdate() {
-		return cdate;
+	public Date getHtime() {
+		return hTime;
 	}
 	
-	public Chart setCdate(Date cdate) {
-		this.cdate = cdate;
+	public Chart setHtime(Date hTime) {
+		this.hTime = hTime;
 		return this;
 	}
    
