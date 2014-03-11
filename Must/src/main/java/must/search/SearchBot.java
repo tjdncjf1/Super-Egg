@@ -48,10 +48,11 @@ public class SearchBot {
 			ArrayList<Item> sItem = (ArrayList<Item>)itemDao.selectList();
 			ArrayList<Chart> sList = null;
 			for (int i = 0; i < sItem.size(); i++){
-				sList = (ArrayList<Chart>) chartDao.cItem(sItem.get(i).getpId());
+				sList = (ArrayList<Chart>) chartDao.hour_select(sItem.get(i).getpId());
 				for (int z = 0; z < sList.size(); z++) {
 					if (dFormat(sList.get(z).getTime()).equals("00")) {
-						sList.get(z);
+						chartDao.day_insert(sList.get(z));
+						chartDao.hour_delete(sList.get(z));
 					}
 				}
 				
@@ -114,7 +115,7 @@ public class SearchBot {
 	            
 	            if (cp.getpId() != null && cp.getPrice() != 0 
 	            		&& cp.getTime() != null) {
-	            	chartDao.insert(cp);
+	            	chartDao.hour_insert(cp);
 	            	cp.setTime(null)
 	            		.setPrice(0)
 	            		.setpId(null);
