@@ -50,7 +50,7 @@ public class SearchBot {
 			for (int i = 0; i < sItem.size(); i++){
 				sList = (ArrayList<Chart>) chartDao.cItem(sItem.get(i).getpId());
 				for (int z = 0; z < sList.size(); z++) {
-					if (dFormat(sList.get(z).getHtime()).equals("00")) {
+					if (dFormat(sList.get(z).getTime()).equals("00")) {
 						sList.get(z);
 					}
 				}
@@ -94,7 +94,7 @@ public class SearchBot {
 	            if ("lprice".equals(itemNode.getNodeName())) {
 	            	lowPrice = Integer.parseInt(itemNode.getTextContent());
 	            	uItem.put("lPrice", lowPrice);
-	            	cp.setHprice(lowPrice);
+	            	cp.setPrice(lowPrice);
 	            }
 	            
 	            if ("productId".equals(itemNode.getNodeName())) {
@@ -102,7 +102,7 @@ public class SearchBot {
 	            	uItem.put("pId", productId);
 	            	if (sItem.get(i).getpId().equals(productId)) {
 	            		cp.setpId(sItem.get(i).getpId())
-	            			.setHtime(new Date(System.currentTimeMillis()));
+	            			.setTime(new Date(System.currentTimeMillis()));
 	            	}
 	            }
 	            
@@ -112,11 +112,11 @@ public class SearchBot {
 		            uItem.remove("pId");
 	            }
 	            
-	            if (cp.getpId() != null && cp.getHprice() != 0 
-	            		&& cp.getHtime() != null) {
+	            if (cp.getpId() != null && cp.getPrice() != 0 
+	            		&& cp.getTime() != null) {
 	            	chartDao.insert(cp);
-	            	cp.setHtime(null)
-	            		.setHprice(0)
+	            	cp.setTime(null)
+	            		.setPrice(0)
 	            		.setpId(null);
 	            }
 	            
