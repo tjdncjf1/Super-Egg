@@ -10,17 +10,17 @@
     <result property="time"       column="HTIME"/>
   </resultMap>
 
-	<insert id="hour_insert" parameterType="chart">
+	<insert id="insert" parameterType="chart">
 		insert into HOUR_CHANGES (PROD_ID, HPRICE, HTIME)
 		values (#{pId}, #{price}, #{time})
 	</insert>
 
-  <select id="hour_select" parameterType="string" resultMap="chartResultMap">
+  <select id="select" parameterType="string" resultMap="chartResultMap">
 	   select * from HOUR_CHANGES
      where PROD_ID = #{pId};
 	</select>
 	
-  <delete id="hour_delete" parameterType="string">
+  <delete id="delete" parameterType="string">
 		delete from HOUR_CHANGES
 		where PROD_ID=#{pId}
 	</delete>

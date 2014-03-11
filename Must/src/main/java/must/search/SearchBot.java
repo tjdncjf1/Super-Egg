@@ -14,7 +14,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import must.dao.ChartDao;
+import must.dao.HourChartDao;
 import must.dao.ItemDao;
 import must.vo.Chart;
 import must.vo.Item;
@@ -33,28 +33,37 @@ public class SearchBot {
 	ItemDao itemDao;
 	
 	@Autowired(required=false)
-	ChartDao chartDao;
+	HourChartDao chartDao;
 	
 	public String dFormat(Date d) {
 		DateFormat df = new SimpleDateFormat("HH");
 		return df.format(d);
 	}
 	
-	@Scheduled(cron="0 55 0 ? * *")
+	@Scheduled(cron="0 0 16 * * ?")
+	public void doDaySchedule() throws ParserConfigurationException, SAXException, IOException {
+		
+		try {
+	    
+			
+			
+			
+			
+			
+			
+    } catch (Exception e) {
+    	e.printStackTrace();
+    }
+		
+	}	
+	
+	
+	@Scheduled(cron="0 0 * * * *")
 	public void doHourSchedule() throws ParserConfigurationException, SAXException, IOException {
 
 		try {
 			ArrayList<Item> sItem = (ArrayList<Item>)itemDao.selectList();
-//			ArrayList<Chart> sList = null;
 			for (int i = 0; i < sItem.size(); i++){
-//				sList = (ArrayList<Chart>) chartDao.hour_select(sItem.get(i).getpId());
-//				for (int z = 0; z < sList.size(); z++) {
-//					if (dFormat(sList.get(z).getTime()).equals("00")) {
-//						chartDao.day_insert(sList.get(z));
-//						chartDao.hour_delete(sList.get(z).getpId());
-//					}
-//				}
-				
 				String requestUrl = "";
 				requestUrl += "http://openapi.naver.com/search?";
 				requestUrl += "key=be6c30428660950b9ece4f651a0d2dba"; 
@@ -113,13 +122,11 @@ public class SearchBot {
 	            // 실시간으로 검색되는 시점의 시간과 해당 상품코드, 가격이 다 지정됐을 때만 hour_insert에 추가
 	            if (cp.getpId() != null && cp.getPrice() != 0 
 	            		&& cp.getTime() != null) {
-	            	chartDao.hour_insert(cp);
+	            	chartDao.insert(cp);
 	            	cp.setTime(null)
 	            		.setPrice(0)
 	            		.setpId(null);
 	            }
-	            
-	            
 	            
 	        	}
 	        }
@@ -131,9 +138,5 @@ public class SearchBot {
 		}
 
 	}
-	
-
-
-
 
 }
