@@ -4,8 +4,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -34,20 +35,27 @@ public class SearchBot {
 	@Autowired(required=false)
 	ChartDao chartDao;
 	
+	public String dFormat(Date d) {
+		DateFormat df = new SimpleDateFormat("HH");
+		return df.format(d);
+	}
+	
 	//3600000
-	@Scheduled(fixedDelay=3600000)
+	@Scheduled(fixedDelay=10000)
 	public void doSchedule() throws ParserConfigurationException, SAXException, IOException {
 
 		try {
-			Calendar todayDateCal = Calendar.getInstance();
 			ArrayList<Item> sItem = (ArrayList<Item>)itemDao.selectList();
 			ArrayList<Chart> sList = null;
 			for (int i = 0; i < sItem.size(); i++){
 				sList = (ArrayList<Chart>) chartDao.cItem(sItem.get(i).getpId());
 				for (int z = 0; z < sList.size(); z++) {
-//	        System.out.println(sList.get(z).getHtime());
-					todayDateCal.setTime(sList.get(z).getHtime());
-        }
+					if (dFormat(sList.get(z).getHtime()).equals("00")) {
+						sList.get(z);
+					}
+				}
+				
+				
 				
 				String requestUrl = "";
 				requestUrl += "http://openapi.naver.com/search?";

@@ -5,8 +5,8 @@
 <mapper namespace="must.dao.ChartDao">
   <resultMap type="chart" id="chartResultMap">
     <id property="pId"              column="PROD_ID"/>
-    <result property="hPrice"      column="HPRICE"/>
-    <result property="hTime"       column="HTIME"/>
+    <result property="price"      column="HPRICE"/>
+    <result property="time"       column="HTIME"/>
   </resultMap>
 
 	<insert id="insert" parameterType="chart">

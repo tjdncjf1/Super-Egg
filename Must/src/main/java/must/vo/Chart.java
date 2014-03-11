@@ -7,8 +7,8 @@ public class Chart implements Serializable{
   private static final long serialVersionUID = 1L;
 
   protected String pId;
-  protected int hPrice;
-  protected Date hTime;
+  protected int price;
+  protected Date time;
   
 	public String getpId() {
 		return pId;
@@ -19,21 +19,21 @@ public class Chart implements Serializable{
 		return this;
 	}
 	
-	public int getHprice() {
-		return hPrice;
+	public int getPrice() {
+		return price;
 	}
 	
-	public Chart setHprice(int hPrice) {
-		this.hPrice = hPrice;
+	public Chart setPrice(int price) {
+		this.price = price;
 		return this;
 	}
 	
-	public Date getHtime() {
-		return hTime;
+	public Date getTime() {
+		return time;
 	}
 	
-	public Chart setHtime(Date hTime) {
-		this.hTime = hTime;
+	public Chart setTime(Date time) {
+		this.time = time;
 		return this;
 	}
    
