@@ -40,23 +40,20 @@ public class SearchBot {
 		return df.format(d);
 	}
 	
-	//3600000
-	@Scheduled(fixedDelay=10000)
-	public void doSchedule() throws ParserConfigurationException, SAXException, IOException {
+	@Scheduled(cron="0 55 0 ? * *")
+	public void doHourSchedule() throws ParserConfigurationException, SAXException, IOException {
 
 		try {
 			ArrayList<Item> sItem = (ArrayList<Item>)itemDao.selectList();
-			ArrayList<Chart> sList = null;
+//			ArrayList<Chart> sList = null;
 			for (int i = 0; i < sItem.size(); i++){
-				sList = (ArrayList<Chart>) chartDao.hour_select(sItem.get(i).getpId());
-				for (int z = 0; z < sList.size(); z++) {
-					if (dFormat(sList.get(z).getTime()).equals("00")) {
-						chartDao.day_insert(sList.get(z));
-						chartDao.hour_delete(sList.get(z).getpId());
-					}
-				}
-				
-				
+//				sList = (ArrayList<Chart>) chartDao.hour_select(sItem.get(i).getpId());
+//				for (int z = 0; z < sList.size(); z++) {
+//					if (dFormat(sList.get(z).getTime()).equals("00")) {
+//						chartDao.day_insert(sList.get(z));
+//						chartDao.hour_delete(sList.get(z).getpId());
+//					}
+//				}
 				
 				String requestUrl = "";
 				requestUrl += "http://openapi.naver.com/search?";
@@ -134,6 +131,7 @@ public class SearchBot {
 		}
 
 	}
+	
 
 
 
