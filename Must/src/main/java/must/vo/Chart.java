@@ -6,10 +6,21 @@ import java.util.Date;
 public class Chart implements Serializable{
   private static final long serialVersionUID = 1L;
 
+  protected int no;
   protected String pId;
   protected int price;
   protected Date time;
   
+  
+	public int getNo() {
+		return no;
+	}
+
+	public Chart setNo(int no) {
+		this.no = no;
+		return this;
+	}
+
 	public String getpId() {
 		return pId;
 	}

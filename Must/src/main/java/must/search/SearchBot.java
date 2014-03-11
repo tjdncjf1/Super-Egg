@@ -52,7 +52,7 @@ public class SearchBot {
 				for (int z = 0; z < sList.size(); z++) {
 					if (dFormat(sList.get(z).getTime()).equals("00")) {
 						chartDao.day_insert(sList.get(z));
-						chartDao.hour_delete(sList.get(z));
+						chartDao.hour_delete(sList.get(z).getpId());
 					}
 				}
 				
@@ -65,7 +65,6 @@ public class SearchBot {
 				requestUrl += "&display=10";
 				requestUrl += "&query=" + URLEncoder.encode(sItem.get(i).getTitle(),"UTF-8");
 				URL url = new URL(requestUrl);
-//				System.out.println(requestUrl);
 				
 				//API 요청 및 반환
 				URLConnection conn = url.openConnection();
@@ -75,8 +74,6 @@ public class SearchBot {
 				
 				//channel노드를 객체화 하기
 				Node node = doc.getElementsByTagName("channel").item(0);
-//				System.out.println("1" + node);
-//				System.out.println("2" + node.getChildNodes().getLength());
 				for (int j = 0; j < node.getChildNodes().getLength(); j++) {
 	        Node channelNode = node.getChildNodes().item(j);
 	        String nodeName = channelNode.getNodeName();
@@ -92,12 +89,14 @@ public class SearchBot {
 	        	for (int k = 0; k < channelNode.getChildNodes().getLength(); k++) {
 	            Node itemNode = channelNode.getChildNodes().item(k);
 	            
+	            // item 노드 안의 lprice 태그일 경우 실행
 	            if ("lprice".equals(itemNode.getNodeName())) {
 	            	lowPrice = Integer.parseInt(itemNode.getTextContent());
 	            	uItem.put("lPrice", lowPrice);
 	            	cp.setPrice(lowPrice);
 	            }
 	            
+	            // item 노드 안의 productId 태그일 경우 실행
 	            if ("productId".equals(itemNode.getNodeName())) {
 	            	productId = itemNode.getTextContent();
 	            	uItem.put("pId", productId);
@@ -107,12 +106,14 @@ public class SearchBot {
 	            	}
 	            }
 	            
+	            // uItem 맵에 pid와 lprice가 다 들어가야 업뎃을 함.
 	            if (uItem.size() == 2) {
 		            itemDao.update(uItem);
 		            uItem.remove("lPrice");
 		            uItem.remove("pId");
 	            }
 	            
+	            // 실시간으로 검색되는 시점의 시간과 해당 상품코드, 가격이 다 지정됐을 때만 hour_insert에 추가
 	            if (cp.getpId() != null && cp.getPrice() != 0 
 	            		&& cp.getTime() != null) {
 	            	chartDao.hour_insert(cp);
@@ -120,8 +121,6 @@ public class SearchBot {
 	            		.setPrice(0)
 	            		.setpId(null);
 	            }
-	            
-	            
 	            
 	            
 	            
