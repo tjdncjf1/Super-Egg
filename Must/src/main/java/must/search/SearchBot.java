@@ -222,7 +222,7 @@ public class SearchBot {
 	            
 	            // uItem 맵에 pid와 lprice가 다 들어가야 업뎃을 함.
 	            if (uItem.size() == 2) {
-		            itemDao.update(uItem);
+		            itemDao.minUpdate(uItem);
 		            uItem.remove("lPrice");
 		            uItem.remove("pId");
 	            }

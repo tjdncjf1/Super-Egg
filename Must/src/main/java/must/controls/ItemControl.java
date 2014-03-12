@@ -17,13 +17,13 @@ public class ItemControl {
 	@Autowired(required=false)
 	ItemDao itemDao;
 
-	@RequestMapping("/update") 
-	public void update(String pId, int wish_price) throws Exception {
+	@RequestMapping("/wishUpdate") 
+	public void wishUpdate(String pId, int wish_price) throws Exception {
 		try {
 			HashMap<String, Object> sqlparamMap = new HashMap<String, Object>();
 			sqlparamMap.put("pId", pId);
 			sqlparamMap.put("wish_price", wish_price);
-			itemDao.update(sqlparamMap);
+			itemDao.wishUpdate(sqlparamMap);
 		} catch (Throwable ex) {
 			ex.printStackTrace();
 		}
@@ -32,9 +32,6 @@ public class ItemControl {
 	@RequestMapping("/addItem") 
 	public void insert(Item item) throws Exception {
 		try {
-//			String cTitle = item.getTitle();
-			
-			
 			itemDao.insert(item);
 		} catch (Throwable ex) {
 			ex.printStackTrace();

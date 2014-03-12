@@ -29,9 +29,15 @@
 		where PROD_ID=#{pId}
 	</delete>
 	
-	<update id="update" parameterType="map">
+	<update id="minUpdate" parameterType="map">
     update ITEMS set 
     MIN_PRICE=#{lPrice} 
+    where PROD_ID=#{pId}
+  </update>
+	
+	<update id="wishUpdate" parameterType="map">
+    update ITEMS set 
+    MIN_PRICE=#{wish_price} 
     where PROD_ID=#{pId}
   </update>
 	

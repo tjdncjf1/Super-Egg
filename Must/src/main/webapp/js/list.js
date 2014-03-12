@@ -14,26 +14,53 @@ $(function() {
 	  			listItem += '<img src="' + item.image + '" class="image"><hr>';
 	  			listItem += '</div></div></li></ul></div>';
 	  			
-	  			$(listItem).appendTo('#list-items');
+	  			$(listItem).click(function(){
+	  				
+	  				var selectItem = '';
+	  				selectItem += '<div class="moreInfo">';
+	  				selectItem += '<h3 style="margin: 0 auto">' + item.title + '</h3>';
+	  				selectItem += '<img src="' + item.image + '" class="image" style="border: 2px solid yellow;" /><br>';
+	  				selectItem += '<span>희망가격: <input type="number" placeholder="' + item.wish_price + '" id="wPrice" /><input type="button" value="변경" id="wish_update" /></span><br>';
+	  				selectItem += '<span>최저가격: <input type="number" placeholer="' + item.min_price + '" /></span>';
+	  				selectItem += '<div id="chart" style="min-width: 310px; height: 400px; margin: 0 auto">';
+	  				selectItem += '</div></div>';
+
+	  			}).appendTo('#list-items');
 	  			
-	  		  /*
-	  		    $('#sbUpdate').submit(function(){
+	  			$('#chart').highcharts({
+	  				chart: {
+	  					type: 'line'
+	  				},
+	  				title: {
+	  					text: 
+	  				},
+	  			});
+	  			
+	  			
+	  			
+	  			
+	  			
+	  			
+	  		  $('#wish_update').click(function(){
 	  		  	$.ajax({
-	  		  		url: 'item/update.do',
+	  		  		url: 'item/wishUpdate.do',
 	  		  		type: 'get',
 	  		  		data: {
-	  		  			pId: $('#pId_select').val(),
-	  		  			wish_price: $('#wish_update').val()
+	  		  			pId: item.pId,
+	  		  			wish_price: $('#wPrice').val()
 	  		  		},
 	  		  		success: function() {
 	  		  			location.href = 'must.html';
 	  		  		}
 	  		  	}); // ajax 괄호
-	  		  	return false;
+	  		  	// return false;
 	  		  }); // submit 괄호
-*/	  		
-	  			}); // each 괄호
+
+	  		  
+	  		  
 	  		
+	  		
+	  		}); // each 괄호
 	  	} // success 괄호
 	  });	// $.ajax 괄호
 });
