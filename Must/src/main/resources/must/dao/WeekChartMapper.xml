@@ -11,7 +11,7 @@
   </resultMap>
 
 	<insert id="insert" parameterType="chart">
-		insert into WEEk_CHANGES (PROD_ID, DPRICE, DTIME)
+		insert into WEEk_CHANGES (PROD_ID, WPRICE, WTIME)
 		values (#{pId}, #{price}, #{time})
 	</insert>
 

@@ -17,6 +17,7 @@ import must.dao.HourChartDao;
 import must.dao.ItemDao;
 import must.dao.MonthChartDao;
 import must.dao.WeekChartDao;
+import must.dao.YearChartDao;
 import must.vo.Chart;
 import must.vo.Item;
 
@@ -45,7 +46,40 @@ public class SearchBot {
 	@Autowired(required=false)
 	MonthChartDao monthChartDao;
 	
-	@Scheduled(cron="0 59 23 L * ?")
+	@Autowired(required=false)
+	YearChartDao yearChartDao;
+	
+	@Scheduled(cron="0 59 23 28 12 ?")
+	public void doYearSchedule() throws ParserConfigurationException, SAXException, IOException {
+		try {
+	    ArrayList<Item> sItem = (ArrayList<Item>)itemDao.selectList();
+	    ArrayList<Chart> mList = null;
+	    Chart c = new Chart();
+	    for (int i = 0; i < sItem.size(); i++) {
+	    	mList = (ArrayList<Chart>) monthChartDao.selectList(sItem.get(i).getpId());
+	    	if (mList.size() > 12) {
+	    		int distinction = mList.size() - 12;
+	    		for (int j = 0; j < distinction; j++) {
+	    			monthChartDao.delete(mList.remove(j).getpId());
+          }
+	    	}
+	      int min = mList.get(0).getPrice();
+	      for (int j = 0; j < mList.size(); j++) {
+	        if (mList.get(j).getPrice() < min) {
+	        	min = mList.get(j).getPrice();
+	        }
+        }
+	      
+	      yearChartDao.insert(c.setPrice(min)
+	      										 .setpId(sItem.get(i).getpId())
+	      										 .setTime(new Date()));
+      }
+    } catch (Exception e) {
+    	e.printStackTrace();
+    }
+	}
+	
+	@Scheduled(cron="0 59 23 28 * ?")
 	public void doMonthSchedule() throws ParserConfigurationException, SAXException, IOException {
 		try {
 	    ArrayList<Item> sItem = (ArrayList<Item>)itemDao.selectList();
@@ -69,7 +103,6 @@ public class SearchBot {
 	      monthChartDao.insert(c.setPrice(min)
 	      										 .setpId(sItem.get(i).getpId())
 	      										 .setTime(new Date()));
-	    	
       }
     } catch (Exception e) {
     	e.printStackTrace();
