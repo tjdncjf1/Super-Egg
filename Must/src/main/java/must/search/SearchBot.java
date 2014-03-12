@@ -60,7 +60,7 @@ public class SearchBot {
 	    	if (mList.size() > 12) {
 	    		int distinction = mList.size() - 12;
 	    		for (int j = 0; j < distinction; j++) {
-	    			monthChartDao.delete(mList.remove(j).getpId());
+	    			monthChartDao.delete(mList.get(0).getpId());
           }
 	    	}
 	      int min = mList.get(0).getPrice();
@@ -90,7 +90,7 @@ public class SearchBot {
 	    	if (wList.size() > 12) {
 	    		int distinction = wList.size() - 12;
 	    		for (int j = 0; j < distinction; j++) {
-	          weekChartDao.delete(wList.remove(j).getpId());
+	          weekChartDao.delete(wList.get(0).getpId());
           }
 	    	}
 	      int min = wList.get(0).getPrice();
@@ -109,8 +109,7 @@ public class SearchBot {
     }
 	}
 	
-	// cron="0 59 23 * * SUN"
-	@Scheduled(fixedDelay=840000/2)
+	@Scheduled(cron="0 59 23 * * SUN")
 	public void doWeekSchedule() throws ParserConfigurationException, SAXException, IOException {
 		try {
 			ArrayList<Item> sItem = (ArrayList<Item>)itemDao.selectList();
@@ -121,7 +120,7 @@ public class SearchBot {
 	      if (dList.size() > 14) {
 	      	int distinction = dList.size() - 14;
 	      	for (int j = 0; j < distinction; j++) {
-	          dayChartDao.delete(dList.remove(0).getpId());
+	          dayChartDao.delete(dList.get(0).getpId());
           }
 	      } 
 	      int min = dList.get(0).getPrice();
@@ -140,8 +139,7 @@ public class SearchBot {
     }
 	}	
 	
-	// cron="0 0 0 * * ?"
-	@Scheduled(fixedDelay=120000/2)
+	@Scheduled(cron="0 0 0 * * ?")
 	public void doDaySchedule() throws ParserConfigurationException, SAXException, IOException {
 		try {
 			ArrayList<Item> sItem = (ArrayList<Item>)itemDao.selectList();
@@ -167,8 +165,7 @@ public class SearchBot {
     }
 	}	
 	
-	//cron="0 0 * * * *"
-	@Scheduled(fixedDelay=5000/2)
+	@Scheduled(cron="0 0 * * * *")
 	public void doHourSchedule() throws ParserConfigurationException, SAXException, IOException {
 
 		try {
