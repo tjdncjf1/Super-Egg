@@ -16,6 +16,10 @@ $(function() {
 	  			
 	  			$(listItem).click(function(){
 	  				
+	  				$('#list-items').hide();
+//	  				$('#listwindow').show();
+	  				$('#select-items').show();
+	  				
 	  				var selectItem = '';
 	  				selectItem += '<div class="moreInfo">';
 	  				selectItem += '<h3 style="margin: 0 auto">' + item.title + '</h3>';
@@ -24,35 +28,36 @@ $(function() {
 	  				selectItem += '<span>최저가격: <input type="number" placeholer="' + item.min_price + '" /></span>';
 	  				selectItem += '<div id="chart" style="min-width: 310px; height: 400px; margin: 0 auto">';
 	  				selectItem += '</div></div>';
-
+	  				
+	  				$('#wish_update').click(function(){
+		  		  	$.ajax({
+		  		  		url: 'item/wishUpdate.do',
+		  		  		type: 'get',
+		  		  		data: {
+		  		  			pId: item.pId,
+		  		  			wish_price: $('#wPrice').val()
+		  		  		},
+		  		  		success: function() {
+		  		  			location.href = 'must.html';
+		  		  		}
+		  		  	}); // ajax 괄호
+		  		  	// return false;
+		  		  }); // submit 괄호
+	  				
+	  				$(selectItem).appendTo('#select-items');
+	  				
 	  			}).appendTo('#list-items');
 	  			
 	  			$.ajax({
-	  				url: 'chart/selectDay',
+	  				url: 'chart/selectDay.do',
+	  				type: 'get',
+	  				data: {
+	  					pId: item.pId
+	  				},
+	  				success: function(data) {
+	  					
+	  				}
 	  			});
-	  			
-	  			
-	  			
-	  			
-	  			
-	  		  $('#wish_update').click(function(){
-	  		  	$.ajax({
-	  		  		url: 'item/wishUpdate.do',
-	  		  		type: 'get',
-	  		  		data: {
-	  		  			pId: item.pId,
-	  		  			wish_price: $('#wPrice').val()
-	  		  		},
-	  		  		success: function() {
-	  		  			location.href = 'must.html';
-	  		  		}
-	  		  	}); // ajax 괄호
-	  		  	// return false;
-	  		  }); // submit 괄호
-
-	  		  
-	  		  
-	  		
 	  		
 	  		}); // each 괄호
 	  	} // success 괄호

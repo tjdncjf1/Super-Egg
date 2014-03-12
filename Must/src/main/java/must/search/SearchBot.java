@@ -110,7 +110,7 @@ public class SearchBot {
 	}
 	
 	// cron="0 59 23 * * SUN"
-	@Scheduled(fixedRate=840000)
+	@Scheduled(fixedDelay=840000/2)
 	public void doWeekSchedule() throws ParserConfigurationException, SAXException, IOException {
 		try {
 			ArrayList<Item> sItem = (ArrayList<Item>)itemDao.selectList();
@@ -121,7 +121,7 @@ public class SearchBot {
 	      if (dList.size() > 14) {
 	      	int distinction = dList.size() - 14;
 	      	for (int j = 0; j < distinction; j++) {
-	          dayChartDao.delete(dList.remove(j).getpId());
+	          dayChartDao.delete(dList.remove(0).getpId());
           }
 	      } 
 	      int min = dList.get(0).getPrice();
@@ -134,7 +134,6 @@ public class SearchBot {
 	      weekChartDao.insert(c.setPrice(min)
 	      										 .setpId(sItem.get(i).getpId())
 	      										 .setTime(new Date()));
-	      
       }
 		} catch (Exception e) {
     	e.printStackTrace();
@@ -142,7 +141,7 @@ public class SearchBot {
 	}	
 	
 	// cron="0 0 0 * * ?"
-	@Scheduled(fixedRate=120000)
+	@Scheduled(fixedDelay=120000/2)
 	public void doDaySchedule() throws ParserConfigurationException, SAXException, IOException {
 		try {
 			ArrayList<Item> sItem = (ArrayList<Item>)itemDao.selectList();
@@ -169,7 +168,7 @@ public class SearchBot {
 	}	
 	
 	//cron="0 0 * * * *"
-	@Scheduled(fixedRate=5000)
+	@Scheduled(fixedDelay=5000/2)
 	public void doHourSchedule() throws ParserConfigurationException, SAXException, IOException {
 
 		try {
