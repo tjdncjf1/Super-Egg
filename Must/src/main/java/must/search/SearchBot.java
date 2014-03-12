@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -14,8 +12,12 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import must.dao.ChartDao;
+import must.dao.DayChartDao;
+import must.dao.HourChartDao;
 import must.dao.ItemDao;
+import must.dao.MonthChartDao;
+import must.dao.WeekChartDao;
+import must.dao.YearChartDao;
 import must.vo.Chart;
 import must.vo.Item;
 
@@ -33,28 +35,143 @@ public class SearchBot {
 	ItemDao itemDao;
 	
 	@Autowired(required=false)
-	ChartDao chartDao;
+	HourChartDao hourChartDao;
 	
-	public String dFormat(Date d) {
-		DateFormat df = new SimpleDateFormat("HH");
-		return df.format(d);
+	@Autowired(required=false)
+	DayChartDao dayChartDao;
+
+	@Autowired(required=false)
+	WeekChartDao weekChartDao;
+	
+	@Autowired(required=false)
+	MonthChartDao monthChartDao;
+	
+	@Autowired(required=false)
+	YearChartDao yearChartDao;
+	
+	@Scheduled(cron="0 59 23 28 12 ?")
+	public void doYearSchedule() throws ParserConfigurationException, SAXException, IOException {
+		try {
+	    ArrayList<Item> sItem = (ArrayList<Item>)itemDao.selectList();
+	    ArrayList<Chart> mList = null;
+	    Chart c = new Chart();
+	    for (int i = 0; i < sItem.size(); i++) {
+	    	mList = (ArrayList<Chart>) monthChartDao.selectList(sItem.get(i).getpId());
+	    	if (mList.size() > 12) {
+	    		int distinction = mList.size() - 12;
+	    		for (int j = 0; j < distinction; j++) {
+	    			monthChartDao.delete(mList.remove(j).getpId());
+          }
+	    	}
+	      int min = mList.get(0).getPrice();
+	      for (int j = 0; j < mList.size(); j++) {
+	        if (mList.get(j).getPrice() < min) {
+	        	min = mList.get(j).getPrice();
+	        }
+        }
+	      
+	      yearChartDao.insert(c.setPrice(min)
+	      										 .setpId(sItem.get(i).getpId())
+	      										 .setTime(new Date()));
+      }
+    } catch (Exception e) {
+    	e.printStackTrace();
+    }
 	}
 	
-	@Scheduled(cron="0 55 0 ? * *")
+	@Scheduled(cron="0 59 23 28 * ?")
+	public void doMonthSchedule() throws ParserConfigurationException, SAXException, IOException {
+		try {
+	    ArrayList<Item> sItem = (ArrayList<Item>)itemDao.selectList();
+	    ArrayList<Chart> wList = null;
+	    Chart c = new Chart();
+	    for (int i = 0; i < sItem.size(); i++) {
+	      wList = (ArrayList<Chart>) weekChartDao.selectList(sItem.get(i).getpId());
+	    	if (wList.size() > 12) {
+	    		int distinction = wList.size() - 12;
+	    		for (int j = 0; j < distinction; j++) {
+	          weekChartDao.delete(wList.remove(j).getpId());
+          }
+	    	}
+	      int min = wList.get(0).getPrice();
+	      for (int j = 0; j < wList.size(); j++) {
+	        if (wList.get(j).getPrice() < min) {
+	        	min = wList.get(j).getPrice();
+	        }
+        }
+	      
+	      monthChartDao.insert(c.setPrice(min)
+	      										 .setpId(sItem.get(i).getpId())
+	      										 .setTime(new Date()));
+      }
+    } catch (Exception e) {
+    	e.printStackTrace();
+    }
+	}
+	
+	@Scheduled(cron="0 59 23 * * SUN")
+	public void doWeekSchedule() throws ParserConfigurationException, SAXException, IOException {
+		try {
+			ArrayList<Item> sItem = (ArrayList<Item>)itemDao.selectList();
+			ArrayList<Chart> dList = null;
+			Chart c = new Chart();
+			for (int i = 0; i < sItem.size(); i++) {
+	      dList = (ArrayList<Chart>) dayChartDao.selectList(sItem.get(i).getpId());
+	      if (dList.size() > 14) {
+	      	int distinction = dList.size() - 14;
+	      	for (int j = 0; j < distinction; j++) {
+	          dayChartDao.delete(dList.remove(j).getpId());
+          }
+	      } 
+	      int min = dList.get(0).getPrice();
+	      for (int j = 0; j < dList.size(); j++) {
+	        if (dList.get(j).getPrice() < min) {
+	        	min = dList.get(j).getPrice();
+	        }
+        }
+	      
+	      weekChartDao.insert(c.setPrice(min)
+	      										 .setpId(sItem.get(i).getpId())
+	      										 .setTime(new Date()));
+	      
+      }
+		} catch (Exception e) {
+    	e.printStackTrace();
+    }
+	}	
+	
+	@Scheduled(cron="0 0 0 * * ?")
+	public void doDaySchedule() throws ParserConfigurationException, SAXException, IOException {
+		try {
+			ArrayList<Item> sItem = (ArrayList<Item>)itemDao.selectList();
+			ArrayList<Chart> hList = null;
+			Chart c = new Chart();
+			for (int i = 0; i < sItem.size(); i++) {
+	      hList = (ArrayList<Chart>) hourChartDao.selectList(sItem.get(i).getpId());
+	      int min = hList.get(0).getPrice();
+	      for (int j = 1; j < hList.size(); j++) {
+	      	if (hList.get(j).getPrice() < min) {
+	      		min = hList.get(j).getPrice();
+	      	}
+	      }
+
+	      dayChartDao.insert(c.setPrice(min)
+	 	       									.setpId(sItem.get(i).getpId())
+	 	       									.setTime(new Date()));
+	      hourChartDao.delete(sItem.get(i).getpId());
+      }
+			
+    } catch (Exception e) {
+    	e.printStackTrace();
+    }
+	}	
+	
+	@Scheduled(cron="0 0 * * * *")
 	public void doHourSchedule() throws ParserConfigurationException, SAXException, IOException {
 
 		try {
 			ArrayList<Item> sItem = (ArrayList<Item>)itemDao.selectList();
-//			ArrayList<Chart> sList = null;
 			for (int i = 0; i < sItem.size(); i++){
-//				sList = (ArrayList<Chart>) chartDao.hour_select(sItem.get(i).getpId());
-//				for (int z = 0; z < sList.size(); z++) {
-//					if (dFormat(sList.get(z).getTime()).equals("00")) {
-//						chartDao.day_insert(sList.get(z));
-//						chartDao.hour_delete(sList.get(z).getpId());
-//					}
-//				}
-				
 				String requestUrl = "";
 				requestUrl += "http://openapi.naver.com/search?";
 				requestUrl += "key=be6c30428660950b9ece4f651a0d2dba"; 
@@ -113,14 +230,11 @@ public class SearchBot {
 	            // 실시간으로 검색되는 시점의 시간과 해당 상품코드, 가격이 다 지정됐을 때만 hour_insert에 추가
 	            if (cp.getpId() != null && cp.getPrice() != 0 
 	            		&& cp.getTime() != null) {
-	            	chartDao.hour_insert(cp);
+	            	hourChartDao.insert(cp);
 	            	cp.setTime(null)
 	            		.setPrice(0)
 	            		.setpId(null);
 	            }
-	            
-	            
-	            
 	        	}
 	        }
         }
@@ -131,9 +245,5 @@ public class SearchBot {
 		}
 
 	}
-	
-
-
-
 
 }

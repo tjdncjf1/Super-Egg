@@ -1,8 +1,8 @@
 -- 회원정보
-DROP TABLE IF EXISTS `USER` RESTRICT;
+DROP TABLE IF EXISTS `USERS` RESTRICT;
 
 -- 상품정보
-DROP TABLE IF EXISTS `ITEM` RESTRICT;
+DROP TABLE IF EXISTS `ITEMS` RESTRICT;
 
 -- 상품 리스트
 DROP TABLE IF EXISTS `USER_ITEM_LIST` RESTRICT;
@@ -19,31 +19,34 @@ DROP TABLE IF EXISTS `WEEK_CHANGES` RESTRICT;
 -- 월단위가격변동내역
 DROP TABLE IF EXISTS `MONTH_CHANGES` RESTRICT;
 
+-- 월단위가격변동내역2
+DROP TABLE IF EXISTS `YEAR_CHANGES` RESTRICT;
+
 -- 회원정보
-CREATE TABLE `USER` (
+CREATE TABLE `USERS` (
   `UNO`    INTEGER      NOT NULL, -- 회원번호
   `UEMAIL` VARCHAR(100) NOT NULL, -- 이메일
   `UPW`    VARCHAR(20)  NOT NULL  -- 비밀번호
 );
 
 -- 회원정보
-ALTER TABLE `USER`
-  ADD CONSTRAINT `PK_USER` -- 회원정보 기본키
+ALTER TABLE `USERS`
+  ADD CONSTRAINT `PK_USERS` -- 회원정보 기본키
     PRIMARY KEY (
       `UNO` -- 회원번호
     );
 
 -- 회원정보 유니크 인덱스
-CREATE UNIQUE INDEX `UIX_USER`
-  ON `USER` ( -- 회원정보
+CREATE UNIQUE INDEX `UIX_USERS`
+  ON `USERS` ( -- 회원정보
     `UEMAIL` ASC -- 이메일
   );
 
-ALTER TABLE `USER`
+ALTER TABLE `USERS`
   MODIFY COLUMN `UNO` INTEGER NOT NULL AUTO_INCREMENT;
 
 -- 상품정보
-CREATE TABLE `ITEM` (
+CREATE TABLE `ITEMS` (
   `PROD_ID`    VARCHAR(100) NOT NULL, -- 상품코드
   `TITLE`      VARCHAR(200) NOT NULL, -- 상품명
   `IMAGE_URL`  VARCHAR(255) NULL,     -- 이미지경로
@@ -54,8 +57,8 @@ CREATE TABLE `ITEM` (
 );
 
 -- 상품정보
-ALTER TABLE `ITEM`
-  ADD CONSTRAINT `PK_ITEM` -- 상품정보 기본키
+ALTER TABLE `ITEMS`
+  ADD CONSTRAINT `PK_ITEMS` -- 상품정보 기본키
     PRIMARY KEY (
       `PROD_ID` -- 상품코드
     );
@@ -148,62 +151,90 @@ ALTER TABLE `MONTH_CHANGES`
 ALTER TABLE `MONTH_CHANGES`
   MODIFY COLUMN `MNO` INTEGER NOT NULL AUTO_INCREMENT;
 
+-- 월단위가격변동내역2
+CREATE TABLE `YEAR_CHANGES` (
+  `YNO`     INTEGER      NOT NULL, -- 년별번호
+  `PROD_ID` VARCHAR(100) NOT NULL, -- 상품코드
+  `YPRICE`  INTEGER      NOT NULL, -- 가격
+  `YTIME`   DATE         NOT NULL  -- 년단위
+);
+
+-- 월단위가격변동내역2
+ALTER TABLE `YEAR_CHANGES`
+  ADD CONSTRAINT `PK_YEAR_CHANGES` -- 월단위가격변동내역2 기본키
+    PRIMARY KEY (
+      `YNO` -- 년별번호
+    );
+
+ALTER TABLE `YEAR_CHANGES`
+  MODIFY COLUMN `YNO` INTEGER NOT NULL AUTO_INCREMENT;
+
 -- 상품 리스트
 ALTER TABLE `USER_ITEM_LIST`
-  ADD CONSTRAINT `FK_ITEM_TO_USER_ITEM_LIST` -- 상품정보 -> 상품 리스트
+  ADD CONSTRAINT `FK_ITEMS_TO_USER_ITEM_LIST` -- 상품정보 -> 상품 리스트
     FOREIGN KEY (
       `PROD_ID` -- 상품코드
     )
-    REFERENCES `ITEM` ( -- 상품정보
+    REFERENCES `ITEMS` ( -- 상품정보
       `PROD_ID` -- 상품코드
     );
 
 -- 상품 리스트
 ALTER TABLE `USER_ITEM_LIST`
-  ADD CONSTRAINT `FK_USER_TO_USER_ITEM_LIST` -- 회원정보 -> 상품 리스트
+  ADD CONSTRAINT `FK_USERS_TO_USER_ITEM_LIST` -- 회원정보 -> 상품 리스트
     FOREIGN KEY (
       `UNO` -- 회원번호
     )
-    REFERENCES `USER` ( -- 회원정보
+    REFERENCES `USERS` ( -- 회원정보
       `UNO` -- 회원번호
     );
 
 -- 시단위가격변동내역
 ALTER TABLE `HOUR_CHANGES`
-  ADD CONSTRAINT `FK_ITEM_TO_HOUR_CHANGES` -- 상품정보 -> 시단위가격변동내역
+  ADD CONSTRAINT `FK_ITEMS_TO_HOUR_CHANGES` -- 상품정보 -> 시단위가격변동내역
     FOREIGN KEY (
       `PROD_ID` -- 상품코드
     )
-    REFERENCES `ITEM` ( -- 상품정보
+    REFERENCES `ITEMS` ( -- 상품정보
       `PROD_ID` -- 상품코드
     );
 
 -- 일단위가격변동내역
 ALTER TABLE `DAY_CHANGES`
-  ADD CONSTRAINT `FK_ITEM_TO_DAY_CHANGES` -- 상품정보 -> 일단위가격변동내역
+  ADD CONSTRAINT `FK_ITEMS_TO_DAY_CHANGES` -- 상품정보 -> 일단위가격변동내역
     FOREIGN KEY (
       `PROD_ID` -- 상품코드
     )
-    REFERENCES `ITEM` ( -- 상품정보
+    REFERENCES `ITEMS` ( -- 상품정보
       `PROD_ID` -- 상품코드
     );
 
 -- 주단위가격변동내역
 ALTER TABLE `WEEK_CHANGES`
-  ADD CONSTRAINT `FK_ITEM_TO_WEEK_CHANGES` -- 상품정보 -> 주단위가격변동내역
+  ADD CONSTRAINT `FK_ITEMS_TO_WEEK_CHANGES` -- 상품정보 -> 주단위가격변동내역
     FOREIGN KEY (
       `PROD_ID` -- 상품코드
     )
-    REFERENCES `ITEM` ( -- 상품정보
+    REFERENCES `ITEMS` ( -- 상품정보
       `PROD_ID` -- 상품코드
     );
 
 -- 월단위가격변동내역
 ALTER TABLE `MONTH_CHANGES`
-  ADD CONSTRAINT `FK_ITEM_TO_MONTH_CHANGES` -- 상품정보 -> 월단위가격변동내역
+  ADD CONSTRAINT `FK_ITEMS_TO_MONTH_CHANGES` -- 상품정보 -> 월단위가격변동내역
     FOREIGN KEY (
       `PROD_ID` -- 상품코드
     )
-    REFERENCES `ITEM` ( -- 상품정보
+    REFERENCES `ITEMS` ( -- 상품정보
+      `PROD_ID` -- 상품코드
+    );
+
+-- 월단위가격변동내역2
+ALTER TABLE `YEAR_CHANGES`
+  ADD CONSTRAINT `FK_ITEMS_TO_YEAR_CHANGES` -- 상품정보 -> 월단위가격변동내역2
+    FOREIGN KEY (
+      `PROD_ID` -- 상품코드
+    )
+    REFERENCES `ITEMS` ( -- 상품정보
       `PROD_ID` -- 상품코드
     );
