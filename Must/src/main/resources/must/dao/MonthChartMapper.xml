@@ -2,26 +2,26 @@
 <!DOCTYPE mapper
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="must.dao.WeekChartDao">
+<mapper namespace="must.dao.MonthChartDao">
   <resultMap type="chart" id="chartResultMap">
-    <id property="no"             column="WNO"/>
+    <id property="no"             column="MNO"/>
     <result property="pId"        column="PROD_ID"/>
-    <result property="price"      column="WPRICE"/>
-    <result property="time"       column="WTIME"/>
+    <result property="price"      column="MPRICE"/>
+    <result property="time"       column="MTIME"/>
   </resultMap>
 
 	<insert id="insert" parameterType="chart">
-		insert into WEEk_CHANGES (PROD_ID, DPRICE, DTIME)
+		insert into MONTH_CHANGES (PROD_ID, DPRICE, DTIME)
 		values (#{pId}, #{price}, #{time})
 	</insert>
 
   <select id="selectList" parameterType="string" resultMap="chartResultMap">
-	   select * from WEEk_CHANGES
+	   select * from MONTH_CHANGES
      where PROD_ID = #{pId};
 	</select>
 	
   <delete id="delete" parameterType="string">
-		delete from WEEk_CHANGES
+		delete from MONTH_CHANGES
 		where PROD_ID=#{pId}
 	</delete>
 	

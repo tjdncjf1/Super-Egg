@@ -4,8 +4,8 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="must.dao.HourChartDao">
   <resultMap type="chart" id="chartResultMap">
-    <id property="no"              column="HNO"/>
-    <result property="pId"      column="PROD_ID"/>
+    <id property="no"             column="HNO"/>
+    <result property="pId"        column="PROD_ID"/>
     <result property="price"      column="HPRICE"/>
     <result property="time"       column="HTIME"/>
   </resultMap>

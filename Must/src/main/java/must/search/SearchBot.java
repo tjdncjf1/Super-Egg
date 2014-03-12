@@ -15,6 +15,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import must.dao.DayChartDao;
 import must.dao.HourChartDao;
 import must.dao.ItemDao;
+import must.dao.MonthChartDao;
 import must.dao.WeekChartDao;
 import must.vo.Chart;
 import must.vo.Item;
@@ -41,11 +42,39 @@ public class SearchBot {
 	@Autowired(required=false)
 	WeekChartDao weekChartDao;
 	
+	@Autowired(required=false)
+	MonthChartDao monthChartDao;
 	
-//	public String dFormat(Date d) {
-//		DateFormat df = new SimpleDateFormat("HH");
-//		return df.format(d);
-//	}
+	@Scheduled(cron="0 59 23 L * ?")
+	public void doMonthSchedule() throws ParserConfigurationException, SAXException, IOException {
+		try {
+	    ArrayList<Item> sItem = (ArrayList<Item>)itemDao.selectList();
+	    ArrayList<Chart> wList = null;
+	    Chart c = new Chart();
+	    for (int i = 0; i < sItem.size(); i++) {
+	      wList = (ArrayList<Chart>) weekChartDao.selectList(sItem.get(i).getpId());
+	    	if (wList.size() > 12) {
+	    		int distinction = wList.size() - 12;
+	    		for (int j = 0; j < distinction; j++) {
+	          weekChartDao.delete(wList.remove(j).getpId());
+          }
+	    	}
+	      int min = wList.get(0).getPrice();
+	      for (int j = 0; j < wList.size(); j++) {
+	        if (wList.get(j).getPrice() < min) {
+	        	min = wList.get(j).getPrice();
+	        }
+        }
+	      
+	      monthChartDao.insert(c.setPrice(min)
+	      										 .setpId(sItem.get(i).getpId())
+	      										 .setTime(new Date()));
+	    	
+      }
+    } catch (Exception e) {
+    	e.printStackTrace();
+    }
+	}
 	
 	@Scheduled(cron="0 59 23 * * SUN")
 	public void doWeekSchedule() throws ParserConfigurationException, SAXException, IOException {
@@ -55,18 +84,22 @@ public class SearchBot {
 			Chart c = new Chart();
 			for (int i = 0; i < sItem.size(); i++) {
 	      dList = (ArrayList<Chart>) dayChartDao.selectList(sItem.get(i).getpId());
+	      if (dList.size() > 14) {
+	      	int distinction = dList.size() - 14;
+	      	for (int j = 0; j < distinction; j++) {
+	          dayChartDao.delete(dList.remove(j).getpId());
+          }
+	      } 
 	      int min = dList.get(0).getPrice();
-	      for (int j = 1; j < dList.size(); j++) {
-	      	if (dList.get(j).getPrice() < min) {
-	      		min = dList.get(j).getPrice();
-	      	}
-	      }
+	      for (int j = 0; j < dList.size(); j++) {
+	        if (dList.get(j).getPrice() < min) {
+	        	min = dList.get(j).getPrice();
+	        }
+        }
+	      
 	      weekChartDao.insert(c.setPrice(min)
-	 	       									 .setpId(sItem.get(i).getpId())
-	 	       									 .setTime(new Date()));
-	      if (dList.size() <= 14) {
-	      	
-	      }
+	      										 .setpId(sItem.get(i).getpId())
+	      										 .setTime(new Date()));
 	      
       }
 		} catch (Exception e) {
