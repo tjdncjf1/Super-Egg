@@ -15,6 +15,8 @@
 $(function(){
   $('#searchwindow').click(function(){
     $('#list-items').hide();
+    $('#select-items').empty();
+    $('#select-items').hide();
     $('#detail-items').hide();
     $('#search-items').show();
     $('#listwindow').show();
@@ -22,8 +24,10 @@ $(function(){
   
   $('#listwindow').click(function(){
     $('#search-items').hide();
+    $('#select-items').hide();
     $('#detail-items').hide();
     $('.searchImg').empty();
+    $('#select-items').empty();
     $('#list-items').show();
     $('#listwindow').hide();
   });
@@ -34,7 +38,7 @@ $(function(){
 <body>
 
 <input type="button" value="검색창가기" id="searchwindow">
-<input type="button" value="목록가기" id="listwindow"><br>
+<input type="button" value="목록가기" id="listwindow" style="display: none;"><br>
 
 <!-- 리스트 division -->
  <div id="list-items"></div>

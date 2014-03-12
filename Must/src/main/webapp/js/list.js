@@ -12,12 +12,12 @@ $(function() {
 	  			listItem += '<span>' + item.title + '</span>';
 	  			listItem += '<div class="viewImg">';
 	  			listItem += '<img src="' + item.image + '" class="image"><hr>';
-	  			listItem += '</div></div></li></ul></div>';
+	  			listItem += '</div></div></li></ul>';
 	  			
 	  			$(listItem).click(function(){
 	  				
 	  				$('#list-items').hide();
-//	  				$('#listwindow').show();
+	  				$('#listwindow').show();
 	  				$('#select-items').show();
 	  				
 	  				var selectItem = '';
@@ -28,6 +28,7 @@ $(function() {
 	  				selectItem += '<span>최저가격: <input type="number" placeholer="' + item.min_price + '" /></span>';
 	  				selectItem += '<div id="chart" style="min-width: 310px; height: 400px; margin: 0 auto">';
 	  				selectItem += '</div></div>';
+	  				$(selectItem).appendTo('#select-items');
 	  				
 	  				$('#wish_update').click(function(){
 		  		  	$.ajax({
@@ -44,20 +45,20 @@ $(function() {
 		  		  	// return false;
 		  		  }); // submit 괄호
 	  				
-	  				$(selectItem).appendTo('#select-items');
+	  				
 	  				
 	  			}).appendTo('#list-items');
 	  			
-	  			$.ajax({
-	  				url: 'chart/selectDay.do',
-	  				type: 'get',
-	  				data: {
-	  					pId: item.pId
-	  				},
-	  				success: function(data) {
-	  					
-	  				}
-	  			});
+//	  			$.ajax({
+//	  				url: 'chart/selectDay.do',
+//	  				type: 'get',
+//	  				data: {
+//	  					pId: item.pId
+//	  				},
+//	  				success: function(data) {
+//	  					
+//	  				}
+//	  			});
 	  		
 	  		}); // each 괄호
 	  	} // success 괄호
