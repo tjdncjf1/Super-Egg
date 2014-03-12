@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -14,8 +12,10 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import must.dao.DayChartDao;
 import must.dao.HourChartDao;
 import must.dao.ItemDao;
+import must.dao.WeekChartDao;
 import must.vo.Chart;
 import must.vo.Item;
 
@@ -35,17 +35,51 @@ public class SearchBot {
 	@Autowired(required=false)
 	HourChartDao hourChartDao;
 	
-	public String dFormat(Date d) {
-		DateFormat df = new SimpleDateFormat("HH");
-		return df.format(d);
-	}
+	@Autowired(required=false)
+	DayChartDao dayChartDao;
+
+	@Autowired(required=false)
+	WeekChartDao weekChartDao;
 	
-	@Scheduled(cron="0 0 18 * * ?")
+	
+//	public String dFormat(Date d) {
+//		DateFormat df = new SimpleDateFormat("HH");
+//		return df.format(d);
+//	}
+	
+	@Scheduled(cron="0 59 23 * * SUN")
+	public void doWeekSchedule() throws ParserConfigurationException, SAXException, IOException {
+		try {
+			ArrayList<Item> sItem = (ArrayList<Item>)itemDao.selectList();
+			ArrayList<Chart> dList = null;
+			Chart c = new Chart();
+			for (int i = 0; i < sItem.size(); i++) {
+	      dList = (ArrayList<Chart>) dayChartDao.selectList(sItem.get(i).getpId());
+	      int min = dList.get(0).getPrice();
+	      for (int j = 1; j < dList.size(); j++) {
+	      	if (dList.get(j).getPrice() < min) {
+	      		min = dList.get(j).getPrice();
+	      	}
+	      }
+	      weekChartDao.insert(c.setPrice(min)
+	 	       									 .setpId(sItem.get(i).getpId())
+	 	       									 .setTime(new Date()));
+	      if (dList.size() <= 14) {
+	      	
+	      }
+	      
+      }
+		} catch (Exception e) {
+    	e.printStackTrace();
+    }
+	}	
+	
+	@Scheduled(cron="0 0 0 * * ?")
 	public void doDaySchedule() throws ParserConfigurationException, SAXException, IOException {
-		
 		try {
 			ArrayList<Item> sItem = (ArrayList<Item>)itemDao.selectList();
 			ArrayList<Chart> hList = null;
+			Chart c = new Chart();
 			for (int i = 0; i < sItem.size(); i++) {
 	      hList = (ArrayList<Chart>) hourChartDao.selectList(sItem.get(i).getpId());
 	      int min = hList.get(0).getPrice();
@@ -54,19 +88,17 @@ public class SearchBot {
 	      		min = hList.get(j).getPrice();
 	      	}
 	      }
-	      
-	      
+
+	      dayChartDao.insert(c.setPrice(min)
+	 	       									.setpId(sItem.get(i).getpId())
+	 	       									.setTime(new Date()));
+	      hourChartDao.delete(sItem.get(i).getpId());
       }
-			
-			
-			
 			
     } catch (Exception e) {
     	e.printStackTrace();
     }
-		
 	}	
-	
 	
 	@Scheduled(cron="0 0 * * * *")
 	public void doHourSchedule() throws ParserConfigurationException, SAXException, IOException {
@@ -137,7 +169,6 @@ public class SearchBot {
 	            		.setPrice(0)
 	            		.setpId(null);
 	            }
-	            
 	        	}
 	        }
         }

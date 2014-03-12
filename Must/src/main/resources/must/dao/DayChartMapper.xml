@@ -15,13 +15,13 @@
 		values (#{pId}, #{price}, #{time})
 	</insert>
 
-  <select id="select" parameterType="string" resultMap="chartResultMap">
-	   select * from HOUR_CHANGES
+  <select id="selectList" parameterType="string" resultMap="chartResultMap">
+	   select * from DAY_CHANGES
      where PROD_ID = #{pId};
 	</select>
 	
   <delete id="delete" parameterType="string">
-		delete from HOUR_CHANGES
+		delete from DAY_CHANGES
 		where PROD_ID=#{pId}
 	</delete>
 	
