@@ -8,6 +8,8 @@
 <link rel="stylesheet" type="text/css" href="css/detail.css" />
 <link rel="stylesheet" type="text/css" href="css/common.css" />
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="js/highcharts.js"></script>
+<script src="js/exporting.js"></script>
 <script type="text/javascript" src="js/list.js"></script>
 <script type="text/javascript">
 $(function(){
@@ -33,7 +35,11 @@ $(function(){
 
 <input type="button" value="검색창가기" id="searchwindow">
 <input type="button" value="목록가기" id="listwindow"><br>
+
+<!-- 리스트 division -->
  <div id="list-items"></div>
+<!-- 리스트에서 아이템 눌렀을 때 상세 division -->
+ <div id="select-items" style="display: none;"></div>
  
  <div id="search-items" style="display: none;">
  <div id="search-bar">
@@ -45,7 +51,9 @@ $(function(){
  </div>
  <div class="searchImg"></div>
  </div>
+ 
  <div id="detail-items" style="display: none;"></div>
+ 
 </body>
 </html>
 
