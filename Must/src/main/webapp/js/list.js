@@ -27,15 +27,9 @@ $(function() {
 
 	  			}).appendTo('#list-items');
 	  			
-	  			$('#chart').highcharts({
-	  				chart: {
-	  					type: 'line'
-	  				},
-	  				title: {
-	  					text: 
-	  				},
+	  			$.ajax({
+	  				url: 'chart/selectDay',
 	  			});
-	  			
 	  			
 	  			
 	  			

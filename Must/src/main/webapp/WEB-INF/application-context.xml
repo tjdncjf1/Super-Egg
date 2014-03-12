@@ -25,8 +25,8 @@
     <context:exclude-filter type="regex" expression=".*controls.*"/>
   </context:component-scan>   
   
-  <task:scheduler id="Scheduler" pool-size="10" />
-  <task:executor id="TaskExecutor" pool-size="10"/>
+  <task:scheduler id="Scheduler" pool-size="20" />
+  <task:executor id="TaskExecutor" pool-size="20"/>
   <task:annotation-driven executor="TaskExecutor" scheduler="Scheduler"/>
   
   <bean id="sqlSessionFactory" 
