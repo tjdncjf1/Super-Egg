@@ -24,8 +24,8 @@ $(function() {
 	  				selectItem += '<div class="moreInfo">';
 	  				selectItem += '<h3 style="margin: 0 auto">' + item.title + '</h3>';
 	  				selectItem += '<img src="' + item.image + '" class="image" style="border: 2px solid yellow;" /><br>';
-	  				selectItem += '<span>희망가격: <input type="number" placeholder="' + item.wish_price + '" id="wPrice" /><input type="button" value="변경" id="wish_update" /></span><br>';
-	  				selectItem += '<span>최저가격: <input type="number" placeholer="' + item.min_price + '" /></span>';
+	  				selectItem += '<span>희망가격: <input type="number" placeholder=' + item.wish_price + ' id="wPrice" /><input type="button" value="변경" id="wish_update" /></span><br>';
+	  				selectItem += '<span>최저가격: <input type="text" value=' + item.min_price + ' readonly="readonly" /></span>';
 	  				selectItem += '<div id="chart" style="min-width: 310px; height: 400px; margin: 0 auto">';
 	  				selectItem += '</div></div>';
 	  				$(selectItem).appendTo('#select-items');
