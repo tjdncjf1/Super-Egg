@@ -41,9 +41,8 @@ $(function() {
 		  		  		success: function() {
 		  		  			location.href = 'must.html';
 		  		  		}
-		  		  	}); // ajax 괄호
-		  		  	// return false;
-		  		  }); // submit 괄호
+		  		  	}); 
+		  		  }); 
 	  				
 	  				$.ajax({
 		  				url: 'chart/selectDay.do',
@@ -51,16 +50,65 @@ $(function() {
 		  				data: {
 		  					pId: item.pId
 		  				},
-		  				success: function(data) {
+		  				success: function(list) {
+		  					var v = new Date(parseInt(list.jsonResult.data[0].time, "mm/DD"));
+		  					var p = v.getMonth() + '.' + v.getDate();
+		  					console.log(p);
+//		  					console.log(new Date(parseInt(list.jsonResult.data[0].time, "mm/DD")));
 		  					
-		  				}
-		  			});
-	  				
-	  				
-	  				
-	  				
-	  				
-	  				
+		  					$('#chart').highcharts({
+		  						chart: {
+		  							type: 'line'
+		  						},
+		  						title: {
+		  							text: '최근 2주간의 가격 추이'
+		  						},
+		  						xAxis: {
+		  							categories: [
+			  							$.each(list.jsonResult.data, function(index, data){
+//			  								var dateTime = new Date(parseInt(data.time, "mm/DD"));
+//			  								var parse = dateTime.getMonth() + '.' + dateTime.getDate();
+//			  								'"' + parse + '",' 
+//			  								var dateTime = JSON.stringify(data);
+//			  								console.log(dateTime);
+			  								
+			  								
+			  							})
+		  							]
+		  						},
+		              yAxis: {
+		                title: {
+		                    text: '가격'
+		                }
+		              },
+//		  						tooltip: {
+//		                enabled: false,
+//		                formatter: function() {
+//		                    return '<b>'+ this.series.name +'</b><br/>'+
+//		                        this.x +': '+ this.y +'°C';
+//		                }
+//		  						},
+		  						plotOptions: {
+		                line: {
+		                    dataLabels: {
+		                        enabled: true,
+		                        style: {
+		                            textShadow: '0 0 3px white, 0 0 3px white'
+		                        }
+		                    },
+		                    enableMouseTracking: false
+		                } 
+		  						},
+		  						series: [{
+		                name: 'Tokyo',
+		                data: [7.0, 6.9, 9.5, 14.5, 18.4, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+		  						}, {
+		                name: 'London',
+		                data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+		  						}]
+		  					}); // end of highchart 
+		  				} // success
+		  			}); // end of selectDay ajax
 	  			}).appendTo('#list-items');
 	  			
 	  		
