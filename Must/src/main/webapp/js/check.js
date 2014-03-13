@@ -58,7 +58,7 @@ $(function(){
 					password: $('#password').val()
 				},
 				success: function(){
-					location.href='must.html'
+					location.href='must.html';
 				},
 	      error : function() {
 	      	alert('시스템이 바쁩니다.\n나중에 다시 시도해 주세요!');
