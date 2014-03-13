@@ -57,12 +57,6 @@ public class SearchBot {
 	    Chart c = new Chart();
 	    for (int i = 0; i < sItem.size(); i++) {
 	    	mList = (ArrayList<Chart>) monthChartDao.selectList(sItem.get(i).getpId());
-	    	if (mList.size() > 12) {
-	    		int distinction = mList.size() - 12;
-	    		for (int j = 0; j < distinction; j++) {
-	    			monthChartDao.delete(mList.get(0).getpId());
-          }
-	    	}
 	      int min = mList.get(0).getPrice();
 	      for (int j = 0; j < mList.size(); j++) {
 	        if (mList.get(j).getPrice() < min) {
@@ -84,21 +78,24 @@ public class SearchBot {
 		try {
 	    ArrayList<Item> sItem = (ArrayList<Item>)itemDao.selectList();
 	    ArrayList<Chart> wList = null;
+	    ArrayList<Chart> mList = null;
 	    Chart c = new Chart();
 	    for (int i = 0; i < sItem.size(); i++) {
 	      wList = (ArrayList<Chart>) weekChartDao.selectList(sItem.get(i).getpId());
-	    	if (wList.size() > 12) {
-	    		int distinction = wList.size() - 12;
-	    		for (int j = 0; j < distinction; j++) {
-	          weekChartDao.delete(wList.get(0).getpId());
-          }
-	    	}
 	      int min = wList.get(0).getPrice();
 	      for (int j = 0; j < wList.size(); j++) {
 	        if (wList.get(j).getPrice() < min) {
 	        	min = wList.get(j).getPrice();
 	        }
         }
+	      
+	      mList = (ArrayList<Chart>) monthChartDao.selectList(sItem.get(i).getpId());
+	      if (mList.size() >= 12) {
+	      	int distinction = mList.size() - 12;
+	      	for (int j = 0; j <= distinction; j++) {
+	          monthChartDao.delete(mList.get(0).getpId());
+          }
+	      } 
 	      
 	      monthChartDao.insert(c.setPrice(min)
 	      										 .setpId(sItem.get(i).getpId())
@@ -114,21 +111,24 @@ public class SearchBot {
 		try {
 			ArrayList<Item> sItem = (ArrayList<Item>)itemDao.selectList();
 			ArrayList<Chart> dList = null;
+			ArrayList<Chart> wList = null;
 			Chart c = new Chart();
 			for (int i = 0; i < sItem.size(); i++) {
-	      dList = (ArrayList<Chart>) dayChartDao.selectList(sItem.get(i).getpId());
-	      if (dList.size() > 14) {
-	      	int distinction = dList.size() - 14;
-	      	for (int j = 0; j < distinction; j++) {
-	          dayChartDao.delete(dList.get(0).getpId());
-          }
-	      } 
-	      int min = dList.get(0).getPrice();
+				dList = (ArrayList<Chart>) dayChartDao.selectList(sItem.get(i).getpId());
+				int min = dList.get(0).getPrice();
 	      for (int j = 0; j < dList.size(); j++) {
 	        if (dList.get(j).getPrice() < min) {
 	        	min = dList.get(j).getPrice();
 	        }
         }
+	      
+	      wList = (ArrayList<Chart>) weekChartDao.selectList(sItem.get(i).getpId());
+	      if (wList.size() >= 12) {
+	      	int distinction = wList.size() - 12;
+	      	for (int j = 0; j <= distinction; j++) {
+	          weekChartDao.delete(wList.get(0).getpId());
+          }
+	      } 
 	      
 	      weekChartDao.insert(c.setPrice(min)
 	      										 .setpId(sItem.get(i).getpId())
@@ -144,6 +144,7 @@ public class SearchBot {
 		try {
 			ArrayList<Item> sItem = (ArrayList<Item>)itemDao.selectList();
 			ArrayList<Chart> hList = null;
+			ArrayList<Chart> dList = null;
 			Chart c = new Chart();
 			for (int i = 0; i < sItem.size(); i++) {
 	      hList = (ArrayList<Chart>) hourChartDao.selectList(sItem.get(i).getpId());
@@ -153,7 +154,17 @@ public class SearchBot {
 	      		min = hList.get(j).getPrice();
 	      	}
 	      }
-
+	      
+	      // day 리스트를 검색해서 14개 이상이 될 경우 첫번째 정보를 삭제함.
+	      dList = (ArrayList<Chart>) dayChartDao.selectList(sItem.get(i).getpId());
+	      if (dList.size() >= 14) {
+	      	int distinction = dList.size() - 14;
+	      	for (int j = 0; j <= distinction; j++) {
+	          dayChartDao.delete(dList.get(0).getpId());
+          }
+	      } 
+	      
+	      // 삭제했으므로 추가하기 전까지는 day리스트의 개수는 13개.
 	      dayChartDao.insert(c.setPrice(min)
 	 	       									.setpId(sItem.get(i).getpId())
 	 	       									.setTime(new Date()));

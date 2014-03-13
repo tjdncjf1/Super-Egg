@@ -45,20 +45,25 @@ $(function() {
 		  		  	// return false;
 		  		  }); // submit 괄호
 	  				
+	  				$.ajax({
+		  				url: 'chart/selectDay.do',
+		  				type: 'get',
+		  				data: {
+		  					pId: item.pId
+		  				},
+		  				success: function(data) {
+		  					
+		  				}
+		  			});
+	  				
+	  				
+	  				
+	  				
 	  				
 	  				
 	  			}).appendTo('#list-items');
 	  			
-//	  			$.ajax({
-//	  				url: 'chart/selectDay.do',
-//	  				type: 'get',
-//	  				data: {
-//	  					pId: item.pId
-//	  				},
-//	  				success: function(data) {
-//	  					
-//	  				}
-//	  			});
+	  		
 	  		
 	  		}); // each 괄호
 	  	} // success 괄호
