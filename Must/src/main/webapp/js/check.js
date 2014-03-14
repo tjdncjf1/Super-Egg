@@ -66,11 +66,9 @@ $(function(){
 							email: $('#email').val()
 						},
 						success: function(no){
-							console.log('jjjjjjjjjjjjjjjjjjj' + no);
 							localStorage.setItem('email', $('#email').val());
 							localStorage.setItem('password', $('#password').val());
-							localStorage.setItem('no', no);
-
+							localStorage.setItem('no', parseInt(no.jsonResult.data));
 							location.href='must.html';
 						}
 					});

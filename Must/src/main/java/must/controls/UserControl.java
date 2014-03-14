@@ -1,6 +1,7 @@
 package must.controls;
 
 import must.dao.UserDao;
+import must.vo.JsonResult;
 import must.vo.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,12 +33,15 @@ public class UserControl {
 //		}
 //	}
 	
-	@RequestMapping("/selectNo") 
-	public void selectNo(String email) throws Exception {
+	@RequestMapping(value="/selectNo", produces="application/json") 
+	public Object selectNo(String email) throws Exception {
 		try {
-			userDao.selectNo(email);
+			return new JsonResult().setResultStatus(JsonResult.SUCCESS)
+					.setData(userDao.selectNo(email));
 		} catch (Throwable ex) {
-			ex.printStackTrace();
+			return new JsonResult()
+			.setResultStatus(JsonResult.FAILURE)
+			.setError(ex.getMessage());
 		}
 	}
 	

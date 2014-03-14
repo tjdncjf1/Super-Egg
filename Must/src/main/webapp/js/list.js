@@ -51,7 +51,7 @@ $(function() {
 		  					pId: item.pId
 		  				},
 		  				success: function(list) {
-		  					console.log(list.jsonResult.data[0].title);
+		  					console.log(list.jsonResult.data[0].price);
 //		  					$.each(list.jsonResult.data, function(index, data){
 //		  					var v = new Date(parseInt(data.time, "mm/DD"));
 //		  					var names = v.getMonth() + '.' + v.getDate();
