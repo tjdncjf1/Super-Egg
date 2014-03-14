@@ -26,7 +26,7 @@ $(function() {
 	  				selectItem += '<img src="' + item.image + '" class="image" style="border: 2px solid yellow;" /><br>';
 	  				selectItem += '<span>희망가격: <input type="number" placeholder=' + item.wish_price + ' id="wPrice" /><input type="button" value="변경" id="wish_update" /></span><br>';
 	  				selectItem += '<span>최저가격: <input type="text" value=' + item.min_price + ' readonly="readonly" /></span>';
-	  				selectItem += '<div id="Nwagon7" style="min-width: 310px; height: 400px; margin: 0 auto">';
+	  				selectItem += '<div id="Nwagon" style=" margin: 0 auto">';
 	  				selectItem += '</div></div>';
 	  				$(selectItem).appendTo('#select-items');
 	  				
@@ -80,17 +80,20 @@ $(function() {
 		  					            hrefs: []
 		  					        },
 		  					        'dataset': {
-		  					            title: '', 
+		  					            title: 'hi', 
 		  					            values: [
-		  					                     cprice[0],cprice[1],cprice[2],cprice[3],cprice[4],cprice[5],cprice[6],cprice[7],
-		  					                   cprice[8],cprice[9],cprice[10],cprice[11],cprice[12]
+		  					                   [1],[1],[1],[1],[1],[1],[1],[1],[1],[1],[1],[1],[1]
+		  					                     
+		  					                     //cprice[1],cprice[2],cprice[3],cprice[4],cprice[5],cprice[6],cprice[7],
+		  					                   //cprice[8],cprice[9],cprice[10],cprice[11],cprice[12]
 		  					                     ], 
-		  					            bgColor: '#f9f9f9',
+		  					                   colorset: ['#DC143C'],
+		  					                 fields:['Pass']
 		  					        },
-		  					        'chartDiv': 'Nwagon7',
-		  					        'chartType': 'line',
-		  					        'chartSize': { width: 500, height: 300 },
-		  					        'increament': 10000
+		  					      'chartDiv' : 'Nwagon',
+		  				        'chartType' : 'line',
+		  				        'chartSize' : {width:310, height:400},
+		  				        'increment' : 10000
 		  					    };
 		  					    Nwagon.chart(options);
 		  						

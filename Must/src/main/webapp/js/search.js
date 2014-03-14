@@ -123,10 +123,10 @@ function detail(title, image, min_price, link, pId) {
       	window.localStorage.setItem(productId,localData);
       	
       	$.ajax({
-      		url: 'user/addItem.do',
+      		url: 'userItem/insert.do',
       		type: 'get',
       		data: {
-      			uno: localStorage.getItem(no),
+      			no: localStorage.getItem(no),
       			pId: pId,
       			wish_price: parseInt($('#wishPrice').val()),
       			reg_date: new Date()

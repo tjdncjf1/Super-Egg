@@ -2,11 +2,12 @@
 <!DOCTYPE mapper
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="must.dao.UserDao">
-  <resultMap type="user" id="userResultMap">
+<mapper namespace="must.dao.UserItemDao">
+  <resultMap type="userItem" id="userItemResultMap">
     <id property="no"             column="UNO"/>
-    <result property="email"       column="UEMAIL"/>
-    <result property="password"       column="UPW"/>
+    <result property="pId"       column="PROD_ID"/>
+    <result property="wish_price"       column="WISH_PRICE"/>
+    <result property="reg_date"       column="REG_DATE"/>
   </resultMap>
 
 	<insert id="insertUser" parameterType="user">
