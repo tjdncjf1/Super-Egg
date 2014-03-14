@@ -11,7 +11,6 @@ public class Chart implements Serializable{
   protected int price;
   protected Date time;
   
-  
 	public int getNo() {
 		return no;
 	}

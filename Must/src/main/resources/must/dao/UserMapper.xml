@@ -9,7 +9,7 @@
     <result property="password"       column="UPW"/>
   </resultMap>
 
-	<insert id="insert" parameterType="user">
+	<insert id="insertUser" parameterType="user">
 		insert into USERS (UEMAIL, UPW)
 		values (#{email}, #{password})
 	</insert>

@@ -26,7 +26,7 @@ $(function() {
 	  				selectItem += '<img src="' + item.image + '" class="image" style="border: 2px solid yellow;" /><br>';
 	  				selectItem += '<span>희망가격: <input type="number" placeholder=' + item.wish_price + ' id="wPrice" /><input type="button" value="변경" id="wish_update" /></span><br>';
 	  				selectItem += '<span>최저가격: <input type="text" value=' + item.min_price + ' readonly="readonly" /></span>';
-	  				selectItem += '<div id="chart7" style="min-width: 310px; height: 400px; margin: 0 auto">';
+	  				selectItem += '<div id="Nwagon7" style="min-width: 310px; height: 400px; margin: 0 auto">';
 	  				selectItem += '</div></div>';
 	  				$(selectItem).appendTo('#select-items');
 	  				
@@ -47,79 +47,59 @@ $(function() {
 	  				$.ajax({
 		  				url: 'chart/selectDay.do',
 		  				type: 'get',
+		  				datatype : 'json',
 		  				data: {
-		  					pId: item.pId
+		  					pId: item.pId 
 		  				},
 		  				success: function(list) {
-		  					console.log(list.jsonResult.data[0].price);
-//		  					$.each(list.jsonResult.data, function(index, data){
-//		  					var v = new Date(parseInt(data.time, "mm/DD"));
-//		  					var names = v.getMonth() + '.' + v.getDate();
-//		  					console.log(names);
-//		  					var values = list.jsonResult
-//		  					var 2week = 
+//		  					var a = parseInt(list.jsonResult.data[0].time);
+//		  					var b = new Date(a);
+//		  					var c = b.getMonth() + '.' + b.getDate();
+//		  					var b = a.getMonth() + '.' + a.getDate();
+//		  						console.log(c);
 		  					
-		  					
-//		  					Nwagon.chart(options);
-//		  					});
-//		  					$('#chart7').highcharts({
-//		  						chart: {
-//		  							type: 'line'
-//		  						},
-//		  						title: {
-//		  							text: '최근 2주간의 가격 추이'
-//		  						},
-//		  						xAxis: {
-//		  							categories: [
-//			  							$.each(list.jsonResult.data, function(index, data){
-////			  								var dateTime = new Date(parseInt(data.time, "mm/DD"));
-////			  								var parse = dateTime.getMonth() + '.' + dateTime.getDate();
-////			  								'"' + parse + '",' 
-////			  								var dateTime = JSON.stringify(data);
-////			  								console.log(dateTime);
-//			  								
-//			  								
-//			  							})
-//		  							]
-//		  						},
-//		              yAxis: {
-//		                title: {
-//		                    text: '가격'
-//		                }
-//		              },
-////		  						tooltip: {
-////		                enabled: false,
-////		                formatter: function() {
-////		                    return '<b>'+ this.series.name +'</b><br/>'+
-////		                        this.x +': '+ this.y +'°C';
-////		                }
-////		  						},
-//		  						plotOptions: {
-//		                line: {
-//		                    dataLabels: {
-//		                        enabled: true,
-//		                        style: {
-//		                            textShadow: '0 0 3px white, 0 0 3px white'
-//		                        }
-//		                    },
-//		                    enableMouseTracking: false
-//		                } 
-//		  						},
-//		  						series: [{
-//		                name: 'Tokyo',
-//		                data: [7.0, 6.9, 9.5, 14.5, 18.4, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
-//		  						}, {
-//		                name: 'London',
-//		                data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
-//		  						}]
-//		  					}); // end of highchart 
+		  					var Stringdatetime = [];
+		  					var cprice = [];
+		  					$.each(list.jsonResult.data, function(i){
+		  						var dateTime = new Date(parseInt(list.jsonResult.data[i].time));
+		  					 cprice = parseInt(list.jsonResult.data[i].price);
+              	 Stringdatetime = dateTime.getMonth() + '.' + dateTime.getDate();
+              	console.log(Stringdatetime);
+		  					})
+				                	
+				                	
+		  					var options = {
+		  					        'legend':{
+		  					            names: [
+		  					                    Stringdatetime[0] , Stringdatetime[1] , Stringdatetime[2] ,
+		  					                  Stringdatetime[3] , Stringdatetime[4] , Stringdatetime[5] ,
+		  					                Stringdatetime[6] , Stringdatetime[7] , Stringdatetime[8] ,
+		  					              Stringdatetime[9] , Stringdatetime[10] , Stringdatetime[11] ,
+		  					            Stringdatetime[12]
+		  					            ],
+		  					            hrefs: []
+		  					        },
+		  					        'dataset': {
+		  					            title: '', 
+		  					            values: [
+		  					                     cprice[0],cprice[1],cprice[2],cprice[3],cprice[4],cprice[5],cprice[6],cprice[7],
+		  					                   cprice[8],cprice[9],cprice[10],cprice[11],cprice[12]
+		  					                     ], 
+		  					            bgColor: '#f9f9f9',
+		  					        },
+		  					        'chartDiv': 'Nwagon7',
+		  					        'chartType': 'line',
+		  					        'chartSize': { width: 500, height: 300 },
+		  					        'increament': 10000
+		  					    };
+		  					    Nwagon.chart(options);
+		  						
 		  				} // success
 		  			}); // end of selectDay ajax
 	  			}).appendTo('#list-items');
 	  			
-	  		
-	  		
 	  		}); // each 괄호
 	  	} // success 괄호
 	  });	// $.ajax 괄호
+	 
 });

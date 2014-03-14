@@ -126,9 +126,14 @@ function detail(title, image, min_price, link, pId) {
       		url: 'user/addItem.do',
       		type: 'get',
       		data: {
-      			
+      			uno: localStorage.getItem(no),
+      			pId: pId,
+      			wish_price: parseInt($('#wishPrice').val()),
+      			reg_date: new Date()
       		},
-      		
+      		success: function(){
+      			
+      		}
       	});
       	
       	

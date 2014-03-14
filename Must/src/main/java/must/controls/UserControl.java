@@ -3,6 +3,7 @@ package must.controls;
 import must.dao.UserDao;
 import must.vo.JsonResult;
 import must.vo.User;
+import must.vo.UserItem;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,22 +17,22 @@ public class UserControl {
 	UserDao userDao;
 	
 	@RequestMapping("/add") 
-	public void insert(User user) throws Exception {
+	public void insertUser(User user) throws Exception {
 		try {
-			userDao.insert(user);
+			userDao.insertUser(user);
 		} catch (Throwable ex) {
 			ex.printStackTrace();
 		}
 	}
 	
-//	@RequestMapping("/addItem") 
-//	public void insertItem(User user) throws Exception {
-//		try {
-//			userDao.insert(user);
-//		} catch (Throwable ex) {
-//			ex.printStackTrace();
-//		}
-//	}
+	@RequestMapping("/addItem") 
+	public void insertItem(UserItem userItem) throws Exception {
+		try {
+			userDao.insertItem(userItem);
+		} catch (Throwable ex) {
+			ex.printStackTrace();
+		}
+	}
 	
 	@RequestMapping(value="/selectNo", produces="application/json") 
 	public Object selectNo(String email) throws Exception {
