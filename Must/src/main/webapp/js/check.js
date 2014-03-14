@@ -59,13 +59,23 @@ $(function(){
 				},
 				success: function(){
 					
-					localStorage.setItem('email', $('#email').val());
-					localStorage.setItem('password', $('#password').val());
+					$.ajax({
+						url: 'user/selectNo.do',
+						type: 'post',
+						data: {
+							email: $('#email').val()
+						},
+						success: function(no){
+							console.log('jjjjjjjjjjjjjjjjjjj' + no);
+							localStorage.setItem('email', $('#email').val());
+							localStorage.setItem('password', $('#password').val());
+							localStorage.setItem('no', no);
+
+							location.href='must.html';
+						}
+					});
 					
-					
-					
-					
-					location.href='must.html';
+
 				},
 	      error : function() {
 	      	alert('시스템이 바쁩니다.\n나중에 다시 시도해 주세요!');

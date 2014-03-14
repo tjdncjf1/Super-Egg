@@ -51,16 +51,17 @@ $(function() {
 		  					pId: item.pId
 		  				},
 		  				success: function(list) {
-		  					$.each(list.jsonResult.data, function(index, data){
-		  					var v = new Date(parseInt(data.time, "mm/DD"));
-		  					var names = v.getMonth() + '.' + v.getDate();
-		  					console.log(names);
+		  					console.log(list.jsonResult.data[0].title);
+//		  					$.each(list.jsonResult.data, function(index, data){
+//		  					var v = new Date(parseInt(data.time, "mm/DD"));
+//		  					var names = v.getMonth() + '.' + v.getDate();
+//		  					console.log(names);
 //		  					var values = list.jsonResult
 //		  					var 2week = 
 		  					
 		  					
-		  					Nwagon.chart(options);
-		  					});
+//		  					Nwagon.chart(options);
+//		  					});
 //		  					$('#chart7').highcharts({
 //		  						chart: {
 //		  							type: 'line'

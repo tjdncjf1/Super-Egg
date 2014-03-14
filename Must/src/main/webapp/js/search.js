@@ -122,6 +122,22 @@ function detail(title, image, min_price, link, pId) {
       	var localData = JSON.stringify(data);
       	window.localStorage.setItem(productId,localData);
       	
+//      	$.ajax({
+//      		url: 'user/addItem.do',
+//      		type: 'get',
+//      		data: {
+//      			
+//      		},
+//      		
+//      	});
+      	
+      	
+      	
+      	
+      	
+      	
+      	
+      	
       	location.href='must.html';
       },
       error : function() {

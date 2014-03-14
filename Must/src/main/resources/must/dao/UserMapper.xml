@@ -18,6 +18,10 @@
     select * from USERS	    
 	</select>
 	
+	<select id="selectNo" parameterType="string" resultType="int">
+    select UNO from USERS
+    where UEMAIL=#{email}	    
+	</select>
 	
 	
 </mapper>

@@ -1,11 +1,5 @@
 package must.controls;
 
-import java.io.PrintWriter;
-import java.util.ArrayList;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import must.dao.UserDao;
 import must.vo.User;
 
@@ -29,26 +23,44 @@ public class UserControl {
 		}
 	}
 	
-	@RequestMapping("/check") 
-	public void check(String email, HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+//	@RequestMapping("/addItem") 
+//	public void insertItem(User user) throws Exception {
+//		try {
+//			userDao.insert(user);
+//		} catch (Throwable ex) {
+//			ex.printStackTrace();
+//		}
+//	}
+	
+	@RequestMapping("/selectNo") 
+	public void selectNo(String email) throws Exception {
 		try {
-			request.setCharacterEncoding("utf-8");
-			ArrayList<User> ulist = (ArrayList<User>) userDao.selectList();
-			PrintWriter out = response.getWriter();
-			
-			for (User u : ulist) { 
-				if (email.equals(u.getEmail())) {
-					out.println("false");
-				} else {
-					out.println("true");
-				}
-			}
-			
+			userDao.selectNo(email);
 		} catch (Throwable ex) {
 			ex.printStackTrace();
 		}
 	}
 	
+	
+//	@RequestMapping("/check") 
+//	public void check(String email, HttpServletRequest request,
+//			HttpServletResponse response) throws Exception {
+//		try {
+//			request.setCharacterEncoding("utf-8");
+//			ArrayList<User> ulist = (ArrayList<User>) userDao.selectList();
+//			PrintWriter out = response.getWriter();
+//			
+//			for (User u : ulist) { 
+//				if (email.equals(u.getEmail())) {
+//					out.println("false");
+//				} else {
+//					out.println("true");
+//				}
+//			}
+//			
+//		} catch (Throwable ex) {
+//			ex.printStackTrace();
+//		}
+//	}
 
 }
