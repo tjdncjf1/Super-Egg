@@ -116,25 +116,11 @@ function detail(title, image, min_price, link, pId) {
         pId : pId,
         reg_date : new Date()
       },
-      success : function(data,status){
-//      	$.each(data, function(key, value){
-//      		
-//      	});
-//      	var localData = JSON.stringify(data);
-//      	window.localStorage.setItem('userItem',localData);
-//      	var userItemArray = localStorage["userItemArray"];
-//      	if (!userItemArray) {
-//      		userItemArray = [];
-//      		localStorage.setItem("userItemArray", JSON.stringify(data));
-//      	}else {
-//      		userItemArray = JSON.parse(userItemArray);
-//      	}
-//      	for (var i = 0; i < userItemArray.length; i++) {
-//      		car key = userItemArray[i];
-//      		var value = localStrorage[key];
-//      		add
-//      	}
-
+      success : function(data) {
+//      	console.log(data.item.title);
+      	var productId = JSON.stringify(data.item.pId);
+      	var localData = JSON.stringify(data);
+      	window.localStorage.setItem(productId,localData);
       	
       	location.href='must.html';
       },

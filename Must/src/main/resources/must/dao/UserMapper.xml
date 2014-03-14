@@ -10,12 +10,12 @@
   </resultMap>
 
 	<insert id="insert" parameterType="user">
-		insert into USER (UEMAIL, UPW)
+		insert into USERS (UEMAIL, UPW)
 		values (#{email}, #{password})
 	</insert>
 	
 	<select id="selectList" resultMap="userResultMap">
-    select * from USER	    
+    select * from USERS	    
 	</select>
 	
 	

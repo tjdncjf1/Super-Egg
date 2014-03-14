@@ -8,15 +8,15 @@ $(function(){
 		rules: {
 			email: {
 				required: true,
-				email: true,
-				remote: {
-					url:'user/check.do',
-					data: {
-						email: function() {
-							return $('#email').val();
-						}
-					}
-				}
+				email: true
+//				remote: {
+//					url:'user/check.do',
+//					data: {
+//						email: function() {
+//							return $('#email').val();
+//						}
+//					}
+//				}
 			},
 			password: {
 				required: true,
@@ -33,8 +33,8 @@ $(function(){
 		messages: {
 			email: {
 				required: '이메일을 입력하세요',
-				email: '이메일을 바르게 입력하세요',
-				remote: '입력하신 이메일은 이미 존재하는 이메일입니다.'
+				email: '이메일을 바르게 입력하세요'
+//				remote: '입력하신 이메일은 이미 존재하는 이메일입니다.'
 			},
 			password: {
 				required: '비밀번호를 입력하세요',
@@ -58,6 +58,13 @@ $(function(){
 					password: $('#password').val()
 				},
 				success: function(){
+					
+					localStorage.setItem('email', $('#email').val());
+					localStorage.setItem('password', $('#password').val());
+					
+					
+					
+					
 					location.href='must.html';
 				},
 	      error : function() {
