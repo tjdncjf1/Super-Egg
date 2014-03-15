@@ -117,7 +117,8 @@ function detail(title, image, min_price, link, pId) {
         reg_date : new Date()
       },
       success : function(data) {
-//      	console.log(typeof data.item.wish_price);
+      	console.log(localStorage.getItem('no'));
+      	console.log(new Date(parseInt(data.item.reg_date)));
       	var productId = JSON.stringify(data.item.pId);
       	var localData = JSON.stringify(data);
       	window.localStorage.setItem(productId,localData);
@@ -126,12 +127,12 @@ function detail(title, image, min_price, link, pId) {
       		url: 'item/userItemAdd.do',
       		type: 'get',
       		data: {
-      			no: parseInt(localStorage.getItem('no')),
-      			pId: pId,
+      			no: parseInt(window.localStorage.getItem('no')),
+      			pId: data.item.pId,
       			wish_price: data.item.wish_price,
-      			reg_date: data.item.reg_date
+      			reg_date: new Date(parseInt(data.item.reg_date))
       		},
-      		success: function(){}
+      		success: function(){} 
       	});
       	
       	location.href='must.html';
