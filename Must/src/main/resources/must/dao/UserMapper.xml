@@ -14,11 +14,6 @@
 		values (#{email}, #{password})
 	</insert>
 	
-	<insert id="insertItem" parameterType="user">
-		insert into USERS (UEMAIL, UPW)
-		values (#{email}, #{password})
-	</insert>
-
 		<select id="selectList" resultMap="userResultMap">
     select * from USERS	    
 	</select>

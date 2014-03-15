@@ -3,7 +3,6 @@ package must.controls;
 import must.dao.UserDao;
 import must.vo.JsonResult;
 import must.vo.User;
-import must.vo.UserItem;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,15 +19,6 @@ public class UserControl {
 	public void insertUser(User user) throws Exception {
 		try {
 			userDao.insertUser(user);
-		} catch (Throwable ex) {
-			ex.printStackTrace();
-		}
-	}
-	
-	@RequestMapping("/addItem") 
-	public void insertItem(UserItem userItem) throws Exception {
-		try {
-			userDao.insertItem(userItem);
 		} catch (Throwable ex) {
 			ex.printStackTrace();
 		}

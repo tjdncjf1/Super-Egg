@@ -136,13 +136,6 @@ function detail(title, image, min_price, link, pId) {
       		}
       	});
       	
-      	
-      	
-      	
-      	
-      	
-      	
-      	
       	location.href='must.html';
       },
       error : function() {
