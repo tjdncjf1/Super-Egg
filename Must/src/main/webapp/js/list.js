@@ -1,9 +1,13 @@
 $(function() {
+	
 	 $.ajax({
-	  	url: 'item/list.do',
+	  	url: 'item/userItemList.do',
 	  	type: 'get',
+	  	data: {
+	  		
+	  	},
 	  	success: function(items){
-	  		console.log(items);
+//	  		console.log(items);
 	  		$.each(items.jsonResult.data, function(index, item){
 	  			
 	  			var listItem = '';
@@ -44,19 +48,20 @@ $(function() {
 		  		  	}); 
 		  		  }); 
 	  				
-	  				$.ajax({
-		  				url: 'chart/selectDay.do',
-		  				type: 'get',
-		  				datatype : 'json',
-		  				data: {
-		  					pId: item.pId 
-		  				},
-		  				success: function(list) {
-		  						
-		  					
-		  					
-		  				} // success
-		  			}); // end of selectDay ajax
+//	  				$.ajax({
+//		  				url: 'chart/selectDay.do',
+//		  				type: 'get',
+//		  				datatype : 'json',
+//		  				data: {
+//		  					pId: item.pId 
+//		  				},
+//		  				success: function(list) {
+//		  						
+//		  					
+//		  					
+//		  				} // success
+//		  			}); // end of selectDay ajax
+	  				
 	  			}).appendTo('#list-items');
 	  			
 	  		}); // each 괄호
