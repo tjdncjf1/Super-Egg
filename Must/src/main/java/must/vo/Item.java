@@ -6,6 +6,7 @@ import java.util.Date;
 public class Item implements Serializable { 
   private static final long serialVersionUID = 1L; 
 
+  protected int			no;
   protected String  pId;
   protected String  title;
 	protected String  image;
@@ -13,6 +14,7 @@ public class Item implements Serializable {
 	protected int 		wish_price;
 	protected String  link; 
 	protected Date    reg_date;
+	protected User    loginUser;
 	
 	public String getpId() {
 		return pId;
@@ -76,9 +78,23 @@ public class Item implements Serializable {
 		this.reg_date = reg_date;
 		return this;
 	}
-	
-	
-	
-	
+
+	public int getNo() {
+		return no;
+	}
+
+	public Item setNo(int no) {
+		this.no = no;
+		return this;
+	}
+
+	public User getLoginUser() {
+		return loginUser;
+	}
+
+	public Item setLoginUser(User loginUser) {
+		this.loginUser = loginUser;
+		return this;
+	}
 	
 }

@@ -117,23 +117,21 @@ function detail(title, image, min_price, link, pId) {
         reg_date : new Date()
       },
       success : function(data) {
-//      	console.log(data.item.title);
+//      	console.log(typeof data.item.wish_price);
       	var productId = JSON.stringify(data.item.pId);
       	var localData = JSON.stringify(data);
       	window.localStorage.setItem(productId,localData);
       	
       	$.ajax({
-      		url: 'userItem/insert.do',
+      		url: 'item/userItemAdd.do',
       		type: 'get',
       		data: {
       			no: parseInt(localStorage.getItem('no')),
       			pId: pId,
-      			wish_price: parseInt($('#wishPrice').val()),
-      			reg_date: new Date()
+      			wish_price: data.item.wish_price,
+      			reg_date: data.item.reg_date
       		},
-      		success: function(){
-      			
-      		}
+      		success: function(){}
       	});
       	
       	location.href='must.html';

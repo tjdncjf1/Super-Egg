@@ -6,10 +6,10 @@ import java.util.Date;
 public class Chart implements Serializable{
   private static final long serialVersionUID = 1L;
 
-  protected int no;
-  protected String pId;
-  protected int price;
-  protected Date time;
+  protected int 			no;
+  protected String 		pId;
+  protected int 			price;
+  protected Date 			time;
   
 	public int getNo() {
 		return no;

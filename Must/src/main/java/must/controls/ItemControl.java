@@ -59,6 +59,13 @@ public class ItemControl {
 		}
 	}
 	
-	
+	@RequestMapping("/userItemAdd") 
+	public void userItemAdd(Item item) throws Exception {
+		try {
+			itemDao.userItemInsert(item);
+		} catch (Throwable ex) {
+			ex.printStackTrace();
+		}
+	}
 
 }

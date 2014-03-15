@@ -4,13 +4,18 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="must.dao.ItemDao">
   <resultMap type="item" id="itemResultMap">
-    <id property="pId"             column="PROD_ID"/>
-    <result property="title"       column="TITLE"/>
-    <result property="image"       column="IMAGE_URL"/>
-    <result property="min_price"   column="MIN_PRICE"/>
-    <result property="wish_price"  column="WISH_PRICE"/>
-    <result property="link"        column="LINK"/>
-    <result property="reg_date"    column="REG_DATE"/>
+    <id property="pId"                column="PROD_ID"/>
+    <result property="title"          column="TITLE"/>
+    <result property="image"          column="IMAGE_URL"/>
+    <result property="min_price"      column="MIN_PRICE"/>
+    <result property="wish_price"     column="WISH_PRICE"/>
+    <result property="link"           column="LINK"/>
+    <result property="reg_date"       column="REG_DATE"/>
+    <association property="loginUser" javaType="user">
+      <result property="no"           column="UNO"/>
+      <result property="email"        column="UEMAIL"/>
+      <result property="password"     column="UPW"/>
+    </association>
   </resultMap>
 
   <select id="selectList" resultMap="itemResultMap">
@@ -24,7 +29,12 @@
 		values (#{pId}, #{title}, #{image}, #{min_price}, #{wish_price}, #{link}, #{reg_date})
 	</insert>
 
-	<delete id="delete" parameterType="string">
+	<insert id="userItemInsert" parameterType="item">
+		insert into USER_ITEM_LIST (UNO, PROD_ID, WISH_PRICE, REG_DATE)
+		values (#{no}, #{pId}, #{wish_price}, #{reg_date})
+	</insert>
+
+		<delete id="delete" parameterType="string">
 		delete from ITEMS
 		where PROD_ID=#{pId}
 	</delete>
