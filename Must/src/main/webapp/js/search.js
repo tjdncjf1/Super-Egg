@@ -126,7 +126,7 @@ function detail(title, image, min_price, link, pId) {
       		url: 'userItem/insert.do',
       		type: 'get',
       		data: {
-      			no: localStorage.getItem(no),
+      			no: parseInt(localStorage.getItem('no')),
       			pId: pId,
       			wish_price: parseInt($('#wishPrice').val()),
       			reg_date: new Date()

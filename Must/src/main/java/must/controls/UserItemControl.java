@@ -1,7 +1,6 @@
 package must.controls;
 
 import must.dao.UserItemDao;
-import must.vo.User;
 import must.vo.UserItem;
 
 import org.springframework.beans.factory.annotation.Autowired;
