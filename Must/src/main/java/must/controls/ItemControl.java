@@ -47,7 +47,7 @@ public class ItemControl {
 		}
 	}
 	
-	@RequestMapping(value="/userItemList", produces="application/json")
+	@RequestMapping(value="/list", produces="application/json")
 	public Object list() throws Exception {
 		try {
 			return new JsonResult().setResultStatus(JsonResult.SUCCESS)

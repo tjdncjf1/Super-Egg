@@ -117,11 +117,17 @@ function detail(title, image, min_price, link, pId) {
         reg_date : new Date()
       },
       success : function(data) {
-      	console.log(localStorage.getItem('no'));
-      	console.log(new Date(parseInt(data.item.reg_date)));
-      	var productId = JSON.stringify(data.item.pId);
-      	var localData = JSON.stringify(data);
-      	window.localStorage.setItem(productId,localData);
+//      	console.log(localStorage.getItem('no'));
+//      	console.log(new Date(parseInt(data.item.reg_date)));
+      	var getData = $.makeArray(JSON.parse(localStorage.getItem('item')));
+      	if (!getData) {
+      		getData = localStorage.setItem('item', '');
+      	}
+      	var insertData = $.makeArray(data.item);
+//      	console.log(getData.concat(insertData));
+//      	console.log(getData.push(insertData));
+      	var localData = JSON.stringify(getData.concat(insertData));
+      	window.localStorage.setItem('item',localData);
       	
       	$.ajax({
       		url: 'item/userItemAdd.do',
