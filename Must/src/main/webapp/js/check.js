@@ -79,7 +79,9 @@ $(function(){
 	      	alert('시스템이 바쁩니다.\n나중에 다시 시도해 주세요!');
 	      }
 			});
+		},
+		invalidHandler: function(){
+			alert('모두 입력해주세요.');
 		}
-		
 	});
 });
