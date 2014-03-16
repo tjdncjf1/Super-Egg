@@ -47,18 +47,6 @@ public class ItemControl {
 		}
 	}
 	
-	@RequestMapping(value="/list", produces="application/json")
-	public Object list() throws Exception {
-		try {
-			return new JsonResult().setResultStatus(JsonResult.SUCCESS)
-					.setData(itemDao.selectList());
-		} catch (Throwable ex) {
-			return new JsonResult()
-			.setResultStatus(JsonResult.FAILURE)
-			.setError(ex.getMessage());
-		}
-	}
-	
 	@RequestMapping("/userItemAdd") 
 	public void userItemAdd(Item item) throws Exception {
 		try {
@@ -67,5 +55,29 @@ public class ItemControl {
 			ex.printStackTrace();
 		}
 	}
-
+	
+	@RequestMapping(value="/userItemSelect", produces="application/json")
+	public Object selectItem(String pId) throws Exception {
+		try {
+			return new JsonResult().setResultStatus(JsonResult.SUCCESS)
+					.setData(itemDao.selectItem(pId));
+		} catch (Throwable ex) {
+			return new JsonResult()
+			.setResultStatus(JsonResult.FAILURE)
+			.setError(ex.getMessage());
+		}
+	}
+	
+//	@RequestMapping(value="/list", produces="application/json")
+//	public Object list() throws Exception {
+//		try {
+//			return new JsonResult().setResultStatus(JsonResult.SUCCESS)
+//					.setData(itemDao.selectList());
+//		} catch (Throwable ex) {
+//			return new JsonResult()
+//			.setResultStatus(JsonResult.FAILURE)
+//			.setError(ex.getMessage());
+//		}
+//	}
+	
 }
