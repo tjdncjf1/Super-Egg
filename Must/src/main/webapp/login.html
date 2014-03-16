@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Must</title>
+<title>Login</title>
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script>
 $(function(){
@@ -15,14 +15,14 @@ $(function(){
 				password: $('#password').val 
 			},
 			success: function (members) {
-				location.href= 'main.html?email=' + $('#email').val;
+				location.href= 'main.html';
 			}});
 	});
 });
 
 </script>
 </head>
-<body id="aaa">
+<body>
 <div>
   <h1 class="title">Must</h1>
   <form action="" class="login">
