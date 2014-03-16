@@ -47,7 +47,8 @@ $(function() {
   			  			wish_price: $('#wPrice').val()
   			  		},
   			  		success: function(data) {
-  			  			location.href = 'must.html';
+//  			  			location.href = 'must.html';
+  			  			alert('변경했습니다.');
   			  		}
   			  	}); 
   			  }); // end of wish_update click
