@@ -1,5 +1,6 @@
 package must.controls;
 
+import java.util.Date;
 import java.util.HashMap;
 
 import must.dao.ItemDao;
@@ -17,17 +18,17 @@ public class ItemControl {
 	@Autowired(required=false)
 	ItemDao itemDao;
 
-	@RequestMapping("/wishUpdate") 
-	public void wishUpdate(String pId, int wish_price) throws Exception {
-		try {
-			HashMap<String, Object> sqlparamMap = new HashMap<String, Object>();
-			sqlparamMap.put("pId", pId);
-			sqlparamMap.put("wish_price", wish_price);
-			itemDao.wishUpdate(sqlparamMap);
-		} catch (Throwable ex) {
-			ex.printStackTrace();
-		}
-	}
+//	@RequestMapping("/wishUpdate") 
+//	public void wishUpdate(String pId, int wish_price) throws Exception {
+//		try {
+//			HashMap<String, Object> sqlparamMap = new HashMap<String, Object>();
+//			sqlparamMap.put("pId", pId);
+//			sqlparamMap.put("wish_price", wish_price);
+//			itemDao.wishUpdate(sqlparamMap);
+//		} catch (Throwable ex) {
+//			ex.printStackTrace();
+//		}
+//	}
 	
 	@RequestMapping("/addItem") 
 	public void insert(Item item) throws Exception {
@@ -48,24 +49,43 @@ public class ItemControl {
 	}
 	
 	@RequestMapping("/userItemAdd") 
-	public void userItemAdd(Item item) throws Exception {
+	public void userItemAdd(int no, String pId, int wish_price, Date reg_date) throws Exception {
 		try {
-			itemDao.userItemInsert(item);
+			HashMap<String, Object> itemInfo = new HashMap<>();
+ 			itemInfo.put("no", no);
+ 			itemInfo.put("pId", pId);
+ 			itemInfo.put("wPrice", wish_price);
+ 			itemInfo.put("rDate", reg_date);
+			itemDao.userItemInsert(itemInfo);
 		} catch (Throwable ex) {
 			ex.printStackTrace();
 		}
 	}
 	
-	@RequestMapping(value="/userItemSelect", produces="application/json")
-	public Object selectItem(String pId) throws Exception {
+//	@RequestMapping(value="/userItemSelect", produces="application/json")
+//	public Object selectItem(String pId) throws Exception {
+//		try {
+//			return new JsonResult().setResultStatus(JsonResult.SUCCESS)
+//					.setData(itemDao.selectItem(pId));
+//		} catch (Throwable ex) {
+//			return new JsonResult()
+//			.setResultStatus(JsonResult.FAILURE)
+//			.setError(ex.getMessage());
+//		}
+//	}
+	
+	@RequestMapping(value="/userItemList", produces="application/json")
+	public Object selectItems(int uNo) throws Exception {
 		try {
 			return new JsonResult().setResultStatus(JsonResult.SUCCESS)
-					.setData(itemDao.selectItem(pId));
+					.setData(itemDao.userItemList(uNo));
 		} catch (Throwable ex) {
 			return new JsonResult()
 			.setResultStatus(JsonResult.FAILURE)
 			.setError(ex.getMessage());
 		}
 	}
+	
+	
 	
 }

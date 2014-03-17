@@ -19,7 +19,7 @@ DROP TABLE IF EXISTS `WEEK_CHANGES` RESTRICT;
 -- 월단위가격변동내역
 DROP TABLE IF EXISTS `MONTH_CHANGES` RESTRICT;
 
--- 월단위가격변동내역2
+-- 년단위가격변동내역
 DROP TABLE IF EXISTS `YEAR_CHANGES` RESTRICT;
 
 -- 회원정보
@@ -47,13 +47,12 @@ ALTER TABLE `USERS`
 
 -- 상품정보
 CREATE TABLE `ITEMS` (
-  `PROD_ID`    VARCHAR(100) NOT NULL, -- 상품코드
-  `TITLE`      VARCHAR(200) NOT NULL, -- 상품명
-  `IMAGE_URL`  VARCHAR(255) NULL,     -- 이미지경로
-  `MIN_PRICE`  INTEGER      NOT NULL, -- 현재최소가
-  `WISH_PRICE` INTEGER      NOT NULL, -- 희망가
-  `REG_DATE`   DATETIME     NOT NULL, -- 등록일
-  `LINK`       VARCHAR(255) NOT NULL  -- 상품페이지 경로
+  `PROD_ID`   VARCHAR(100) NOT NULL, -- 상품코드
+  `TITLE`     VARCHAR(200) NOT NULL, -- 상품명
+  `IMAGE_URL` VARCHAR(255) NULL,     -- 이미지경로
+  `MIN_PRICE` INTEGER      NOT NULL, -- 현재최소가
+  `REG_DATE`  DATETIME     NOT NULL, -- 등록일
+  `LINK`      VARCHAR(255) NOT NULL  -- 상품페이지 경로
 );
 
 -- 상품정보
@@ -151,7 +150,7 @@ ALTER TABLE `MONTH_CHANGES`
 ALTER TABLE `MONTH_CHANGES`
   MODIFY COLUMN `MNO` INTEGER NOT NULL AUTO_INCREMENT;
 
--- 월단위가격변동내역2
+-- 년단위가격변동내역
 CREATE TABLE `YEAR_CHANGES` (
   `YNO`     INTEGER      NOT NULL, -- 년별번호
   `PROD_ID` VARCHAR(100) NOT NULL, -- 상품코드
@@ -159,9 +158,9 @@ CREATE TABLE `YEAR_CHANGES` (
   `YTIME`   DATE         NOT NULL  -- 년단위
 );
 
--- 월단위가격변동내역2
+-- 년단위가격변동내역
 ALTER TABLE `YEAR_CHANGES`
-  ADD CONSTRAINT `PK_YEAR_CHANGES` -- 월단위가격변동내역2 기본키
+  ADD CONSTRAINT `PK_YEAR_CHANGES` -- 년단위가격변동내역 기본키
     PRIMARY KEY (
       `YNO` -- 년별번호
     );
@@ -229,9 +228,9 @@ ALTER TABLE `MONTH_CHANGES`
       `PROD_ID` -- 상품코드
     );
 
--- 월단위가격변동내역2
+-- 년단위가격변동내역
 ALTER TABLE `YEAR_CHANGES`
-  ADD CONSTRAINT `FK_ITEMS_TO_YEAR_CHANGES` -- 상품정보 -> 월단위가격변동내역2
+  ADD CONSTRAINT `FK_ITEMS_TO_YEAR_CHANGES` -- 상품정보 -> 년단위가격변동내역
     FOREIGN KEY (
       `PROD_ID` -- 상품코드
     )

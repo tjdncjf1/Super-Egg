@@ -14,9 +14,11 @@
 		values (#{email}, #{password})
 	</insert>
 	
-		<select id="selectList" resultMap="userResultMap">
+<!-- 	
+  <select id="selectList" resultMap="userResultMap">
     select * from USERS	    
-	</select>
+	</select> 
+-->
 	
 	<select id="selectNo" parameterType="string" resultType="int">
     select UNO from USERS

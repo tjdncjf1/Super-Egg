@@ -11,7 +11,7 @@ public class Item implements Serializable {
   protected String  	title;
 	protected String  	image;
 	protected int 			min_price;
-	protected int 			wish_price;
+//	protected int 			wish_price;
 	protected String  	link; 
 	protected Date    	reg_date;
 //	protected User    	loginUser;
@@ -53,14 +53,14 @@ public class Item implements Serializable {
 		return this;
 	}
 	
-	public int getWish_price() {
-		return wish_price;
-	}
-	
-	public Item setWish_price(int wish_price) {
-		this.wish_price = wish_price;
-		return this;
-	}
+//	public int getWish_price() {
+//		return wish_price;
+//	}
+//	
+//	public Item setWish_price(int wish_price) {
+//		this.wish_price = wish_price;
+//		return this;
+//	}
 	
 	public String getLink() {
 		return link;

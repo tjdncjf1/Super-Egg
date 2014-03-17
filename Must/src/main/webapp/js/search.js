@@ -111,7 +111,6 @@ function detail(title, image, min_price, link, pId) {
         title : title,
         image : image,
         min_price : min_price,
-        wish_price : parseInt($('#wishPrice').val()),
         link : link,
         pId : pId,
         reg_date : new Date()
@@ -128,13 +127,15 @@ function detail(title, image, min_price, link, pId) {
 //      	console.log(getData.push(insertData));
 //      	var localData = JSON.stringify(getData.concat(insertData));
 //      	window.localStorage.setItem('item',localData);
+      	console.log('성공');
       	$.ajax({
       		url: 'item/userItemAdd.do',
       		type: 'get',
+      		async: 'false',
       		data: {
       			no: parseInt(window.localStorage.getItem('no')),
       			pId: data.item.pId,
-      			wish_price: data.item.wish_price,
+      			wish_price: $('#wishPrice').val(),
       			reg_date: new Date(parseInt(data.item.reg_date))
       		},
       		success: function(){} 
