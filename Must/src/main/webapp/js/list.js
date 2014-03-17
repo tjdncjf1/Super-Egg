@@ -1,17 +1,31 @@
 $(function() {
 	
-	var items = JSON.parse(localStorage.getItem('item'));
+//	var items = JSON.parse(localStorage.getItem('item'));
 //	console.log(items.length);
-	$.each(items, function(i){
+//	$.each(items, function(i){
 //		console.log(items[i].title);
-		
-		var listItem = '';
-		listItem += '<ul class="items">';
-		listItem += '<li><div class="itemSpace">';
-		listItem += '<span>' + items[i].title + '</span>';
-		listItem += '<div class="viewImg">';
-		listItem += '<img src="' + items[i].image + '" class="image"><hr>';
-		listItem += '</div></div></li></ul>';
+	var userNo = parseInt(localStorage.getItem('no'));
+	
+	$.ajax({
+		url: 'user/userItemList.do',
+		type: 'get',
+		data: {
+			uNo: userNo
+		},
+		success: function(data){
+			console.log(data);
+			var listItem = '';
+			listItem += '<ul class="items">';
+			listItem += '<li><div class="itemSpace">';
+			listItem += '<span>' + items[i].title + '</span>';
+			listItem += '<div class="viewImg">';
+			listItem += '<img src="' + items[i].image + '" class="image"><hr>';
+			listItem += '</div></div></li></ul>';
+			
+		} // success
+	}); // end of ajax
+	
+
 		
 		$(listItem).click(function(){
 //			console.log(items[i].pId);
@@ -56,6 +70,6 @@ $(function() {
 				}});   
 
 		}).appendTo('#list-items');
-	});
+//	});
 	 
 });

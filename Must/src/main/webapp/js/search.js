@@ -119,16 +119,15 @@ function detail(title, image, min_price, link, pId) {
       success : function(data) {
 //      	console.log(localStorage.getItem('no'));
 //      	console.log(new Date(parseInt(data.item.reg_date)));
-      	var getData = $.makeArray(JSON.parse(localStorage.getItem('item')));
-      	if (!getData) {
-      		getData = localStorage.setItem('item', '');
-      	}
-      	var insertData = $.makeArray(data.item);
+//      	var getData = $.makeArray(JSON.parse(localStorage.getItem('item')));
+//      	if (!getData) {
+//      		getData = localStorage.setItem('item', '');
+//      	}
+//      	var insertData = $.makeArray(data.item);
 //      	console.log(getData.concat(insertData));
 //      	console.log(getData.push(insertData));
-      	var localData = JSON.stringify(getData.concat(insertData));
-      	window.localStorage.setItem('item',localData);
-      	
+//      	var localData = JSON.stringify(getData.concat(insertData));
+//      	window.localStorage.setItem('item',localData);
       	$.ajax({
       		url: 'item/userItemAdd.do',
       		type: 'get',

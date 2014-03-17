@@ -8,6 +8,7 @@ public class User implements Serializable {
   protected int no;
   protected String email;
   protected String password;
+  protected UserItem itemList;
   
 	public int getNo() {
 		return no;
@@ -33,6 +34,15 @@ public class User implements Serializable {
 	
 	public User setPassword(String password) {
 		this.password = password;
+		return this;
+	}
+
+	public UserItem getItemList() {
+		return itemList;
+	}
+
+	public User setItemList(UserItem itemList) {
+		this.itemList = itemList;
 		return this;
 	}
   

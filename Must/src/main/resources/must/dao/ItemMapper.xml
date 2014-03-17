@@ -17,7 +17,6 @@
       <result property="password"     column="UPW"/>
     </association>
   </resultMap>
-
    
   <select id="selectList" resultMap="itemResultMap">
     select PROD_ID, TITLE, IMAGE_URL, MIN_PRICE, WISH_PRICE, LINK, REG_DATE
