@@ -28,7 +28,7 @@ $(function(){
                   var title = bb.split("</b>").join("");
                   var image = $(this).find("image").text();
                   var min_price = parseInt($(this).find("lprice").text());
-                  var link = $(this).find("link").text();
+                  var link = $(this).find("link").text(); 
                   var pId = $(this).find("productId").text();
                   
                   var output ='';
