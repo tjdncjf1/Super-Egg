@@ -6,15 +6,16 @@ import java.util.Date;
 public class Item implements Serializable { 
   private static final long serialVersionUID = 1L; 
 
-  protected int			no;
-  protected String  pId;
-  protected String  title;
-	protected String  image;
-	protected int 		min_price;
-	protected int 		wish_price;
-	protected String  link; 
-	protected Date    reg_date;
-	protected User    loginUser;
+//  protected int				no;
+  protected String  	pId;
+  protected String  	title;
+	protected String  	image;
+	protected int 			min_price;
+	protected int 			wish_price;
+	protected String  	link; 
+	protected Date    	reg_date;
+//	protected User    	loginUser;
+//	protected UserItem 	userItems;
 	
 	public String getpId() {
 		return pId;
@@ -79,22 +80,32 @@ public class Item implements Serializable {
 		return this;
 	}
 
-	public int getNo() {
-		return no;
-	}
+//	public int getNo() {
+//		return no;
+//	}
+//
+//	public Item setNo(int no) {
+//		this.no = no;
+//		return this;
+//	}
 
-	public Item setNo(int no) {
-		this.no = no;
-		return this;
-	}
-
-	public User getLoginUser() {
-		return loginUser;
-	}
-
-	public Item setLoginUser(User loginUser) {
-		this.loginUser = loginUser;
-		return this;
-	}
+//	public User getLoginUser() {
+//		return loginUser;
+//	}
+//
+//	public Item setLoginUser(User loginUser) {
+//		this.loginUser = loginUser;
+//		return this;
+//	}
+//
+//	public UserItem getUserItems() {
+//		return userItems;
+//	}
+//
+//	public Item setUserItems(UserItem userItems) {
+//		this.userItems = userItems;
+//		return this;
+//	}
+	
 	
 }

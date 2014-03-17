@@ -7,21 +7,23 @@ $(function() {
 	var userNo = parseInt(localStorage.getItem('no'));
 	
 	$.ajax({
-		url: 'user/userItemList.do',
+		url: 'item/userItemList.do',
 		type: 'get',
 		data: {
 			uNo: userNo
 		},
-		success: function(data){
-			console.log(data);
-			var listItem = '';
-			listItem += '<ul class="items">';
-			listItem += '<li><div class="itemSpace">';
-			listItem += '<span>' + items[i].title + '</span>';
-			listItem += '<div class="viewImg">';
-			listItem += '<img src="' + items[i].image + '" class="image"><hr>';
-			listItem += '</div></div></li></ul>';
-			
+		success: function(userItems){
+//			console.log(data);
+			$.each(userItems.jsonResult.data, function(i, items){
+				var listItem = '';
+				listItem += '<ul class="items">';
+				listItem += '<li><div class="itemSpace">';
+				listItem += '<span>' + items[i].title + '</span>';
+				listItem += '<div class="viewImg">';
+				listItem += '<img src="' + items[i].image + '" class="image"><hr>';
+				listItem += '</div></div></li></ul>';
+				
+			}); // each
 		} // success
 	}); // end of ajax
 	

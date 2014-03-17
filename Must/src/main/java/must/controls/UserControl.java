@@ -36,19 +36,6 @@ public class UserControl {
 		}
 	}
 	
-	@RequestMapping(value="/userItemList", produces="application/json")
-	public Object userItemList(int uNo) throws Exception {
-		try {
-			return new JsonResult().setResultStatus(JsonResult.SUCCESS)
-					.setData(userDao.userItemList(uNo));
-		} catch (Throwable ex) {
-			return new JsonResult()
-			.setResultStatus(JsonResult.FAILURE)
-			.setError(ex.getMessage());
-		}
-	}
-	
-	
 //	@RequestMapping("/check") 
 //	public void check(String email, HttpServletRequest request,
 //			HttpServletResponse response) throws Exception {

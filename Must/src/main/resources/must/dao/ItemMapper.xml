@@ -11,13 +11,8 @@
     <result property="wish_price"     column="WISH_PRICE"/>
     <result property="link"           column="LINK"/>
     <result property="reg_date"       column="REG_DATE"/>
-    <association property="loginUser" javaType="user">
-      <result property="no"           column="UNO"/>
-      <result property="email"        column="UEMAIL"/>
-      <result property="password"     column="UPW"/>
-    </association>
   </resultMap>
-   
+  
   <select id="selectList" resultMap="itemResultMap">
     select PROD_ID, TITLE, IMAGE_URL, MIN_PRICE, WISH_PRICE, LINK, REG_DATE
     from ITEMS

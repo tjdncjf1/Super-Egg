@@ -7,7 +7,7 @@ public class UserItem implements Serializable {
   private static final long serialVersionUID = 1L;
 
 	protected int userNo;
-	protected String pId;
+	protected String productId;
 	protected int wPrice;
 	protected Date rDate;
 	
@@ -20,12 +20,12 @@ public class UserItem implements Serializable {
 		return this;
 	}
 	
-	public String getpId() {
-		return pId;
+	public String getproductId() {
+		return productId;
 	}
 	
-	public UserItem setpId(String pId) {
-		this.pId = pId;
+	public UserItem setproductId(String productId) {
+		this.productId = productId;
 		return this;
 	}
 	
