@@ -74,6 +74,16 @@ public class ItemControl {
 		}
 	}
 	
-	
+	@RequestMapping(value="/selectList", produces="application/json")
+	public Object selectList() throws Exception {
+		try {
+			return new JsonResult().setResultStatus(JsonResult.SUCCESS)
+					.setData(itemDao.selectList());
+		} catch (Throwable ex) {
+			return new JsonResult()
+			.setResultStatus(JsonResult.FAILURE)
+			.setError(ex.getMessage());
+		}
+	}
 	
 }

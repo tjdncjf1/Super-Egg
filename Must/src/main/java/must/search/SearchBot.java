@@ -176,6 +176,8 @@ public class SearchBot {
     }
 	}	
 	
+	//fixedDelay=1000
+// cron="0 0 * * * *"
 	@Scheduled(cron="0 0 * * * *")
 	public void doHourSchedule() throws ParserConfigurationException, SAXException, IOException {
 

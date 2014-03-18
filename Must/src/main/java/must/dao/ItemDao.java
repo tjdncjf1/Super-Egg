@@ -8,7 +8,6 @@ import must.vo.Item;
 public interface ItemDao {
 	
 	public List<Item> selectList() throws Exception;
-//	public Object selectItem(String pId) throws Exception;
 	public void insert(Item item) throws Exception;
 	public void userItemInsert(Map<String, Object> itemInfo) throws Exception;
 	public void delete(String pId) throws Exception;

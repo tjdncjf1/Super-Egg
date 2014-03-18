@@ -18,6 +18,13 @@
     </association>
   </resultMap>
   
+<!--   <resultMap type="userItem" id="userItemResultMap">
+    <id property="userNo"              column="UNO"/>
+    <result property="productId"       column="PROD_ID"/>
+    <result property="wPrice"          column="WISH_PRICE"/>
+    <result property="rDate"           column="REG_DATE"/>
+  </resultMap> -->
+
   <select id="userItemList" parameterType="int" resultMap="itemResultMap">
     select ITEMS.PROD_ID, ITEMS.TITLE, ITEMS.IMAGE_URL, ITEMS.MIN_PRICE, 
     USER_ITEM_LIST.WISH_PRICE, ITEMS.REG_DATE, ITEMS.LINK 
@@ -31,11 +38,11 @@
   </select>
     
   <select id="selectList" resultMap="itemResultMap">
-    select *
+    select PROD_ID, TITLE, IMAGE_URL, MIN_PRICE, LINK, REG_DATE
     from ITEMS
     order by REG_DATE desc
   </select> 
- 
+
 	<insert id="insert" parameterType="item">
 		insert into ITEMS (PROD_ID, TITLE, IMAGE_URL, MIN_PRICE, LINK, REG_DATE)
 		values (#{pId}, #{title}, #{image}, #{min_price}, #{link}, #{reg_date})
