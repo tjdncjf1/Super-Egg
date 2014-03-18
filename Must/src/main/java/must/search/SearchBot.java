@@ -90,11 +90,13 @@ public class SearchBot {
         }
 	      
 	      mList = (ArrayList<Chart>) monthChartDao.selectList(sItem.get(i).getpId());
-	      if (mList.size() >= 12) {
+	      if (mList.size() > 12) {
 	      	int distinction = mList.size() - 12;
 	      	for (int j = 0; j <= distinction; j++) {
 	          monthChartDao.delete(mList.get(0).getpId());
           }
+	      } else if (mList.size() == 12) {
+	      		monthChartDao.delete(wList.get(0).getpId());
 	      } 
 	      
 	      monthChartDao.insert(c.setPrice(min)
@@ -125,12 +127,14 @@ public class SearchBot {
         }
 	      
 	      wList = (ArrayList<Chart>) weekChartDao.selectList(sItem.get(i).getpId());
-	      if (wList.size() >= 12) {
+	      if (wList.size() > 12) {
 	      	int distinction = wList.size() - 12;
 	      	for (int j = 0; j <= distinction; j++) {
 	          weekChartDao.delete(wList.get(0).getpId());
           }
-	      } 
+	      } else if (wList.size() == 12) {
+	      	weekChartDao.delete(wList.get(0).getpId());
+	      }
 	      
 	      weekChartDao.insert(c.setPrice(min)
 	      										 .setpId(sItem.get(i).getpId())
@@ -161,12 +165,14 @@ public class SearchBot {
 	      
 	      // day 리스트를 검색해서 14개 이상이 될 경우 첫번째 정보를 삭제함.
 	      dList = (ArrayList<Chart>) dayChartDao.selectList(sItem.get(i).getpId());
-	      if (dList.size() >= 14) {
+	      if (dList.size() > 14) {
 	      	int distinction = dList.size() - 14;
 	      	for (int j = 0; j <= distinction; j++) {
 	          dayChartDao.delete(dList.get(0).getpId());
           }
-	      } 
+	      } else if (dList.size() == 14) {
+	      	dayChartDao.delete(dList.get(0).getpId());
+	      }
 	      
 	      // 삭제했으므로 추가하기 전까지는 day리스트의 개수는 13개.
 	      dayChartDao.insert(c.setPrice(min)
@@ -190,7 +196,7 @@ public class SearchBot {
 			for (int i = 0; i < sItem.size(); i++){
 				String requestUrl = "";
 				requestUrl += "http://openapi.naver.com/search?";
-				requestUrl += "key=be6c30428660950b9ece4f651a0d2dba"; 
+				requestUrl += "key=adb429b4dea772836424990c303a7755"; 
 				requestUrl += "&target=shop";
 				requestUrl += "&display=10";
 				requestUrl += "&query=" + URLEncoder.encode(sItem.get(i).getTitle(),"UTF-8");
