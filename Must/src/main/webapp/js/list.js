@@ -38,21 +38,83 @@ $(function() {
 		  		selectItem += '</div></div>';
 		  		$(selectItem).appendTo('#select-items');
 						
-		  				$('#wish_update').click(function(){
-		  			  	$.ajax({
-		  			  		url: 'item/wishUpdate.do',
-		  			  		type: 'get',
-		  			  		data: {
-		  			  			pId: item.pId,
-		  			  			wish_price: $('#wPrice').val()
-		  			  		},
-		  			  		success: function() {
-		  			  			alert('변경했습니다.');
-//		  			  			location.href = 'must.html';
-		  			  		}
-		  			  	}); 
-		  			  }); // end of wish_update click
-
+		  		$('#wish_update').click(function(){
+		  			 $.ajax({
+		  			  url: 'item/wishUpdate.do',
+		  			  type: 'get',
+		  			  data: {
+		  			  	pId: item.pId,
+		  			  	wish_price: $('#wPrice').val()
+		  			  },
+		  			  success: function() {
+		  			  	alert('변경했습니다.');
+//		  			  	location.href = 'must.html';
+		  			  }
+		  			 }); 
+		  		}); // end of wish_update click
+		  				
+		  				$.ajax({
+			  				url: 'chart/selectDay.do',
+			  				type: 'get',
+			  				data: {
+			  					pId: item.pId 
+			  				},
+			  				success: function(list) {
+			  					var dayList = list.jsonResult.data;
+			  					console.log(dayList);
+			  					var dayLabel = new Array();
+			  					var dayData = new Array();
+			  					var dprice = null;
+			  					for(var i = 0; i < dayList.length; i++) {
+			  						dprice = dayList[i];
+			  						$.each(dprice, function(key,value){
+			  							if(key === "time") {
+			  								var aj = parseInt(list.jsonResult.data[i].time);
+			  			  					var bj = new Date(aj);
+			  			  					var cj = (bj.getYear+ '-' + bj.getMonth()+1) + '-' + bj.getDate();	
+			  			  						dayLabel.push(cj);
+			  												}
+			  							
+			  							if(key === "price") {
+			  									dayData.push(value);
+			  												}
+			  						});
+			  					};
+			  					dayChart(dayLabel, dayData);
+			  				}
+			  			
+		  				});
+			  				function dayChart(dayLabel,dayData) {
+			  					var dayChart = [];
+			  					for(var i = 0 ; i < dayLabel.length ; i += 1) {
+			  						dayChart.push([dayLabel[i],dayData[i]]);
+			  					}
+			  					var plot = $.jqplot("dayChart", [dayChart],{
+			  						animate:true,
+			  						animateReplot: true,
+			  						axes:{
+			  							xaxis:{
+			  								renderer: $.jqplot.DateAxisRenderer,
+			  								tickOptions:{
+			  						            formatString:'%b&nbsp;%#d'
+			  								}
+			  							},
+			  							yaxis:{
+			  								tickOptions:{
+			  						            formatString:'%d원'
+			  						            }
+			  						}
+			  						},
+			  						 highlighter: {
+			  					        show: true,
+			  					        sizeAdjust: 7.5
+			  					      },
+			  					      cursor: {
+			  					        show: false
+			  					      }
+			  					});
+			  				};
+		  				
 				}).appendTo('#list-items');
 				
 				
