@@ -6,16 +6,15 @@ import java.util.Date;
 public class Item implements Serializable { 
   private static final long serialVersionUID = 1L; 
 
-//  protected int				no;
   protected String  	pId;
   protected String  	title;
 	protected String  	image;
 	protected int 			min_price;
-//	protected int 			wish_price;
+	protected int 			wish_price;
 	protected String  	link; 
 	protected Date    	reg_date;
+	protected UserItem 	loginUserItem;
 //	protected User    	loginUser;
-//	protected UserItem 	userItems;
 	
 	public String getpId() {
 		return pId;
@@ -53,14 +52,14 @@ public class Item implements Serializable {
 		return this;
 	}
 	
-//	public int getWish_price() {
-//		return wish_price;
-//	}
-//	
-//	public Item setWish_price(int wish_price) {
-//		this.wish_price = wish_price;
-//		return this;
-//	}
+	public int getWish_price() {
+		return wish_price;
+	}
+	
+	public Item setWish_price(int wish_price) {
+		this.wish_price = wish_price;
+		return this;
+	}
 	
 	public String getLink() {
 		return link;
@@ -80,15 +79,6 @@ public class Item implements Serializable {
 		return this;
 	}
 
-//	public int getNo() {
-//		return no;
-//	}
-//
-//	public Item setNo(int no) {
-//		this.no = no;
-//		return this;
-//	}
-
 //	public User getLoginUser() {
 //		return loginUser;
 //	}
@@ -98,14 +88,14 @@ public class Item implements Serializable {
 //		return this;
 //	}
 //
-//	public UserItem getUserItems() {
-//		return userItems;
-//	}
-//
-//	public Item setUserItems(UserItem userItems) {
-//		this.userItems = userItems;
-//		return this;
-//	}
+	public UserItem getLoginUserItem() {
+		return loginUserItem;
+	}
+
+	public Item setLoginUserItem(UserItem loginUserItem) {
+		this.loginUserItem = loginUserItem;
+		return this;
+	}
 	
 	
 }

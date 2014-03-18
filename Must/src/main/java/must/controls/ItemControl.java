@@ -18,17 +18,17 @@ public class ItemControl {
 	@Autowired(required=false)
 	ItemDao itemDao;
 
-//	@RequestMapping("/wishUpdate") 
-//	public void wishUpdate(String pId, int wish_price) throws Exception {
-//		try {
-//			HashMap<String, Object> sqlparamMap = new HashMap<String, Object>();
-//			sqlparamMap.put("pId", pId);
-//			sqlparamMap.put("wish_price", wish_price);
-//			itemDao.wishUpdate(sqlparamMap);
-//		} catch (Throwable ex) {
-//			ex.printStackTrace();
-//		}
-//	}
+	@RequestMapping("/wishUpdate") 
+	public void wishUpdate(String pId, int wish_price) throws Exception {
+		try {
+			HashMap<String, Object> sqlparamMap = new HashMap<String, Object>();
+			sqlparamMap.put("pId", pId);
+			sqlparamMap.put("wish_price", wish_price);
+			itemDao.wishUpdate(sqlparamMap);
+		} catch (Throwable ex) {
+			ex.printStackTrace();
+		}
+	}
 	
 	@RequestMapping("/addItem") 
 	public void insert(Item item) throws Exception {
@@ -61,18 +61,6 @@ public class ItemControl {
 			ex.printStackTrace();
 		}
 	}
-	
-//	@RequestMapping(value="/userItemSelect", produces="application/json")
-//	public Object selectItem(String pId) throws Exception {
-//		try {
-//			return new JsonResult().setResultStatus(JsonResult.SUCCESS)
-//					.setData(itemDao.selectItem(pId));
-//		} catch (Throwable ex) {
-//			return new JsonResult()
-//			.setResultStatus(JsonResult.FAILURE)
-//			.setError(ex.getMessage());
-//		}
-//	}
 	
 	@RequestMapping(value="/userItemList", produces="application/json")
 	public Object selectItems(int uNo) throws Exception {

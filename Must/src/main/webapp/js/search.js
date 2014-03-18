@@ -111,37 +111,28 @@ function detail(title, image, min_price, link, pId) {
         title : title,
         image : image,
         min_price : min_price,
+//        wish_price : $('#wishPrice').val(),
         link : link,
         pId : pId,
         reg_date : new Date()
       },
       success : function(data) {
-//      	console.log(localStorage.getItem('no'));
-//      	console.log(new Date(parseInt(data.item.reg_date)));
-//      	var getData = $.makeArray(JSON.parse(localStorage.getItem('item')));
-//      	if (!getData) {
-//      		getData = localStorage.setItem('item', '');
-//      	}
-//      	var insertData = $.makeArray(data.item);
-//      	console.log(getData.concat(insertData));
-//      	console.log(getData.push(insertData));
-//      	var localData = JSON.stringify(getData.concat(insertData));
-//      	window.localStorage.setItem('item',localData);
-      	console.log('성공');
+//      	console.log('성공');
       	$.ajax({
       		url: 'item/userItemAdd.do',
       		type: 'get',
-      		async: 'false',
       		data: {
       			no: parseInt(window.localStorage.getItem('no')),
       			pId: data.item.pId,
       			wish_price: $('#wishPrice').val(),
       			reg_date: new Date(parseInt(data.item.reg_date))
       		},
-      		success: function(){} 
+      		success: function(){
+      			location.href='must.html';
+      		} 
       	});
       	
-      	location.href='must.html';
+//      	location.href='must.html';
       },
       error : function() {
       	alert('시스템이 바쁩니다.\n나중에 다시 시도해 주세요!');

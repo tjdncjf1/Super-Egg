@@ -10,7 +10,6 @@ public class UserItem implements Serializable {
 	protected String productId;
 	protected int wPrice;
 	protected Date rDate;
-	protected Item itemInfo;
 	
 	public int getUserNo() {
 		return userNo;
@@ -47,16 +46,6 @@ public class UserItem implements Serializable {
 		this.rDate = rDate;
 		return this;
 	}
-	
-	public Item getItemInfo() {
-		return itemInfo;
-	}
-	
-	public UserItem setItemInfo(Item itemInfo) {
-		this.itemInfo = itemInfo;
-		return this;
-	}
-	
 	
 	
 }
