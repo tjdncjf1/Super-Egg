@@ -11,13 +11,13 @@
 
 	<insert id="insertUser" parameterType="user">
 		insert into USERS (UEMAIL, UPW)
-		values (#{email}, #{password})
+		values (#{email}, PASSWORD(#{password}))
 	</insert>
 	
   <select id="selectList" parameterType="map" resultMap="userResultMap">
     select * 
     from USERS
-    where UEMAIL=#{email} and UPW=#{password} 
+    where UEMAIL=#{email} and UPW=PASSWORD(#{password}) 
   </select>
 	
 	<select id="selectNo" parameterType="string" resultType="int">
