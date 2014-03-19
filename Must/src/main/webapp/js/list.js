@@ -61,7 +61,7 @@ $(function() {
 			  				},
 			  				success: function(list) {
 			  					var dayList = list.jsonResult.data;
-			  					console.log(dayList);
+//			  					console.log(dayList);
 			  					var dayLabel = new Array();
 			  					var dayData = new Array();
 			  					var dprice = null;

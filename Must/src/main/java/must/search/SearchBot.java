@@ -110,7 +110,7 @@ public class SearchBot {
 	
 	//fixedDelay=72000
 	//cron="0 59 23 * * SUN"
-	@Scheduled(cron="0 59 23 * * SUN")
+	@Scheduled(fixedRate=336000)
 	public void doWeekSchedule() throws ParserConfigurationException, SAXException, IOException {
 		try {
 			ArrayList<Item> sItem = (ArrayList<Item>)itemDao.selectList();
@@ -145,9 +145,9 @@ public class SearchBot {
     }
 	}	
 	
-	//fixedDelay=72000
+	//fixedDelay=24000
 	//cron="0 0 0 * * ?"
-	@Scheduled(fixedDelay=72000)
+	@Scheduled(fixedRate=48000)
 	public void doDaySchedule() throws ParserConfigurationException, SAXException, IOException {
 		try {
 			ArrayList<Item> sItem = (ArrayList<Item>)itemDao.selectList();
@@ -171,7 +171,7 @@ public class SearchBot {
 	          dayChartDao.delete(dList.get(0).getpId());
           }
 	      } else if (dList.size() == 14) {
-	      	dayChartDao.delete(dList.get(0).getpId());
+	      		dayChartDao.delete(dList.get(0).getpId());
 	      }
 	      
 	      // 삭제했으므로 추가하기 전까지는 day리스트의 개수는 13개.
@@ -188,7 +188,7 @@ public class SearchBot {
 	
 	//fixedDelay=1000
 // cron="0 0 * * * *"
-	@Scheduled(fixedDelay=3000)
+	@Scheduled(fixedRate=2000)
 	public void doHourSchedule() throws ParserConfigurationException, SAXException, IOException {
 
 		try {

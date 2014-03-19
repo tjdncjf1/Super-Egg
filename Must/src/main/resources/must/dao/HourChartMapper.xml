@@ -17,7 +17,7 @@
 
   <select id="selectList" parameterType="string" resultMap="chartResultMap">
 	   select * from HOUR_CHANGES
-     where PROD_ID = #{pId};
+     where PROD_ID=#{pId}
 	</select>
 	
   <delete id="delete" parameterType="string">
