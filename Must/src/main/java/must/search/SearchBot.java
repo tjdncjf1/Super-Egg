@@ -121,7 +121,7 @@ public class SearchBot {
 	
 	//fixedDelay=72000
 	//cron="0 59 23 * * SUN"
-	@Scheduled(fixedRate=336000)
+	@Scheduled(cron="0 59 23 * * SUN")
 	public void doWeekSchedule() throws ParserConfigurationException, SAXException, IOException {
 		try {
 			ArrayList<Item> sItem = (ArrayList<Item>)itemDao.selectList();
@@ -164,7 +164,7 @@ public class SearchBot {
 	
 	//fixedDelay=24000
 	//cron="0 0 0 * * ?"
-	@Scheduled(fixedRate=48000)
+	@Scheduled(cron="0 0 0 * * ?")
 	public void doDaySchedule() throws ParserConfigurationException, SAXException, IOException {
 		try {
 			ArrayList<Item> sItem = (ArrayList<Item>)itemDao.selectList();
@@ -210,7 +210,7 @@ public class SearchBot {
 	
 	//fixedDelay=1000
 // cron="0 0 * * * *"
-	@Scheduled(fixedRate=20000)
+	@Scheduled(cron="0 0 * * * *")
 	public void doHourSchedule() throws ParserConfigurationException, SAXException, IOException {
 
 		try {
