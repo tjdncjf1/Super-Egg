@@ -14,7 +14,6 @@ $(function() {
 		},
 		success: function(userItems){
 			$.each(userItems.jsonResult.data, function(i, item){
-//				console.log(item.loginUserItem.wPrice);
 				var listItem = '';
 				listItem += '<ul class="items">';
 				listItem += '<li><div class="itemSpace">';
@@ -34,7 +33,7 @@ $(function() {
 		  		selectItem += '<img src="' + item.image + '" class="image" style="border: 2px solid yellow;" /><br>';
 		  		selectItem += '<span>희망가격: <input type="number" value=' + item.loginUserItem.wPrice + ' id="wPrice" /><input type="button" value="변경" id="wish_update" /></span><br>';
 		  		selectItem += '<span>최저가격: <input type="text" value=' + item.min_price + ' readonly="readonly" /></span>';
-		  		selectItem += '<div id="chart" style=" margin: 0 auto">';
+		  		selectItem += '<div id="dayChart" style=" margin: 0 auto">';
 		  		selectItem += '</div></div>';
 		  		$(selectItem).appendTo('#select-items');
 						
@@ -53,7 +52,7 @@ $(function() {
 		  			 }); 
 		  		}); // end of wish_update click
 		  				
-		  				$.ajax({
+		  				var jsondata = $.ajax({
 			  				url: 'chart/selectDay.do',
 			  				type: 'get',
 			  				data: {
@@ -61,7 +60,7 @@ $(function() {
 			  				},
 			  				success: function(list) {
 			  					var dayList = list.jsonResult.data;
-//			  					console.log(dayList);
+			  					console.log(dayList);
 			  					var dayLabel = new Array();
 			  					var dayData = new Array();
 			  					var dprice = null;
