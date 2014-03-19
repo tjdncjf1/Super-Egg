@@ -68,15 +68,16 @@ $(function() {
 			  						dprice = dayList[i];
 			  						$.each(dprice, function(key,value){
 			  							if(key === "time") {
-			  								var aj = parseInt(list.jsonResult.data[i].time);
-			  			  					var bj = new Date(aj);
-			  			  					var cj = (bj.getYear+ '-' + bj.getMonth()+1) + '-' + bj.getDate();	
-			  			  						dayLabel.push(cj);
-			  												}
+//			  								console.log(typeof list.jsonResult.data[i].time);
+			  			  				var bj = new Date(list.jsonResult.data[i].time);
+//			  			  				console.log(bj.getFullYear());
+			  			  				var cj = bj.getFullYear() + '-' + (bj.getMonth()+1) + '-' + bj.getDate();	
+			  			  				dayLabel.push(cj);
+			  							}
 			  							
 			  							if(key === "price") {
 			  									dayData.push(value);
-			  												}
+			  							}
 			  						});
 			  					};
 			  					dayChart(dayLabel, dayData);
