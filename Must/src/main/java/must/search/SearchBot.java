@@ -57,12 +57,17 @@ public class SearchBot {
 	    Chart c = new Chart();
 	    for (int i = 0; i < sItem.size(); i++) {
 	    	mList = (ArrayList<Chart>) monthChartDao.selectList(sItem.get(i).getpId());
-	      int min = mList.get(0).getPrice();
-	      for (int j = 0; j < mList.size(); j++) {
-	        if (mList.get(j).getPrice() < min) {
-	        	min = mList.get(j).getPrice();
-	        }
-        }
+	      int min = 0;
+	      if (mList.size() != 1) {
+		      min = mList.get(0).getPrice();
+		      for (int j = 1; j < mList.size(); j++) {
+		      	if (mList.get(j).getPrice() < min) {
+		      		min = mList.get(j).getPrice();
+		      	}
+		      }
+	      } else {
+	      	min = mList.get(0).getPrice();
+	      }
 	      
 	      yearChartDao.insert(c.setPrice(min)
 	      										 .setpId(sItem.get(i).getpId())
@@ -82,26 +87,32 @@ public class SearchBot {
 	    Chart c = new Chart();
 	    for (int i = 0; i < sItem.size(); i++) {
 	      wList = (ArrayList<Chart>) weekChartDao.selectList(sItem.get(i).getpId());
-	      int min = wList.get(0).getPrice();
-	      for (int j = 0; j < wList.size(); j++) {
-	        if (wList.get(j).getPrice() < min) {
-	        	min = wList.get(j).getPrice();
-	        }
-        }
+	      int min = 0;
+	      if (wList.size() != 1) {
+		      min = wList.get(0).getPrice();
+		      for (int j = 1; j < wList.size(); j++) {
+		      	if (wList.get(j).getPrice() < min) {
+		      		min = wList.get(j).getPrice();
+		      	}
+		      }
+	      } else {
+	      	min = wList.get(0).getPrice();
+	      }
 	      
 	      mList = (ArrayList<Chart>) monthChartDao.selectList(sItem.get(i).getpId());
 	      if (mList.size() > 12) {
 	      	int distinction = mList.size() - 12;
 	      	for (int j = 0; j <= distinction; j++) {
-	          monthChartDao.delete(mList.get(0).getpId());
+	          monthChartDao.delete(mList.get(j).getNo());
           }
 	      } else if (mList.size() == 12) {
-	      		monthChartDao.delete(wList.get(0).getpId());
-	      } 
+	      		monthChartDao.delete(wList.get(0).getNo());
+	      } else {
 	      
-	      monthChartDao.insert(c.setPrice(min)
+	      	monthChartDao.insert(c.setPrice(min)
 	      										 .setpId(sItem.get(i).getpId())
 	      										 .setTime(new Date()));
+	      }
       }
     } catch (Exception e) {
     	e.printStackTrace();
@@ -119,26 +130,32 @@ public class SearchBot {
 			Chart c = new Chart();
 			for (int i = 0; i < sItem.size(); i++) {
 				dList = (ArrayList<Chart>) dayChartDao.selectList(sItem.get(i).getpId());
-				int min = dList.get(0).getPrice();
-	      for (int j = 0; j < dList.size(); j++) {
-	        if (dList.get(j).getPrice() < min) {
-	        	min = dList.get(j).getPrice();
-	        }
-        }
+	      int min = 0;
+	      if (dList.size() != 1) {
+		      min = dList.get(0).getPrice();
+		      for (int j = 1; j < dList.size(); j++) {
+		      	if (dList.get(j).getPrice() < min) {
+		      		min = dList.get(j).getPrice();
+		      	}
+		      }
+	      } else {
+	      	min = dList.get(0).getPrice();
+	      }
 	      
 	      wList = (ArrayList<Chart>) weekChartDao.selectList(sItem.get(i).getpId());
 	      if (wList.size() > 12) {
 	      	int distinction = wList.size() - 12;
 	      	for (int j = 0; j <= distinction; j++) {
-	          weekChartDao.delete(wList.get(0).getpId());
+	          weekChartDao.delete(wList.get(j).getNo());
           }
 	      } else if (wList.size() == 12) {
-	      	weekChartDao.delete(wList.get(0).getpId());
-	      }
+	      	weekChartDao.delete(wList.get(0).getNo());
+	      } else {
 	      
-	      weekChartDao.insert(c.setPrice(min)
+	      	weekChartDao.insert(c.setPrice(min)
 	      										 .setpId(sItem.get(i).getpId())
 	      										 .setTime(new Date()));
+	      }
       }
 		} catch (Exception e) {
     	e.printStackTrace();
@@ -156,31 +173,36 @@ public class SearchBot {
 			Chart c = new Chart();
 			for (int i = 0; i < sItem.size(); i++) {
 	      hList = (ArrayList<Chart>) hourChartDao.selectList(sItem.get(i).getpId());
-	      int min = hList.get(0).getPrice();
-	      for (int j = 1; j < hList.size(); j++) {
-	      	if (hList.get(j).getPrice() < min) {
-	      		min = hList.get(j).getPrice();
-	      	}
+	      int min = 0;
+	      if (hList.size() != 1) {
+		      min = hList.get(0).getPrice();
+		      for (int j = 1; j < hList.size(); j++) {
+		      	if (hList.get(j).getPrice() < min) {
+		      		min = hList.get(j).getPrice();
+		      	}
+		      }
+	      } else {
+	      	min = hList.get(0).getPrice();
 	      }
-	      
+								
 	      // day 리스트를 검색해서 14개 이상이 될 경우 첫번째 정보를 삭제함.
 	      dList = (ArrayList<Chart>) dayChartDao.selectList(sItem.get(i).getpId());
 	      if (dList.size() > 14) {
 	      	int distinction = dList.size() - 14;
 	      	for (int j = 0; j <= distinction; j++) {
-	          dayChartDao.delete(dList.get(0).getpId());
+	          dayChartDao.delete(dList.get(j).getNo());
           }
 	      } else if (dList.size() == 14) {
-	      		dayChartDao.delete(dList.get(0).getpId());
+	      		dayChartDao.delete(dList.get(0).getNo());
+	      } else {
+						      
+		      // 삭제했으므로 추가하기 전까지는 day리스트의 개수는 13개.
+		      dayChartDao.insert(c.setPrice(min)
+		 	       									.setpId(sItem.get(i).getpId())
+		 	       									.setTime(new Date()));
+		      hourChartDao.delete(sItem.get(i).getpId());
 	      }
-	      
-	      // 삭제했으므로 추가하기 전까지는 day리스트의 개수는 13개.
-	      dayChartDao.insert(c.setPrice(min)
-	 	       									.setpId(sItem.get(i).getpId())
-	 	       									.setTime(new Date()));
-	      hourChartDao.delete(sItem.get(i).getpId());
-      }
-			
+			}
     } catch (Exception e) {
     	e.printStackTrace();
     }
@@ -188,7 +210,7 @@ public class SearchBot {
 	
 	//fixedDelay=1000
 // cron="0 0 * * * *"
-	@Scheduled(fixedRate=2000)
+	@Scheduled(fixedRate=20000)
 	public void doHourSchedule() throws ParserConfigurationException, SAXException, IOException {
 
 		try {

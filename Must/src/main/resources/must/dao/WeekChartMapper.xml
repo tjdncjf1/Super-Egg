@@ -20,9 +20,9 @@
      where PROD_ID = #{pId};
 	</select>
 	
-  <delete id="delete" parameterType="string">
+  <delete id="delete" parameterType="int">
 		delete from WEEk_CHANGES
-		where PROD_ID=#{pId}
+		where WNO=#{no}
 	</delete>
 	
 </mapper>
