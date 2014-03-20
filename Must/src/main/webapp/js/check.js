@@ -4,16 +4,32 @@ $(function(){
     return this.optional(element) || /^(?=.*\d)(?=.*[a-z])/i.test(value); 
     },"알파벳과 숫자만 사용가능합니다."); 
 	
+	$.validator.addMethod('useremailCheck', function(useremail){
+		$.ajax({
+			url: 'user/userEmailCheck.do',
+			cache: false,
+			async: false,
+			type: 'post',
+			data: {'useremail': useremail},
+			success: function(msg) {
+				result = (msg == 'TRUE') ? true : false;
+			}
+		});
+		return result;
+	}, '');
+	
 	$('#valiex').validate({
+		onkeyup:false,
 		rules: {
 			email: {
 				required: true,
-				email: true
+				email: true,
 //				remote: {
-//					url:'user/check.do',
+//					url: '',
+//					type: 'post',
 //					data: {
-//						email: function() {
-//							return $('#email').val();
+//						userEmail: function() {
+//							
 //						}
 //					}
 //				}
@@ -34,7 +50,6 @@ $(function(){
 			email: {
 				required: '이메일을 입력하세요',
 				email: '이메일을 바르게 입력하세요'
-//				remote: '입력하신 이메일은 이미 존재하는 이메일입니다.'
 			},
 			password: {
 				required: '비밀번호를 입력하세요',
@@ -48,7 +63,9 @@ $(function(){
 				equalTo: '비밀번호가 서로 일치하지 않습니다.'
 			}
 		},
-		
+		errorPlacement: function(error, element) {
+			error.appendTo(element.parent().parent().after());
+		},
 		submitHandler: function(){
 			$.ajax({
 				url: 'user/add.do',
@@ -72,12 +89,11 @@ $(function(){
 							location.href='must.html';
 						}
 					});
-					
 
-				},
-	      error : function() {
-	      	alert('시스템이 바쁩니다.\n나중에 다시 시도해 주세요!');
-	      }
+				}
+//	      error : function() {
+//	      	alert('시스템이 바쁩니다.\n나중에 다시 시도해 주세요!');
+//	      }
 			});
 		},
 		invalidHandler: function(){

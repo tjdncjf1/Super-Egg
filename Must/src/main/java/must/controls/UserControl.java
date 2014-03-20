@@ -55,24 +55,19 @@ public class UserControl {
 		}
 	}
 	
-//	@RequestMapping("/check") 
-//	public void check(String email, HttpServletRequest request,
-//			HttpServletResponse response) throws Exception {
+//	@RequestMapping("/userEmailCheck") 
+//	public String check(String useremail) throws Exception {
 //		try {
-//			request.setCharacterEncoding("utf-8");
-//			ArrayList<User> ulist = (ArrayList<User>) userDao.selectList();
-//			PrintWriter out = response.getWriter();
-//			
-//			for (User u : ulist) { 
-//				if (email.equals(u.getEmail())) {
-//					out.println("false");
-//				} else {
-//					out.println("true");
-//				}
+//			ArrayList<User> usercheck = (ArrayList<User>) userDao
+//																												.emailCheck(useremail);
+////			return usercheck.size() == 1 ? "FALSE" : "TRUE";
+//			if (usercheck.size() == 1) {
+//				return "TRUE";
+//			} else {
+//				return "FALSE";
 //			}
-//			
 //		} catch (Throwable ex) {
-//			ex.printStackTrace();
+//			return "FALSE";
 //		}
 //	}
 
