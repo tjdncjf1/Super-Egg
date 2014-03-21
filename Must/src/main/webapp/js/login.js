@@ -48,7 +48,7 @@ $(function(){
 			  			  			  	wish_price: $('#wPrice').val()
 			  			  			  },
 			  			  			  success: function() {
-			  			  			  	alert('변경했습니다.');
+//			  			  			  	alert('변경했습니다.');
 			  			  			  	location.href = '#select-items';
 			  			  			  }
 			  			  			 }); 
