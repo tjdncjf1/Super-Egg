@@ -20,12 +20,11 @@ $(function(){
           dataType: "xml",
           success: function(data){
                   console.log(data);
-                  $('.searchImg').empty();
-                  $('#detail-items').empty();
+                  $('#searchImage').empty();
               $(data).find("item").each(function(i){
-                  var aa = $(this).find("title").text();
-                  var bb = aa.split("<b>").join("");
-                  var title = bb.split("</b>").join("");
+                  var boldTitle = $(this).find("title").text();
+                  var boldFDel = boldTitle.split("<b>").join("");
+                  var title = boldFDel.split("</b>").join("");
                   var image = $(this).find("image").text();
                   var min_price = parseInt($(this).find("lprice").text());
                   var link = $(this).find("link").text(); 
@@ -43,7 +42,7 @@ $(function(){
                     // 서버에 아이템 등록
                     detail(title, image, min_price, link, pId); 
                     
-                  }).appendTo('.searchImg');
+                  }).appendTo('#searchImage');
               }); 
           }});
        return false;
@@ -87,21 +86,16 @@ function detail(title, image, min_price, link, pId) {
     return str;  
   };
 	
-	$('#detail-items').empty();
-	
   var ot = '';
+	ot += '<div data-role="content">';
   ot += '<h1>' + title + '</h1>';
   ot += '<img src="' + image + '"/>';
   ot += '<h3>NOW PRICE</h3>';
   ot += '<h3 style ="text-align: right">'+ commaNum(min_price) + '원</h3>';
   ot += '<h3>WISH PRICE</h3>';
   ot += '<input type="text" id="wishPrice" placeholder="가격을 입력하세요."><br>';
-  ot += '<input type="button" value="등록" id="regButton">';
+  ot += '<input type="button" value="등록" id="regButton"></div>';
   $(ot).appendTo('#detail-items');
-  
-  $('#search-items').hide();
-  $('#detail-items').show();
-//  console.log(new Date());
   
   $('#regButton').click(function() {
     $.ajax({

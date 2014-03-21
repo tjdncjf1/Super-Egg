@@ -2,74 +2,159 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
   <title>Must</title>
+  <style>
+  input.error, textarea.error{
+    border: 1px dashed red;
+  }
+  /* label.error{
+    display: block; 
+    padding-left: 10px;
+    color: red;
+  } */
+  .error {
+    display: inline;
+    color: red;
+  }
+  </style>
+<link rel="stylesheet" 
+      href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
+<link rel="stylesheet" type="text/css" href="css/jquery.jqplot.min.css" >
 <link rel="stylesheet" type="text/css" href="css/listItem.css" />
 <link rel="stylesheet" type="text/css" href="css/search.css" />
 <link rel="stylesheet" type="text/css" href="css/detail.css" />
 <link rel="stylesheet" type="text/css" href="css/common.css" />
-<!-- <link rel="stylesheet" 
-      href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" /> -->
-<link rel="stylesheet" type="text/css" href="css/jquery.jqplot.min.css" >
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-<!-- <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script> -->
+<script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+<script type="text/javascript" src="js/login.js"></script>
+<script type="text/javascript" src="js/jquery.validate.js"></script>
+<script type="text/javascript" src="js/check.js"></script>
 <script type="text/javascript" src="js/jquery.jqplot.js"></script>
-<script type="text/javascript" src="js/list.js"></script>
+<!-- <script type="text/javascript" src="js/list.js"></script> -->
 <script type="text/javascript" src="js/jqplot.dateAxisRenderer.js"></script>
 <script type="text/javascript" src="js/jqplot.highlighter.js"></script>
+<script type="text/javascript" src="js/search.js"></script>
 <script type="text/javascript">
 $(function(){
-  $('#searchwindow').click(function(){
-    $('#list-items').hide();
-    $('#select-items').empty();
-    $('#select-items').hide();
-    $('#detail-items').hide();
-    $('#search-items').show();
-    $('#listwindow').show();
-  });
-  
-  $('#listwindow').click(function(){
-/*     $('#search-items').hide();
-    $('#select-items').hide();
-    $('#detail-items').hide();
-    $('.searchImg').empty();
-    $('#select-items').empty();
-    $('#list-items').show();
-    $('#listwindow').hide(); */
-    location.href = 'must.html';
-  });
-  
-  $('#logout').click(function(){
-    localStorage.clear();      	
-    location.href = 'auth.html';	
-  });
+  // console.log(localStorage.getItem('email') != null);
+  if (localStorage.getItem('email') != null && 
+  		localStorage.getItem('password') != null) {
+  	$('#loginEmail').val(localStorage.getItem('email'));
+  	$('#loginPassword').val(localStorage.getItem('password'));
+  }
   
 });
 </script>
-<script type="text/javascript" src="js/search.js"></script>
 </head>
 <body>
 
-<input type="button" value="검색창가기" id="searchwindow">
-<input type="button" value="목록가기" id="listwindow" style="display: none;">
-<input type="button" value="로그아웃" id="logout">
+<!-- LoginPage -->
+<div id="loginPage" data-role="page">
+  <div data-role="header" data-theme="b" data-position="fixed">
+    <h1>Must</h1>
+  </div>
+  <div data-role="content">
+    <form class="loginForm">
+    <div data-role="fieldcontain">
+      <label for="loginEmail" data-theme="d">E-mail Address:</label>
+      <input id="loginEmail" type="text" name="loginEmail" />
+    </div>
+    <div data-role="fieldcontain">
+      <label for="loginPassword" data-theme="d">Password:</label> 
+      <input id="loginPassword" type="password" name="loginPassword" />
+    </div>
+    <div class="ui-grid-a">
+      <div class="ui-block-a"><a href="#" data-role="button" id="userLogin">로그인</a></div>     
+      <div class="ui-block-b"><a href="#joinPage" data-role="button">회원가입</a></div>     
+    </div>  
+    </form>
+  </div>
+</div>
+
+<!-- JoinPage -->
+<div id="joinPage" data-role="page">
+  <div data-role="header" data-theme="b" data-add-back-btn="true">
+    <h1>Must</h1>
+  </div>
+    <div data-role="content">
+     <form id="valiex" method="post">
+      <div data-role="fieldcontainer">
+        <label for="email" data-theme="d">E-mail Address:</label>
+         <input type="text" name="email" id="email" 
+         data-theme="d" placeholder="Enter Email">
+        <label for="password" data-theme="d">Password:</label>  
+         <input type="password" name="password" id="password" 
+         data-theme="d" placeholder="Password">
+        <label for="pwchk" data-theme="d">Password:</label>
+         <input type="password" name="pwchk" id="pwchk"
+         data-theme="d" placeholder="Password">
+         <input type="submit" value="회원가입">
+      </div>
+      </form>
+    </div>
+</div>
 
 <!-- 리스트 division -->
- <div id="list-items"></div>
+ <div id="list-items" data-role="page">
+  <div data-role="header" data-theme="b" data-position="fixed">
+    <a href="#search-items" data-icon="plus" class="ui-btn-left">검색</a>
+    <h1><a href="#list-items">Must</a></h1>
+    <a href="#loginPage" data-icon="minus" class="ui-btn-right">로그아웃</a>
+  </div>
+  <div data-role="content">
+    <ul class="items">
+      <li>
+        <div class="itemSpace">
+         <span id="titlePosition"></span>
+          <div class="viewImg">
+            <img src="#" class="image"><hr>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  
+ </div>
+ 
 <!-- 리스트에서 아이템 눌렀을 때 상세 division -->
- <div id="select-items" style="display: none;"></div>
+ <div id="select-items" data-role="page">
+  <div data-role="header" data-theme="b" data-position="fixed">
+  <a href="#search-items" data-icon="plus" class="ui-btn-left">검색</a>
+  <h1><a href="#list-items">Must</a></h1>
+  <a href="#loginPage" data-icon="minus" class="ui-btn-right">로그아웃</a>
+  </div>
+  <div class="moreInfo" data-role="content">
+    <h3 style="margin: 0 auto" class="selectTitle"></h3>
+    <img src="#" class="selectImage" /><br>
+    <span>희망가격: <input type="number" id="wPrice" />
+    <input type="button" value="변경" id="wish_update" /></span><br>
+    <span>최저가격: <input type="text" readonly="readonly" id="lPrice" /></span>
+    <div id="dayChart" style="margin: 0 auto"></div>
+  </div>
+ </div>
  
- <div id="search-items" style="display: none;">
- <div id="search-bar">
+ <div id="search-items" data-role="page">
+ <div data-role="header" data-theme="b" data-position="fixed">
+  <a href="#search-items" data-icon="plus" class="ui-btn-left">검색</a>
+  <h1><a href="#list-items">Must</a></h1>
+  <a href="#loginPage" data-icon="minus" class="ui-btn-right">로그아웃</a>
+ </div>
+ <div class="searchSpace" data-role="content">
  <form id="sbSearch">
- <input type="search" id="searchValue">
- <input type="submit" value="검색">
- </form>
- <hr>
+  <input type="search" id="searchValue">
+ </form><hr>
+ <div id="searchImage"></div>
  </div>
- <div class="searchImg"></div>
  </div>
  
- <div id="detail-items" style="display: none;"></div>
+ <div id="detail-items" data-role="page">
+  <div data-role="header" data-theme="b" data-position="fixed">
+  <a href="#search-items" data-icon="plus" class="ui-btn-left">검색</a>
+  <h1><a href="#list-items">Must</a></h1>
+  <a href="#loginPage" data-icon="minus" class="ui-btn-right">로그아웃</a>
+  </div>
+ </div>
  
 </body>
 </html>

@@ -4,22 +4,7 @@ $(function(){
     return this.optional(element) || /^(?=.*\d)(?=.*[a-z])/i.test(value); 
     },"알파벳과 숫자만 사용가능합니다."); 
 	
-	$.validator.addMethod('useremailCheck', function(useremail){
-		$.ajax({
-			url: 'user/userEmailCheck.do',
-			cache: false,
-			async: false,
-			type: 'post',
-			data: {'useremail': useremail},
-			success: function(msg) {
-				result = (msg == 'TRUE') ? true : false;
-			}
-		});
-		return result;
-	}, '');
-	
 	$('#valiex').validate({
-		onkeyup:false,
 		rules: {
 			email: {
 				required: true,
@@ -63,9 +48,6 @@ $(function(){
 				equalTo: '비밀번호가 서로 일치하지 않습니다.'
 			}
 		},
-		errorPlacement: function(error, element) {
-			error.appendTo(element.parent().parent().after());
-		},
 		submitHandler: function(){
 			$.ajax({
 				url: 'user/add.do',
@@ -86,7 +68,7 @@ $(function(){
 							localStorage.setItem('email', $('#email').val());
 							localStorage.setItem('password', $('#password').val());
 							localStorage.setItem('no', parseInt(no.jsonResult.data));
-							location.href='must.html';
+							location.href='#list-items';
 						}
 					});
 
