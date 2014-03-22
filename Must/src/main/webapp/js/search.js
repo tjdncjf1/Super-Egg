@@ -1,4 +1,9 @@
 $(function(){
+	$('.ui-btn-right').click(function(){
+	  localStorage.clear();
+	  location.href="must.html";
+	});
+	
   $("#sbSearch").submit(function() {
       var keyword = $("#searchValue").val();
       
@@ -37,7 +42,7 @@ $(function(){
                   output += '<figcaption style = "float: right;">'+ commaNum(min_price) + '원</figcaption>';
                   output += '</figure> ';
                   $(output).click(function(){
-                  	
+                  	$.mobile.changePage('#detail-items');
                     // detail 쪽 div에 아이템 상세정보 표시
                     // 서버에 아이템 등록
                     detail(title, image, min_price, link, pId); 
@@ -48,64 +53,25 @@ $(function(){
        return false;
   });
   
-  // 숫자 콤마 넣기
-  function commaNum(num) {
-  	var len, point, str;  
-    
-    num = num + "";  
-    point = num.length % 3  
-    len = num.length;  
-
-    str = num.substring(0, point);  
-    while (point < len) {  
-        if (str != "") str += ",";  
-        str += num.substring(point, point + 3);  
-        point += 3;  
-    }  
-    return str;  
-  };
-  
 });
 
 // 상세 정보
 function detail(title, image, min_price, link, pId) {
 	
-  // 숫자 콤마 넣기`
-  function commaNum(num) {
-  	var len, point, str;  
-    
-    num = num + "";  
-    point = num.length % 3  
-    len = num.length;  
-    str = num.substring(0, point);  
-    while (point < len) {  
-        if (str != "") str += ",";  
-        str += num.substring(point, point + 3);  
-        point += 3;  
-    }  
-    return str;  
-  };
-	
-  var ot = '';
-	ot += '<div data-role="content">';
-  ot += '<h1>' + title + '</h1>';
-  ot += '<img src="' + image + '"/>';
-  ot += '<h3>NOW PRICE</h3>';
-  ot += '<h3 style ="text-align: right">'+ commaNum(min_price) + '원</h3>';
-  ot += '<h3>WISH PRICE</h3>';
-  ot += '<input type="text" id="wishPrice" placeholder="가격을 입력하세요."><br>';
-  ot += '<input type="button" value="등록" id="regButton"></div>';
-  $(ot).appendTo('#detail-items');
+  $('#detailTitle').html(title);
+  $('#detailImage').attr('src', image);
+  $('#detailLow').val(min_price);
+  $('#detailLink').attr('href', link);
   
   $('#regButton').click(function() {
     $.ajax({
       url : 'item/addItem.do',
+      async: 'false',
       type : 'get',
       data : {
         title : title,
         image : image,
         min_price : min_price,
-//        wish_price : $('#wishPrice').val(),
         link : link,
         pId : pId,
         reg_date : new Date()
@@ -118,15 +84,17 @@ function detail(title, image, min_price, link, pId) {
       		data: {
       			no: parseInt(window.localStorage.getItem('no')),
       			pId: data.item.pId,
-      			wish_price: $('#wishPrice').val(),
+      			wish_price: $('#detailWish').val(),
       			reg_date: new Date(parseInt(data.item.reg_date))
       		},
       		success: function(){
-      			location.href='must.html';
+      			$('.items').empty();
+  					var userNo = parseInt(localStorage.getItem('no'));
+  					viewItemList(userNo);
+      			$.mobile.changePage('#list-items');
       		} 
       	});
       	
-//      	location.href='must.html';
       },
       error : function() {
       	alert('시스템이 바쁩니다.\n나중에 다시 시도해 주세요!');
