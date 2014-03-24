@@ -86,4 +86,21 @@ public class ItemControl {
 		}
 	}
 	
+	@RequestMapping(value="/userItemCheck", produces="application/json")
+	public Object itemCheck(int userNo, String buyPid) throws Exception {
+		try {
+			
+			HashMap<String, Object> sqlparam = new HashMap<>();
+			sqlparam.put("userNo", userNo);
+			sqlparam.put("buyPid", buyPid);
+			
+			return new JsonResult().setResultStatus(JsonResult.SUCCESS)
+					.setData(itemDao.userItemCheck(sqlparam));
+		} catch (Throwable ex) {
+			return new JsonResult()
+			.setResultStatus(JsonResult.FAILURE)
+			.setError(ex.getMessage());
+		}
+	}
+	
 }

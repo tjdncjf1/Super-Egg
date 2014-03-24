@@ -18,12 +18,12 @@
     </association>
   </resultMap>
   
-<!--   <resultMap type="userItem" id="userItemResultMap">
+  <resultMap type="userItem" id="userItemResultMap">
     <id property="userNo"              column="UNO"/>
     <result property="productId"       column="PROD_ID"/>
     <result property="wPrice"          column="WISH_PRICE"/>
     <result property="rDate"           column="REG_DATE"/>
-  </resultMap> -->
+  </resultMap>
 
   <select id="userItemList" parameterType="int" resultMap="itemResultMap">
     select ITEMS.PROD_ID, ITEMS.TITLE, ITEMS.IMAGE_URL, ITEMS.MIN_PRICE, 
@@ -70,4 +70,10 @@
     where PROD_ID=#{pId}
   </update>
 
+	<select id="userItemCheck" parameterType="map" resultMap="userItemResultMap">
+    select *
+    from USER_ITEM_LIST
+    where UNO=#{userNo} and PROD_ID=#{buyPid}
+  </select> 
+	
 </mapper>

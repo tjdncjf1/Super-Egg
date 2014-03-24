@@ -6,6 +6,7 @@ $(function(){
 	
 	$('.ui-btn-left').click(function(){
 		$('#searchImage').empty();
+		$('#searchValue').val(null);
 		$.mobile.changePage('#search-items');
 	});
 	
@@ -86,6 +87,20 @@ function detail(title, image, min_price, link, pId) {
   $('#detailLink').attr('href', link);
   
   $('#regButton').click(function() {
+  	
+  	$.ajax({
+  		url: 'item/userItemCheck.do',
+  		async: 'false',
+  		type: 'get',
+  		data: {
+  			userNo: parseInt(localStorage.getItem('no')),
+  			buyPid: pId
+  		},
+  		success: function(list){
+  			console.log(list.jsonResult.data.length);
+  		}
+  	});
+  	
     $.ajax({
 //    	url : baseUrl + 'item/addItem.do',
       url : 'item/addItem.do',
