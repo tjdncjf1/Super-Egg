@@ -136,6 +136,8 @@ $(function(){
 	
 	$('.ui-btn-left').click(function(){
 		$('#searchImage').empty();
+		$('#searchValue').val(null);
+		$('#detailWish').val(null);
 		$.mobile.changePage('#search-items');
 	});
 
