@@ -151,7 +151,7 @@ $(function(){
 
 				},
 				success: function(no){
-//					console.log(no.jsonResult.data[0].no);
+					console.log(no);
 					if (no.jsonResult.data.length == 0) {
 						alert('로그인 정보가 일치하지 않습니다.'); 
 						return false; 

@@ -24,7 +24,7 @@ $(function(){
           proxy_url += "&query="+ encodeURIComponent(keyword);
        
       $.ajax({
-          url: "proxy.jsp",
+          url:  "proxy.jsp",
           type: "get",
           data: {"url" : proxy_url},
           dataType: "xml",
