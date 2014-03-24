@@ -25,11 +25,10 @@
     where UEMAIL=#{email}	    
 	</select>
 	
-<!-- 	
 	<select id="emailCheck" parameterType="string" resultMap="userResultMap">
 	    select * 
 	    from USERS
 	    where UEMAIL = #{useremail}
 	</select>
-	 -->
+
 </mapper>

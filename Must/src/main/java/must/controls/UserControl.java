@@ -55,20 +55,33 @@ public class UserControl {
 		}
 	}
 	
-//	@RequestMapping("/userEmailCheck") 
-//	public String check(String useremail) throws Exception {
+//	@RequestMapping("/emailCheck") 
+//	public String check(String userEmail) throws Exception {
 //		try {
-//			ArrayList<User> usercheck = (ArrayList<User>) userDao
-//																												.emailCheck(useremail);
-////			return usercheck.size() == 1 ? "FALSE" : "TRUE";
-//			if (usercheck.size() == 1) {
-//				return "TRUE";
+//			ArrayList<User> userInfo = (ArrayList<User>) userDao
+//																											.emailCheck(userEmail);
+//			if (userInfo.size() == 1) {
+//				return "true";
 //			} else {
-//				return "FALSE";
+//				return "false";
 //			}
+//			
 //		} catch (Throwable ex) {
-//			return "FALSE";
+//			ex.printStackTrace();
+//			return "false";
 //		}
 //	}
 
+	@RequestMapping(value="/emailCheck", produces="application/json") 
+	public Object check(String userEmail) throws Exception {
+		try {
+			return new JsonResult().setResultStatus(JsonResult.SUCCESS)
+					.setData(userDao.emailCheck(userEmail));
+		} catch (Throwable ex) {
+			return new JsonResult()
+			.setResultStatus(JsonResult.FAILURE)
+			.setError(ex.getMessage());
+		}
+	}
+	
 }

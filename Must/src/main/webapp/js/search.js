@@ -1,7 +1,12 @@
 $(function(){
 	$('.ui-btn-right').click(function(){
 	  localStorage.clear();
-	  location.href="must.html";
+	  location.href= "must.html";
+	});
+	
+	$('.ui-btn-left').click(function(){
+		$('#searchImage').empty();
+		$.mobile.changePage('#search-items');
 	});
 	
   $("#sbSearch").submit(function() {
@@ -55,17 +60,34 @@ $(function(){
   
 });
 
+function commaNum(num) {
+	var len, point, str;  
+
+	num = num + "";  
+	point = num.length % 3  
+	len = num.length;  
+	str = num.substring(0, point);  
+	while (point < len) {  
+		if (str != "") str += ",";  
+		str += num.substring(point, point + 3);  
+		point += 3;  
+	}  
+	return str;  
+};
+
 // 상세 정보
 function detail(title, image, min_price, link, pId) {
 	
+	console.log(commaNum(min_price));
+	
   $('#detailTitle').html(title);
   $('#detailImage').attr('src', image);
-  $('#detailLow').val(min_price);
+  $('#detailLow').val(commaNum(min_price));
   $('#detailLink').attr('href', link);
   
   $('#regButton').click(function() {
     $.ajax({
-      url : 'item/addItem.do',
+      url : baseUrl + 'item/addItem.do',
       async: 'false',
       type : 'get',
       data : {
@@ -79,7 +101,7 @@ function detail(title, image, min_price, link, pId) {
       success : function(data) {
 //      	console.log('성공');
       	$.ajax({
-      		url: 'item/userItemAdd.do',
+      		url: baseUrl + 'item/userItemAdd.do',
       		type: 'get',
       		data: {
       			no: parseInt(window.localStorage.getItem('no')),
@@ -102,4 +124,4 @@ function detail(title, image, min_price, link, pId) {
     });  
   }); // 등록 버튼 클릭 괄호 
   
-} // 디테일 괄호
+}; // 디테일 괄호

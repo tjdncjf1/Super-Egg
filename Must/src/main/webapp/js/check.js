@@ -1,23 +1,35 @@
 $(function(){
-	
+
 	$.validator.addMethod("password",function(value,element){ 
-    return this.optional(element) || /^(?=.*\d)(?=.*[a-z])/i.test(value); 
-    },"알파벳과 숫자만 사용가능합니다."); 
-	
+		return this.optional(element) || /^(?=.*\d)(?=.*[a-z])/i.test(value); 
+	},"알파벳과 숫자만 사용가능합니다."); 
+
+	$.validator.addMethod('emailCheck', function(email) {
+		$.ajax({
+			url: baseUrl + 'user/emailCheck.do',
+			type: 'post',
+			data: {
+				userEmail: $('#email').val()
+			},
+			cache:false,
+			async:false,
+			success: function(answer) {
+				console.log(answer);
+				result = answer.jsonResult.data.length == 1 ? false : true;
+				console.log(result);
+			}
+		});
+		console.log(result);
+		return result;
+	}, '');
+
 	$('#valiex').validate({
+		onkeyup: false,
 		rules: {
 			email: {
 				required: true,
 				email: true,
-//				remote: {
-//					url: '',
-//					type: 'post',
-//					data: {
-//						userEmail: function() {
-//							
-//						}
-//					}
-//				}
+				emailCheck: true
 			},
 			password: {
 				required: true,
@@ -34,7 +46,8 @@ $(function(){
 		messages: {
 			email: {
 				required: '이메일을 입력하세요',
-				email: '이메일을 바르게 입력하세요'
+				email: '이메일을 바르게 입력하세요',
+				emailCheck: '중복된 이메일입니다.'
 			},
 			password: {
 				required: '비밀번호를 입력하세요',
@@ -50,16 +63,16 @@ $(function(){
 		},
 		submitHandler: function(){
 			$.ajax({
-				url: 'user/add.do',
+				url: baseUrl + 'user/add.do',
 				type: 'post',
 				data: {
 					email: $('#email').val(),
 					password: $('#password').val()
 				},
 				success: function(){
-					
+
 					$.ajax({
-						url: 'user/selectNo.do',
+						url: baseUrl + 'user/selectNo.do',
 						type: 'post',
 						data: {
 							email: $('#email').val()
@@ -73,9 +86,9 @@ $(function(){
 					});
 
 				}
-//	      error : function() {
-//	      	alert('시스템이 바쁩니다.\n나중에 다시 시도해 주세요!');
-//	      }
+//				error : function() {
+//				alert('시스템이 바쁩니다.\n나중에 다시 시도해 주세요!');
+//				}
 			});
 		},
 		invalidHandler: function(){

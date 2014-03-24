@@ -25,6 +25,16 @@
 <link rel="stylesheet" type="text/css" href="css/search.css" />
 <link rel="stylesheet" type="text/css" href="css/detail.css" />
 <link rel="stylesheet" type="text/css" href="css/common.css" />
+<style type="text/css">
+	.ui-link {
+    text-decoration: none;
+	} 
+	.ui-page-theme-b a:visited, 
+	html .ui-bar-b a:visited, html .ui-body-b a:visited, 
+	html body .ui-group-theme-b a:visited {
+	 color: white;
+	}
+</style>
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
 <script type="text/javascript" src="js/login.js"></script>
@@ -70,13 +80,13 @@
       <div data-role="fieldcontain">
         <label for="email" data-theme="d">E-mail Address:</label>
          <input type="text" name="email" id="email" 
-         data-theme="d" placeholder="Enter Email">
+         data-theme="d">
         <label for="password" data-theme="d">Password:</label>  
          <input type="password" name="password" id="password" 
-         data-theme="d" placeholder="Password">
+         data-theme="d" placeholder="8자이상 숫자와 영문 혼합해서 입력해주세요.">
         <label for="pwchk" data-theme="d">Password:</label>
          <input type="password" name="pwchk" id="pwchk"
-         data-theme="d" placeholder="Password">
+         data-theme="d" placeholder="8자이상 숫자와 영문 혼합해서 입력해주세요.">
          <input type="submit" value="회원가입">
       </div>
       </form>
@@ -86,7 +96,7 @@
 <!-- 리스트 division -->
  <div id="list-items" data-role="page">
   <div data-role="header" data-theme="b" data-position="fixed">
-    <a href="#search-items" data-icon="plus" class="ui-btn-left">검색</a>
+    <a href="#" data-icon="plus" class="ui-btn-left">검색</a>
     <h1><a href="#list-items">Must</a></h1>
     <a href="#" data-icon="minus" class="ui-btn-right" id="logout">로그아웃</a>
   </div>
@@ -98,7 +108,7 @@
 <!-- 리스트에서 아이템 눌렀을 때 상세 division -->
  <div id="select-items" data-role="page">
   <div data-role="header" data-theme="b" data-position="fixed">
-  <a href="#search-items" data-icon="plus" class="ui-btn-left">검색</a>
+  <a href="#" data-icon="plus" class="ui-btn-left">검색</a>
   <h1><a href="#list-items">Must</a></h1>
   <a href="#" data-icon="minus" class="ui-btn-right" id="logout">로그아웃</a>
   </div>
@@ -116,7 +126,7 @@
  
  <div id="search-items" data-role="page">
  <div data-role="header" data-theme="b" data-position="fixed">
-  <a href="#search-items" data-icon="plus" class="ui-btn-left">검색</a>
+  <a href="#" data-icon="plus" class="ui-btn-left">검색</a>
   <h1><a href="#list-items">Must</a></h1>
   <a href="#" data-icon="minus" class="ui-btn-right" id="logout">로그아웃</a>
  </div>
@@ -134,7 +144,7 @@
  
  <div id="detail-items" data-role="page">
   <div data-role="header" data-theme="b" data-position="fixed">
-  <a href="#search-items" data-icon="plus" class="ui-btn-left">검색</a>
+  <a href="#" data-icon="plus" class="ui-btn-left">검색</a>
   <h1><a href="#list-items">Must</a></h1>
   <a href="#" data-icon="minus" class="ui-btn-right" id="logout">로그아웃</a>
   </div>
@@ -143,7 +153,7 @@
     <h1 id="detailTitle"></h1>
     <img src="#" id="detailImage"/>
     <h3>현재 가격 :</h3>
-    <input type="number" id="detailLow" readonly="readonly"/><br>
+    <input type="text" id="detailLow" readonly="readonly"/><br>
     <h3>희망 가격 :</h3>
     <input type="number" id="detailWish" placeholder="가격을 입력하세요."/><br>
     <input type="button" value="등록" id="regButton"><br>

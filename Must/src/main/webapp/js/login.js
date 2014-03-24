@@ -1,4 +1,6 @@
-//숫자 콤마 넣기`
+var baseUrl = 'http://175.196.13.97:9997/Must/';
+
+//숫자 콤마 넣기
 function commaNum(num) {
 	var len, point, str;  
 
@@ -16,14 +18,13 @@ function commaNum(num) {
 
 function viewItemList(userNo) {
 	$.ajax({
-		url: 'item/userItemList.do',
+		url: baseUrl + 'item/userItemList.do',
 		type: 'get',
 		data: {
 			uNo: userNo
 		},
 		success: function(userItems){
 			console.log(userItems);
-//			$('.items').listview('refresh');
 			$.each(userItems.jsonResult.data, function(i, item){
 
 				var listItem = '';
@@ -34,8 +35,6 @@ function viewItemList(userNo) {
 				listItem += '</div></div></li>';
 
 				$(listItem).click(function(){ 
-//					$('.moreInfo').empty();
-//					location.href="#select-items";
 					$.mobile.changePage('#select-items');
 					$('.selectTitle').html(item.title);
 					$('.selectImage').attr('src', item.image);
@@ -44,21 +43,20 @@ function viewItemList(userNo) {
 
 					$('#wish_update').click(function(){
 						$.ajax({
-							url: 'item/wishUpdate.do',
+							url: baseUrl + 'item/wishUpdate.do',
 							type: 'get',
 							data: {
 								pId: item.pId,
 								wish_price: $('#wPrice').val()
 							},
 							success: function() {
-//								alert('변경했습니다.');
 								$.mobile.changePage('#select-items');
 							}
 						}); 
 					}); // end of wish_update click
 
 					var jsondata = $.ajax({
-						url: 'chart/selectDay.do',
+						url: baseUrl + 'chart/selectDay.do',
 						type: 'get',
 						data: {
 							pId: item.pId 
@@ -119,6 +117,7 @@ function viewItemList(userNo) {
 						});
 					};
 				}).appendTo('.items');
+				
 			}); // each
 		} // success
 	}); // end of ajax
@@ -129,13 +128,18 @@ $(function(){
 //	console.log(localStorage.getItem('no') == null);
 	$('.ui-btn-right').click(function(){
 		localStorage.clear();
-		location.href="must.html";
+		location.href= "must.html";
+	});
+	
+	$('.ui-btn-left').click(function(){
+		$('#searchImage').empty();
+		$.mobile.changePage('#search-items');
 	});
 
 	if (localStorage.getItem('no') == null) {
 		$('#userLogin').click(function(){
 			$.ajax({
-				url: "user/login.do",
+				url: baseUrl + "user/login.do",
 				type:"POST",
 				data : {
 					email:$('#loginEmail').val(),
@@ -153,9 +157,7 @@ $(function(){
 						localStorage.setItem('no', parseInt(no.jsonResult.data[0].no));
 
 						var userNo = parseInt(localStorage.getItem('no'));
-
 						viewItemList(userNo);
-
 						$.mobile.changePage('#list-items');
 					}
 				}
@@ -168,7 +170,7 @@ $(function(){
 
 		$('#userLogin').click(function(){
 			$.ajax({
-				url: "user/login.do",
+				url: baseUrl + "user/login.do",
 				type:"POST",
 				data : {
 					email:$('#loginEmail').val(),
