@@ -6,7 +6,8 @@ $(function(){
 
 	$.validator.addMethod('emailCheck', function(email) {
 		$.ajax({
-			url: baseUrl + 'user/emailCheck.do',
+//			url: baseUrl + 'user/emailCheck.do',
+			url: 'user/emailCheck.do',
 			type: 'post',
 			data: {
 				userEmail: $('#email').val()
@@ -63,7 +64,8 @@ $(function(){
 		},
 		submitHandler: function(){
 			$.ajax({
-				url: baseUrl + 'user/add.do',
+//				url: baseUrl + 'user/add.do',
+				url: 'user/add.do',
 				type: 'post',
 				data: {
 					email: $('#email').val(),
@@ -72,7 +74,8 @@ $(function(){
 				success: function(){
 
 					$.ajax({
-						url: baseUrl + 'user/selectNo.do',
+//						url: baseUrl + 'user/selectNo.do',
+						url: 'user/selectNo.do',
 						type: 'post',
 						data: {
 							email: $('#email').val()
