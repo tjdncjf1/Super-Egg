@@ -23,7 +23,7 @@ function viewItemList(userNo) {
 		type: 'get',
 		data: {
 			uNo: userNo
-		},
+		}, 
 		success: function(userItems){
 			console.log(userItems);
 			$.each(userItems.jsonResult.data, function(i, item){
