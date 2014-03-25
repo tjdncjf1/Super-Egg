@@ -44,72 +44,72 @@ function viewItemList(userNo) {
 							prodId : item.pId
 						},
 						success: function(d){
-							console.log(d.jsonResult.data[0]);
+//							console.log(d.jsonResult.data[0]);
 							var choiceItem = d.jsonResult.data[0];
 							$.mobile.changePage('#select-items');
+							$('.selectTitle').html(choiceItem.title);
+							$('.selectImage').attr('src', choiceItem.image);
+							$('#wPrice').val(commaNum(choiceItem.loginUserItem.wPrice));
+							$('#lPrice').val(commaNum(choiceItem.min_price));
 							
+							$('#wish_update').click(function(){
+								$(this).unbind('click');
+								$.ajax({
+									url: baseUrl + 'item/wishUpdate.do',
+//									url: 'item/wishUpdate.do',
+									type: 'get',
+									data: {
+										pId: choiceItem.pId,
+										wish_price: $('#wPrice').val()
+									},
+									success: function() {
+										alert('변경 성공했습니다.');
+//										$(this).unbind('click');
+										$.mobile.changePage('#list-items');
+									},
+									error: function() {
+										console.log('오류');
+									}
+								}); 
+							}); // end of wish_update click
+							
+							$.ajax({
+								url: baseUrl + 'chart/selectDay.do',
+//								url: 'chart/selectDay.do',
+								type: 'get',
+								data: {
+									pId: choiceItem.pId 
+								},
+								success: function(list) {
+									var dayList = list.jsonResult.data;
+//									console.log(dayList);
+									var dayLabel = new Array();
+									var dayData = new Array();
+									var dprice = null;
+									for(var i = 0; i < dayList.length; i++) {
+										dprice = dayList[i];
+										$.each(dprice, function(key,value){
+											if(key === "time") {
+//												console.log(list.jsonResult.data[i].time);
+												var bj = new Date(list.jsonResult.data[i].time);
+//												console.log(bj.getFullYear());
+												var cj = bj.getFullYear() + '-' + (bj.getMonth()+1) + '-' + bj.getDate();	
+												dayLabel.push(cj);
+											}
+
+											if(key === "price") {
+												dayData.push(value);
+											}
+										});
+									};
+									dayChart(dayLabel, dayData);
+								}
+							});
 							
 						}
+						
 					});
-					$('.selectTitle').html(item.title);
-					$('.selectImage').attr('src', item.image);
-					$('#wPrice').val(commaNum(item.loginUserItem.wPrice));
-					$('#lPrice').val(commaNum(item.min_price));
 					
-					
-
-					$('#wish_update').click(function(){
-						$(this).unbind('click');
-						$.ajax({
-							url: baseUrl + 'item/wishUpdate.do',
-//							url: 'item/wishUpdate.do',
-							type: 'get',
-							data: {
-								pId: item.pId,
-								wish_price: $('#wPrice').val()
-							},
-							success: function() {
-								alert('변경 성공했습니다.');
-								$.mobile.changePage('#list-items');
-							},
-							error: function() {
-								console.log('오류');
-							}
-						}); 
-					}); // end of wish_update click
-
-					var jsondata = $.ajax({
-						url: baseUrl + 'chart/selectDay.do',
-//						url: 'chart/selectDay.do',
-						type: 'get',
-						data: {
-							pId: item.pId 
-						},
-						success: function(list) {
-							var dayList = list.jsonResult.data;
-//							console.log(dayList);
-							var dayLabel = new Array();
-							var dayData = new Array();
-							var dprice = null;
-							for(var i = 0; i < dayList.length; i++) {
-								dprice = dayList[i];
-								$.each(dprice, function(key,value){
-									if(key === "time") {
-//										console.log(list.jsonResult.data[i].time);
-										var bj = new Date(list.jsonResult.data[i].time);
-//										console.log(bj.getFullYear());
-										var cj = bj.getFullYear() + '-' + (bj.getMonth()+1) + '-' + bj.getDate();	
-										dayLabel.push(cj);
-									}
-
-									if(key === "price") {
-										dayData.push(value);
-									}
-								});
-							};
-							dayChart(dayLabel, dayData);
-						}
-					});
 					function dayChart(dayLabel,dayData) {
 						var dayChart = [];
 						for(var i = 0 ; i < dayLabel.length ; i += 1) {
