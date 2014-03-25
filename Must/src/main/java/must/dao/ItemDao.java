@@ -15,6 +15,7 @@ public interface ItemDao {
 	public void wishUpdate(Map<String, Object> sqlparamMap) throws Exception;
 	public List<Object> userItemList(int uNo) throws Exception;
 	public List<Object> userItemCheck(Map<String, Object> sqlparamMap) throws Exception;
+	public List<Object> choiceUserItem(Map<String, Object> sqlparamMap) throws Exception;
 
 }
 

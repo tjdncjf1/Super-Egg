@@ -25,6 +25,17 @@
     <result property="rDate"           column="REG_DATE"/>
   </resultMap>
 
+  <select id="choiceUserItem" parameterType="map" resultMap="itemResultMap">
+    select ITEMS.PROD_ID, ITEMS.TITLE, ITEMS.IMAGE_URL, ITEMS.MIN_PRICE, 
+    USER_ITEM_LIST.WISH_PRICE, ITEMS.REG_DATE, ITEMS.LINK 
+    from ITEMS 
+    right join USER_ITEM_LIST 
+    on ITEMS.PROD_ID = USER_ITEM_LIST.PROD_ID
+    inner join USERS 
+    on USER_ITEM_LIST.UNO = USERS.UNO
+    where USER_ITEM_LIST.UNO = #{userNo} and USER_ITEM_LIST.PROD_ID = #{prodId}
+  </select>
+  
   <select id="userItemList" parameterType="int" resultMap="itemResultMap">
     select ITEMS.PROD_ID, ITEMS.TITLE, ITEMS.IMAGE_URL, ITEMS.MIN_PRICE, 
     USER_ITEM_LIST.WISH_PRICE, ITEMS.REG_DATE, ITEMS.LINK 
@@ -34,7 +45,7 @@
     inner join USERS 
     on USER_ITEM_LIST.UNO = USERS.UNO
     where USER_ITEM_LIST.UNO = #{uNo}
-    order by ITEMS.REG_DATE desc;
+    order by ITEMS.REG_DATE desc
   </select>
     
   <select id="selectList" resultMap="itemResultMap">

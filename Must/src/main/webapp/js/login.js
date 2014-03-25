@@ -35,14 +35,31 @@ function viewItemList(userNo) {
 				listItem += '<img src="' + item.image + '" class="image" />';
 				listItem += '</div></div></li>';
 
-				$(listItem).click(function(){ 
-					$.mobile.changePage('#select-items');
+				$(listItem).click(function(){
+					$.ajax({
+						url: baseUrl + 'item/choiceUserItem.do',
+						type: 'get',
+						data: {
+							userNo : parseInt(localStorage.getItem('no')),
+							prodId : item.pId
+						},
+						success: function(d){
+							console.log(d.jsonResult.data[0]);
+							var choiceItem = d.jsonResult.data[0];
+							$.mobile.changePage('#select-items');
+							
+							
+						}
+					});
 					$('.selectTitle').html(item.title);
 					$('.selectImage').attr('src', item.image);
 					$('#wPrice').val(commaNum(item.loginUserItem.wPrice));
 					$('#lPrice').val(commaNum(item.min_price));
+					
+					
 
 					$('#wish_update').click(function(){
+						$(this).unbind('click');
 						$.ajax({
 							url: baseUrl + 'item/wishUpdate.do',
 //							url: 'item/wishUpdate.do',
@@ -52,7 +69,11 @@ function viewItemList(userNo) {
 								wish_price: $('#wPrice').val()
 							},
 							success: function() {
-								$.mobile.changePage('#select-items');
+								alert('변경 성공했습니다.');
+								$.mobile.changePage('#list-items');
+							},
+							error: function() {
+								console.log('오류');
 							}
 						}); 
 					}); // end of wish_update click
@@ -66,7 +87,7 @@ function viewItemList(userNo) {
 						},
 						success: function(list) {
 							var dayList = list.jsonResult.data;
-							console.log(dayList);
+//							console.log(dayList);
 							var dayLabel = new Array();
 							var dayData = new Array();
 							var dprice = null;

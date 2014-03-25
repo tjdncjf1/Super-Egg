@@ -103,4 +103,19 @@ public class ItemControl {
 		}
 	}
 	
+	@RequestMapping(value="/choiceUserItem", produces="application/json")
+	public Object choiceUserItem(int userNo, String prodId) throws Exception {
+		try {
+			HashMap<String, Object> sqlparam = new HashMap<>();
+			sqlparam.put("userNo", userNo);
+			sqlparam.put("prodId", prodId);
+			return new JsonResult().setResultStatus(JsonResult.SUCCESS)
+					.setData(itemDao.choiceUserItem(sqlparam));
+		} catch (Throwable ex) {
+			return new JsonResult()
+			.setResultStatus(JsonResult.FAILURE)
+			.setError(ex.getMessage());
+		}
+	}
+	
 }
