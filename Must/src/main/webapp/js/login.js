@@ -1,4 +1,4 @@
-var baseUrl = 'http://175.196.13.97:9997/Must/';
+//var baseUrl = 'http://175.196.13.97:9997/Must/';
 
 //숫자 콤마 넣기
 function commaNum(num) {
@@ -18,8 +18,8 @@ function commaNum(num) {
 
 function viewItemList(userNo) {
 	$.ajax({
-		url: baseUrl + 'item/userItemList.do',
-//		url: 'item/userItemList.do',
+//		url: baseUrl + 'item/userItemList.do',
+		url: 'item/userItemList.do',
 		type: 'get',
 		data: {
 			uNo: userNo
@@ -44,8 +44,8 @@ function viewItemList(userNo) {
 
 					$('#wish_update').click(function(){
 						$.ajax({
-							url: baseUrl + 'item/wishUpdate.do',
-//							url: 'item/wishUpdate.do',
+//							url: baseUrl + 'item/wishUpdate.do',
+							url: 'item/wishUpdate.do',
 							type: 'get',
 							data: {
 								pId: item.pId,
@@ -58,8 +58,8 @@ function viewItemList(userNo) {
 					}); // end of wish_update click
 
 					var jsondata = $.ajax({
-						url: baseUrl + 'chart/selectDay.do',
-//						url: 'chart/selectDay.do',
+//						url: baseUrl + 'chart/selectDay.do',
+						url: 'chart/selectDay.do',
 						type: 'get',
 						data: {
 							pId: item.pId 
@@ -144,8 +144,8 @@ $(function(){
 	if (localStorage.getItem('no') == null) {
 		$('#userLogin').click(function(){
 			$.ajax({
-				url: baseUrl + "user/login.do",
-//				url: "user/login.do",
+//				url: baseUrl + "user/login.do",
+				url: "user/login.do",
 				type:"POST",
 				data : {
 					email:$('#loginEmail').val(),
@@ -176,8 +176,8 @@ $(function(){
 
 		$('#userLogin').click(function(){
 			$.ajax({
-				url: baseUrl + "user/login.do",
-//				url: "user/login.do",
+//				url: baseUrl + "user/login.do",
+				url: "user/login.do",
 				type:"POST",
 				data : {
 					email:$('#loginEmail').val(),

@@ -49,6 +49,7 @@ $(function(){
 					output += '<figcaption style = "float: right;">'+ commaNum(min_price) + '원</figcaption>';
 					output += '</figure> ';
 					$(output).click(function(){
+//						alert('okok');
 						$.mobile.changePage('#detail-items');
 						// detail 쪽 div에 아이템 상세정보 표시
 						// 서버에 아이템 등록
@@ -88,8 +89,9 @@ function detail(title, image, min_price, link, pId) {
 	$('#detailLink').attr('href', link);
 
 	$('#regButton').click(function() {
-
+		$(this).unbind('click');
 		$.ajax({
+//			url: baseUrl + 'item/userItemCheck.do',
 			url: 'item/userItemCheck.do',
 			async: 'false',
 			type: 'get',
@@ -101,6 +103,7 @@ function detail(title, image, min_price, link, pId) {
 				console.log(list.jsonResult.data.length == 0);
 
 				if (list.jsonResult.data.length == 0) {
+					console.log(list);
 					$.ajax({
 						url : baseUrl + 'item/addItem.do',
 //						url : 'item/addItem.do',
@@ -117,8 +120,8 @@ function detail(title, image, min_price, link, pId) {
 						success : function(data) {
 //							console.log('성공');
 							$.ajax({
-								url: baseUrl + 'item/userItemAdd.do',
-//								url: 'item/userItemAdd.do',
+//								url: baseUrl + 'item/userItemAdd.do',
+								url: 'item/userItemAdd.do',
 								type: 'get',
 								data: {
 									no: parseInt(window.localStorage.getItem('no')),
@@ -138,7 +141,8 @@ function detail(title, image, min_price, link, pId) {
 					});
 				} else {
 					console.log(list);
-					console.log('중복된 상품입니다.');
+					alert('중복된 상품입니다.');
+//					console.log('중복된 상품입니다.');
 					$.mobile.changePage('#list-items');
 				}
 			} // success 끝
