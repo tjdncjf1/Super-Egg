@@ -94,7 +94,7 @@ $(function(){
 //				}
 			});
 		},
-		invalidHandler: function(){
+		invalidHandler: function() {
 			alert('모두 입력해주세요.');
 		}
 	});
