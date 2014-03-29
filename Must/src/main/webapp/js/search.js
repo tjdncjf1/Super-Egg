@@ -91,8 +91,8 @@ function detail(title, image, min_price, link, pId) {
 	$('#regButton').click(function() {
 		$(this).unbind('click');
 		$.ajax({
-			url: baseUrl + 'item/userItemCheck.do',
-//			url: 'item/userItemCheck.do',
+//			url: baseUrl + 'item/userItemCheck.do',
+			url: 'item/userItemCheck.do',
 			async: 'false',
 			type: 'get',
 			data: {
@@ -105,8 +105,8 @@ function detail(title, image, min_price, link, pId) {
 				if (list.jsonResult.data.length == 0) {
 					console.log(list);
 					$.ajax({
-						url : baseUrl + 'item/addItem.do',
-//						url : 'item/addItem.do',
+//						url : baseUrl + 'item/addItem.do',
+						url : 'item/addItem.do',
 						async: 'false',
 						type : 'get',
 						data : {
@@ -120,8 +120,8 @@ function detail(title, image, min_price, link, pId) {
 						success : function(data) {
 //							console.log('성공');
 							$.ajax({
-								url: baseUrl + 'item/userItemAdd.do',
-//								url: 'item/userItemAdd.do',
+//								url: baseUrl + 'item/userItemAdd.do',
+								url: 'item/userItemAdd.do',
 								type: 'get',
 								data: {
 									no: parseInt(window.localStorage.getItem('no')),

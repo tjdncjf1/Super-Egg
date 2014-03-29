@@ -163,8 +163,8 @@ public class SearchBot {
 	}	
 	
 	//fixedDelay=24000
-	//cron="0 0 0 * * ?"
-	@Scheduled(cron="0 0 0 * * ?")
+	//cron="0 4 0 * * ?"
+	@Scheduled(cron="0 4 0 * * ?")
 	public void doDaySchedule() throws ParserConfigurationException, SAXException, IOException {
 		try {
 			ArrayList<Item> sItem = (ArrayList<Item>)itemDao.selectList();

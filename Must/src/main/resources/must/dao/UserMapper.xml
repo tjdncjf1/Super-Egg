@@ -7,6 +7,7 @@
     <id property="no"                 column="UNO"/>
     <result property="email"          column="UEMAIL"/>
     <result property="password"       column="UPW"/>
+    <result property="regId"       column="REGID"/>
   </resultMap>
 
 	<insert id="insertUser" parameterType="user">

@@ -1,4 +1,41 @@
-var baseUrl = 'http://175.196.13.97:9997/Must/';
+//var baseUrl = 'http://175.196.13.97:9997/Must/';
+
+//DayChart 
+function dayChartInsert(dayLabel,dayData) {
+	var dChart = [];
+	console.log(dayLabel[0]);
+	console.log(dayData[0]);
+	for(var i = 0 ; i < dayLabel.length ; i++) {
+		dChart.push([dayLabel[i],dayData[i]]);
+		console.log(dChart[i]);
+	}
+	if (dChart != null) {
+		console.log(dChart.length);
+		var plot = $.jqplot("dayChart", [dChart], {
+			animate:true,
+			animateReplot: true,
+			axes:{
+				xaxis:{
+					renderer: $.jqplot.DateAxisRenderer,
+//					tickOptions:{formatString:'%b&nbsp %#d'},
+					tickOptions:{formatString:'%b&nbsp/%#d'},
+					tickInterval: '1 day'
+				},
+				yaxis:{
+					tickOptions:{formatString:'%d원'}
+				}
+			},
+			highlighter: {
+				show: true,
+				sizeAdjust: 7.5
+			},
+			cursor: {
+				show: false
+			},
+			series:[{lineWidth:4, markerOptions:{style:'square'}}]
+		});
+	} 
+};
 
 //숫자 콤마 넣기
 function commaNum(num) {
@@ -18,9 +55,10 @@ function commaNum(num) {
 
 function viewItemList(userNo) {
 	$.ajax({
-		url: baseUrl + 'item/userItemList.do',
-//		url: 'item/userItemList.do',
+//		url: baseUrl + 'item/userItemList.do',
+		url: 'item/userItemList.do',
 		type: 'get',
+		async: 'false',
 		data: {
 			uNo: userNo
 		}, 
@@ -37,8 +75,10 @@ function viewItemList(userNo) {
 
 				$(listItem).click(function(){
 					$.ajax({
-						url: baseUrl + 'item/choiceUserItem.do',
+//						url: baseUrl + 'item/choiceUserItem.do',
+						url: 'item/choiceUserItem.do',
 						type: 'get',
+						async: 'false',
 						data: {
 							userNo : parseInt(localStorage.getItem('no')),
 							prodId : item.pId
@@ -46,18 +86,61 @@ function viewItemList(userNo) {
 						success: function(d){
 //							console.log(d.jsonResult.data[0]);
 							var choiceItem = d.jsonResult.data[0];
-							$.mobile.changePage('#select-items');
+//							$.mobile.changePage('#select-items');
 							$('.selectTitle').html(choiceItem.title);
 							$('.selectImage').attr('src', choiceItem.image);
+							console.log(commaNum(choiceItem.loginUserItem.wPrice));
 							$('#wPrice').val(commaNum(choiceItem.loginUserItem.wPrice));
 							$('#lPrice').val(commaNum(choiceItem.min_price));
-							
+
+							$.ajax({
+//								url: baseUrl + 'chart/selectDay.do',
+								url: 'chart/selectDay.do',
+								type: 'get',
+								async: 'false',
+								data: {
+									pId: choiceItem.pId 
+								},
+								success: function(list) {
+									$('#chartPosition').empty();
+									var cc = '';
+									cc += '<div id="dayChart" style="height:300px; width:650px;"></div>';
+									$(cc).appendTo('#chartPosition');
+									console.log(list);
+
+									var dayList = list.jsonResult.data;
+//									console.log(dayList);
+									var dayLabel = [];
+									var dayData = [];
+									var dprice = [];
+									for(var i = 0; i < dayList.length; i++) {
+										dprice = dayList[i];
+										$.each(dprice, function(key,value){
+											if(key == "time") {
+//												console.log(list.jsonResult.data[i].time);
+												var bj = new Date(list.jsonResult.data[i].time);
+//												console.log(bj.getFullYear());
+												var cj = bj.getFullYear() + '-' + (bj.getMonth()+1) + '-' + bj.getDate();	
+												dayLabel.push(cj);
+											}
+											if(key == "price") {
+												dayData.push(value);
+											}
+
+										});
+									}
+									dayChartInsert(dayLabel, dayData);
+
+								} // success 끝
+							}); // selectDay ajax 끝
+
 							$('#wish_update').click(function(){
 								$(this).unbind('click');
 								$.ajax({
-									url: baseUrl + 'item/wishUpdate.do',
-//									url: 'item/wishUpdate.do',
+//									url: baseUrl + 'item/wishUpdate.do',
+									url: 'item/wishUpdate.do',
 									type: 'get',
+									async: 'false',
 									data: {
 										pId: choiceItem.pId,
 										wish_price: $('#wPrice').val()
@@ -72,76 +155,17 @@ function viewItemList(userNo) {
 									}
 								}); 
 							}); // end of wish_update click
-							
-							$.ajax({
-								url: baseUrl + 'chart/selectDay.do',
-//								url: 'chart/selectDay.do',
-								type: 'get',
-								data: {
-									pId: choiceItem.pId 
-								},
-								success: function(list) {
-									var dayList = list.jsonResult.data;
-//									console.log(dayList);
-									var dayLabel = new Array();
-									var dayData = new Array();
-									var dprice = null;
-									for(var i = 0; i < dayList.length; i++) {
-										dprice = dayList[i];
-										$.each(dprice, function(key,value){
-											if(key === "time") {
-//												console.log(list.jsonResult.data[i].time);
-												var bj = new Date(list.jsonResult.data[i].time);
-//												console.log(bj.getFullYear());
-												var cj = bj.getFullYear() + '-' + (bj.getMonth()+1) + '-' + bj.getDate();	
-												dayLabel.push(cj);
-											}
 
-											if(key === "price") {
-												dayData.push(value);
-											}
-										});
-									};
-									dayChart(dayLabel, dayData);
-								}
-							});
-							
+
+
+							$.mobile.changePage('#select-items');
+
 						}
-						
-					});
-					
-					function dayChart(dayLabel,dayData) {
-						var dayChart = [];
-						for(var i = 0 ; i < dayLabel.length ; i += 1) {
-							dayChart.push([dayLabel[i],dayData[i]]);
-						}
-						var plot = $.jqplot("dayChart", [dayChart],{
-							animate:true,
-							animateReplot: true,
-							axes:{
-								xaxis:{
-									renderer: $.jqplot.DateAxisRenderer,
-									tickOptions:{
-										formatString:'%b&nbsp;%#d'
-									}
-								},
-								yaxis:{
-									tickOptions:{
-										formatString:'%d원'
-									}
-								}
-							},
-							highlighter: {
-								show: true,
-								sizeAdjust: 7.5
-							},
-							cursor: {
-								show: false
-							}
-						});
-					};
+
+					}); // choiceUserItem ajax 끝
+
 				}).appendTo('.items');
-				
+
 			}); // each
 		} // success
 	}); // end of ajax
@@ -154,7 +178,7 @@ $(function(){
 		localStorage.clear();
 		location.href= "must.html";
 	});
-	
+
 	$('.ui-btn-left').click(function(){
 		$('#searchImage').empty();
 		$('#searchValue').val(null);
@@ -165,8 +189,8 @@ $(function(){
 	if (localStorage.getItem('no') == null) {
 		$('#userLogin').click(function(){
 			$.ajax({
-				url: baseUrl + "user/login.do",
-//				url: "user/login.do",
+//				url: baseUrl + "user/login.do",
+				url: "user/login.do",
 				type:"POST",
 				data : {
 					email:$('#loginEmail').val(),
@@ -197,8 +221,8 @@ $(function(){
 
 		$('#userLogin').click(function(){
 			$.ajax({
-				url: baseUrl + "user/login.do",
-//				url: "user/login.do",
+//				url: baseUrl + "user/login.do",
+				url: "user/login.do",
 				type:"POST",
 				data : {
 					email:$('#loginEmail').val(),

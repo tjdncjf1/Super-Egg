@@ -15,7 +15,6 @@
   </style>
 <link rel="stylesheet" 
       href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
-<link rel="stylesheet" type="text/css" href="css/jquery.jqplot.min.css" >
 <link rel="stylesheet" type="text/css" href="css/listItem.css" />
 <link rel="stylesheet" type="text/css" href="css/search.css" />
 <link rel="stylesheet" type="text/css" href="css/detail.css" />
@@ -32,13 +31,41 @@
 </style>
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
-<script type="text/javascript" src="js/login.js"></script>
 <script type="text/javascript" src="js/jquery.validate.js"></script>
+<script type="text/javascript" src="js/login.js"></script>
 <script type="text/javascript" src="js/check.js"></script>
-<script type="text/javascript" src="js/jquery.jqplot.js"></script>
-<script type="text/javascript" src="js/jqplot.dateAxisRenderer.js"></script>
-<script type="text/javascript" src="js/jqplot.highlighter.js"></script>
 <script type="text/javascript" src="js/search.js"></script>
+<script type="text/javascript" src="js/jquery.jqplot.js"></script>
+<script type="text/javascript" src="jqplot.dateAxisRenderer.min.js"></script>
+<script type="text/javascript" src="js/jqplot.highlighter.js"></script>
+<link rel="stylesheet" type="text/css" href="css/jquery.jqplot.min.css" >
+<!-- <script class="code" type="text/javascript">
+$(function(){
+  var line1=[["2008-06-14",4], ["2008-6-15",6.5], ["2008-6-16",5.7], ['2008-6-17',9], ['2008-6-18',8.2]];
+  var plot2 = $.jqplot('dayChart', [line1], {
+      title:'Customized Date Axis', 
+      axes:{
+        xaxis:{
+          renderer:$.jqplot.DateAxisRenderer, 
+          tickOptions:{formatString:'%b&nbsp %#d'},
+          min:'June 10, 2008', 
+          tickInterval:'1 day'
+        },
+        yaxis:{
+          tickOptions:{formatString:'%d원'}
+        }
+      },    
+      highlighter: {
+        show: true,
+        sizeAdjust: 7.5
+      },
+      cursor: {
+        show: false
+      },
+      series:[{lineWidth:4, markerOptions:{style:'square'}}]
+  });
+});
+</script> -->
 </head>
 <body>
 
@@ -108,14 +135,12 @@
   <a href="#" data-icon="minus" class="ui-btn-right" id="logout">로그아웃</a>
   </div>
   <div class="moreInfo" data-role="content">
-  <div data-role="fieldcontain">
     <h3 style="margin: 0 auto" class="selectTitle"></h3>
     <img src="#" class="selectImage" /><br>
     <span>최저가격: <input type="text" readonly="readonly" id="lPrice" /></span>
     <span>희망가격: <input type="number" id="wPrice" />
     <input type="button" value="변경" id="wish_update" /></span><br>
-    <div id="dayChart" style="margin: 0 auto"></div>
-   </div>
+    <div id = "chartPosition"></div>
   </div>
  </div>
  

@@ -182,5 +182,7 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/서우철/Desktop/json-simple-1.1.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/서우철/Desktop/gcm-server.jar"/>
+	<classpathentry kind="lib" path="C:/Users/서우철/Desktop/gcm-76908409d9d5/gcm-server/lib/junit.jar"/>
+	<classpathentry kind="lib" path="C:/Users/서우철/Desktop/gcm-76908409d9d5/gcm-server/lib/mockito-all-1.8.5.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
