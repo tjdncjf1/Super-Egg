@@ -64,9 +64,9 @@
 		values (#{no}, #{pId}, #{wPrice}, #{rDate})
 	</insert>
 
-		<delete id="delete" parameterType="string">
-		delete from ITEMS
-		where PROD_ID=#{pId}
+		<delete id="delete" parameterType="map">
+		delete from USER_ITEM_LIST
+		where UNO=#{userNo} and PROD_ID=#{pId}
 	</delete>
 	
 	<update id="minUpdate" parameterType="map">

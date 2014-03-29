@@ -10,7 +10,7 @@ function dayChartInsert(dayLabel,dayData) {
 		console.log(dChart[i]);
 	}
 	if (dChart != null) {
-		console.log(dChart.length);
+//		console.log(dChart.length);
 		var plot = $.jqplot("dayChart", [dChart], {
 			animate:true,
 			animateReplot: true,
@@ -69,7 +69,7 @@ function viewItemList(userNo) {
 				var listItem = '';
 				listItem += '<li><div class="itemSpace">';
 				listItem += '<span id="titlePosition">' + item.title + '</span>';
-				listItem += '<div class="viewImg">';
+				listItem += '<div class="viewImg" id="swipeItem">';
 				listItem += '<img src="' + item.image + '" class="image" />';
 				listItem += '</div></div></li>';
 
@@ -156,15 +156,43 @@ function viewItemList(userNo) {
 								}); 
 							}); // end of wish_update click
 
-
-
 							$.mobile.changePage('#select-items');
 
 						}
-
 					}); // choiceUserItem ajax 끝
 
+				}).bind('swiperight', function(event){
+					$(event.target).addClass('swipe');
+					$.mobile.changePage('#list-items', {transition:'slide', reverse: false}, true, true);
+					var answer = confirm('삭제하시겠습니까?');
+					if (answer) {
+						$.ajax({
+							url: 'item/userItemDelete.do',
+							type: 'get',
+							async: 'false',
+							data: {
+								userNo: parseInt(localStorage.getItem('no')),
+								pId: item.pId
+							},
+							success: function(){
+//								$('.items').listview('refresh');
+//								$.mobile.changePage('#list-items', {
+//									allowSamePageTransition: true,
+//									transition: 'none',
+//									reloadPage: true
+//								});
+								$('.items').empty();
+								viewItemList(parseInt(localStorage.getItem('no')));
+							}
+						});
+					} else {
+//						$('.items').listview('refresh');
+					}
 				}).appendTo('.items');
+
+				$('#list-items').click(function(event){
+					$('#swipeItem').removeClass('swipe');
+				});
 
 			}); // each
 		} // success

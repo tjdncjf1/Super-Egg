@@ -39,10 +39,14 @@ public class ItemControl {
 		}
 	}
 	
-	@RequestMapping("/delete") 
-	public void delete(String pId) throws Exception {
+	@RequestMapping("/userItemDelete") 
+	public void delete(int userNo, String pId) throws Exception {
 		try {
-			itemDao.delete(pId);
+			HashMap<String, Object> sqlparamMap = new HashMap<>();
+			sqlparamMap.put("userNo", userNo);
+			sqlparamMap.put("pId", pId);
+			
+			itemDao.delete(sqlparamMap);
 		} catch (Throwable ex) {
 			ex.printStackTrace();
 		}
