@@ -10,7 +10,8 @@
 	color: #4a494a !important;
 	font-weight: 900 !important;
 	text-shadow: none !important;
-	/* background-color: white; */
+	background-color: white;
+	opacity: 0.5;
 }
 
 .ui-input-btn {
@@ -18,7 +19,7 @@
 }
 
 #regEmail, #regPassword, #regPwchk {
-	color: #4a494a !important;
+	color: white !important;
 	font-weight: 900 !important;
 	text-shadow: none !important;
 	/* margin-top: 8%; */
@@ -27,6 +28,11 @@
 .ui-input-text {
 	margin-bottom: 10% !important;
 	border: 0;
+	min-height: 44px !important;
+}
+
+.ui-input-text input {
+	min-height: 44px !important;
 }
 
 .ui-input-btn {

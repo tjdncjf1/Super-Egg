@@ -1,4 +1,4 @@
-var baseUrl = 'http://localhost:9991/Must/';
+var baseUrl = 'http://192.168.42.58:9991/Must/';
 
 //숫자 콤마 넣기
 function commaNum(num) {

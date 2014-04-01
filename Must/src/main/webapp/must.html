@@ -68,22 +68,23 @@ input.error,textarea.error {
 
 	<!-- JoinPage -->
 	<div id="joinPage" data-role="page">
-		<div data-role="header" data-theme="b" data-add-back-btn="true"  class="headerTitle">
+		<!-- <div data-role="header" data-theme="b" class="headerTitle">
+		<a href="#loginPage" class="ui-btn-left ui-btn ui-shadow ui-corner-all ui-icon-arrow-l ui-btn-icon-notext">back</a>
 			<h1>MUST</h1>
-		</div>
+		</div> -->
 		<div data-role="content">
 			<form id="valiex" method="post">
 				<div data-role="fieldcontain">
-				  <label for="email" data-theme="d" id="regEmail">이메일주소 입력: </label>
+				  <label for="email" data-theme="d" id="regEmail">Enter Email: </label>
 					<input type="text" name="email" id="email" data-theme="d" 
-					placeholder="@"/>
-					<label for="password" data-theme="d" id="regPassword">패스워드 입력 :</label>
+					placeholder="example@must.com"/>
+					<label for="password" data-theme="d" id="regPassword">Enter Password :</label>
 					<input type="password" name="password" id="password" data-theme="d"
-					placeholder="8자 이상 영문과 숫자 혼합"/>
-					<label for="pwchk" data-theme="d" id="regPwchk">패스워드 재입력 :</label>
+					placeholder="********"/>
+					<label for="pwchk" data-theme="d" id="regPwchk">Confirm Password :</label>
 					<input type="password" name="pwchk" id="pwchk" data-theme="d" 
-					placeholder="8자 이상 영문과 숫자 혼합"/> 
-					<div id="submitPosition"><input type="submit" value="회원가입" /></div>
+					placeholder="********"/> 
+					<div id="submitPosition"><input type="submit" value="Sign Up" /></div>
 				</div>
 			</form>
 		</div>
