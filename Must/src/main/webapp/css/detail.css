@@ -1,32 +1,63 @@
 @CHARSET "UTF-8";
 
+#detail-items {
+	background-color: #C9BFA8;
+}
+
 #detail-items img {
-	color : white;
-	display: block;
-	margin:0 auto; 
+  width: 100%;
+  border-radius: 7%;
+  margin-top: 5%;
+  margin-bottom: 13%;
 }
 
 #detail-items h1 {
-	width:200px;
-	overflow: hidden;
-	white-space: nowrap;
-	text-overflow : ellipsis;
-  text-align: center;
-  font-size: 1.5em;  
+  text-shadow: none !important;
   margin: 0 auto;
+  font-weight: 900;
+  font-size: 100%;
+  color: #4a494a;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  -ms-text-overflow: ellipsis;
+  white-space: nowrap;
+  position: relative;
+  width: 60%;
+  height: auto;
   
 }
 
 #detail-items h3 {
-  font-size: 2em;
   margin :  auto 10px;
   color: black;
+  font-size: 100%;
 }
 
 #detail-items input {
-	float: right;
-	border-color: transparent;
-	background-color: transparent;
-	font-size: 2em;
+  font-weight: 900;
+  background-color: #C9BFA8 !important;
+  box-shadow: none !important;
+  color: #4a494a !important;
+  text-shadow: none !important;
+  border:none !important;
+  border-right:0px !important; 
+  border-top:0px !important; 
+  boder-left:0px !important; 
+  boder-bottom:0px !important;
 }
 
+h1.ui_title {
+	margin: 0 auto;
+}
+
+#detailLinkPosition {
+	margin-top: 5%;
+	margin-bottom: 5%;
+	margin-left: 38%;
+	font-size: 100%;
+}
+
+#insertButton {
+	margin-top: -12%;
+}

@@ -14,11 +14,11 @@ public class ChartControl {
 	@Autowired(required=false)
 	DayChartDao dayChartDao;
 
-	@RequestMapping(value="/selectDay", produces="application/json")
-	public Object list(String pId) throws Exception {
+	@RequestMapping(value="/selectDayListInfo", produces="application/json")
+	public Object list(int uNo) throws Exception {
 		try {
 			return new JsonResult().setResultStatus(JsonResult.SUCCESS)
-					.setData(dayChartDao.selectList(pId));
+					.setData(dayChartDao.selectListInfo(uNo));
 		} catch (Throwable ex) {
 			return new JsonResult()
 			.setResultStatus(JsonResult.FAILURE)

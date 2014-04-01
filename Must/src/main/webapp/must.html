@@ -1,36 +1,43 @@
 <!doctype html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
-  <title>Must</title>
-  <style>
-  input.error, textarea.error{
-    border: 1px dashed red;
-  }
-  .error {
-    display: inline;
-    color: red;
-  }
-  </style>
-<link rel="stylesheet" 
-      href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
-<link rel="stylesheet" type="text/css" href="css/listItem.css" />
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0,maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+<title>Must</title>
+<style>
+input.error,textarea.error {
+	border: 1px dashed red;
+}
+
+.error {
+	display: inline;
+	color: red;
+	font-weight: bolder;
+	text-shadow: none !important;
+}
+</style>
+<link rel="stylesheet" type="text/css"
+	href="css/jquery.mobile-1.4.2.min.css" />
+<link rel="stylesheet" type="text/css" href="css/select.css" />
 <link rel="stylesheet" type="text/css" href="css/search.css" />
 <link rel="stylesheet" type="text/css" href="css/detail.css" />
+<link rel="stylesheet" type="text/css" href="css/login.css" />
+<link rel="stylesheet" type="text/css" href="css/join.css" />
 <link rel="stylesheet" type="text/css" href="css/common.css" />
+<link rel="stylesheet" type="text/css" href="css/listItem.css" />
 <style type="text/css">
-	.ui-link {
-    text-decoration: none;
-	} 
-	.ui-page-theme-b a:visited, 
-	html .ui-bar-b a:visited, html .ui-body-b a:visited, 
-	html body .ui-group-theme-b a:visited {
-	 color: white;
-	}
+.ui-link {
+	text-decoration: none;
+}
+
+.ui-page-theme-b a:visited,html .ui-bar-b a:visited,html .ui-body-b a:visited,html body .ui-group-theme-b a:visited
+	{
+	color: white;
+}
 </style>
-<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-<script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.mobile-1.4.2.js"></script>
 <script type="text/javascript" src="js/jquery.validate.js"></script>
 <script type="text/javascript" src="js/login.js"></script>
 <script type="text/javascript" src="js/check.js"></script>
@@ -38,123 +45,130 @@
 <script type="text/javascript" src="js/jquery.jqplot.js"></script>
 <!-- <script type="text/javascript" src="jqplot.dateAxisRenderer.min.js"></script> -->
 <script type="text/javascript" src="js/jqplot.highlighter.js"></script>
-<link rel="stylesheet" type="text/css" href="css/jquery.jqplot.min.css" >
+<link rel="stylesheet" type="text/css" href="css/jquery.jqplot.min.css">
 </head>
 <body>
 
-<!-- LoginPage -->
-<div id="loginPage" data-role="page">
-  <div data-role="header" data-theme="b" data-position="fixed">
-    <h1>Must</h1>
-  </div>
-  <div data-role="content">
-    <form class="loginForm">
-    <div data-role="fieldcontain">
-      <label for="loginEmail" data-theme="d">E-mail Address:</label>
-      <input id="loginEmail" type="text" name="loginEmail" />
-    </div>
-    <div data-role="fieldcontain">
-      <label for="loginPassword" data-theme="d">Password:</label> 
-      <input id="loginPassword" type="password" name="loginPassword" />
-    </div>
-    <div class="ui-grid-a">
-      <div class="ui-block-a"><a href="#" data-role="button" id="userLogin">로그인</a></div>     
-      <div class="ui-block-b"><a href="#joinPage" data-role="button">회원가입</a></div>     
-    </div>  
-    </form>
-  </div>
-</div>
+	<!-- LoginPage -->
+	<div id="loginPage" data-role="page">
+		<!-- <div data-role="header" data-theme="b" data-position="fixed"></div> -->
+		<div data-role="content" id="textBox">
+		<div id="logoPosition"><img src="images/1221.png" style="width:60%; height: 60%"></div>
+			<h1 style="color: white; font-size: 4em; padding-bottom: 10px;">
+				<center>MUST</center>
+			</h1>
+			<div id="inputStyle">
+				<input id="loginEmail" type="text" name="loginEmail" placeholder="이메일 입력"/>
+				<input id="loginPassword" type="password" name="loginPassword" placeholder="패스워드 입력"/>
+			</div>
+			<div class="loginBtn"><a href="#" data-role="button" id="userLogin" >Login</a></div>     
+      <span class="reBtn"><a href="#joinPage" id="btnJoin">Sign Up</a></span>
+		</div>
+	</div>
 
-<!-- JoinPage -->
-<div id="joinPage" data-role="page">
-  <div data-role="header" data-theme="b" data-add-back-btn="true">
-    <h1>Must</h1>
-  </div>
-    <div data-role="content">
-     <form id="valiex" method="post">
-      <div data-role="fieldcontain">
-        <label for="email" data-theme="d">E-mail Address:</label>
-         <input type="text" name="email" id="email" 
-         data-theme="d">
-        <label for="password" data-theme="d">Password:</label>  
-         <input type="password" name="password" id="password" 
-         data-theme="d" placeholder="8자이상 숫자와 영문 혼합해서 입력해주세요.">
-        <label for="pwchk" data-theme="d">Password:</label>
-         <input type="password" name="pwchk" id="pwchk"
-         data-theme="d" placeholder="8자이상 숫자와 영문 혼합해서 입력해주세요.">
-         <input type="submit" value="회원가입">
-      </div>
-      </form>
-    </div>
-</div>
+	<!-- JoinPage -->
+	<div id="joinPage" data-role="page">
+		<div data-role="header" data-theme="b" data-add-back-btn="true"  class="headerTitle">
+			<h1>MUST</h1>
+		</div>
+		<div data-role="content">
+			<form id="valiex" method="post">
+				<div data-role="fieldcontain">
+				  <label for="email" data-theme="d" id="regEmail">이메일주소 입력: </label>
+					<input type="text" name="email" id="email" data-theme="d" 
+					placeholder="@"/>
+					<label for="password" data-theme="d" id="regPassword">패스워드 입력 :</label>
+					<input type="password" name="password" id="password" data-theme="d"
+					placeholder="8자 이상 영문과 숫자 혼합"/>
+					<label for="pwchk" data-theme="d" id="regPwchk">패스워드 재입력 :</label>
+					<input type="password" name="pwchk" id="pwchk" data-theme="d" 
+					placeholder="8자 이상 영문과 숫자 혼합"/> 
+					<div id="submitPosition"><input type="submit" value="회원가입" /></div>
+				</div>
+			</form>
+		</div>
+	</div>
 
-<!-- 리스트 division -->
- <div id="list-items" data-role="page">
-  <div data-role="header" data-theme="b" data-position="fixed">
-    <a href="#" data-icon="plus" class="ui-btn-left">검색</a>
-    <h1><a href="#list-items">Must</a></h1>
-    <a href="#" data-icon="minus" class="ui-btn-right" id="logout">로그아웃</a>
-  </div>
-  <div data-role="content">
-    <ul class="items" data-inset="true"></ul>
-  </div>
- </div>
- 
-<!-- 리스트에서 아이템 눌렀을 때 상세 division -->
- <div id="select-items" data-role="page">
-  <div data-role="header" data-theme="b" data-position="fixed">
-  <a href="#" data-icon="plus" class="ui-btn-left">검색</a>
-  <h1><a href="#list-items">Must</a></h1>
-  <a href="#" data-icon="minus" class="ui-btn-right" id="logout">로그아웃</a>
-  </div>
-  <div class="moreInfo" data-role="content">
-    <h3 style="margin: 0 auto" class="selectTitle"></h3>
-    <img src="#" class="selectImage" /><br>
-    <span>최저가격: <input type="text" readonly="readonly" id="lPrice" /></span>
-    <span>희망가격: <input type="number" id="wPrice" />
-    <input type="button" value="변경" id="wish_update" /></span><br>
-    <div id = "chartPosition"></div>
-  </div>
- </div>
- 
- <div id="search-items" data-role="page">
- <div data-role="header" data-theme="b" data-position="fixed">
-  <a href="#" data-icon="plus" class="ui-btn-left">검색</a>
-  <h1><a href="#list-items">Must</a></h1>
-  <a href="#" data-icon="minus" class="ui-btn-right" id="logout">로그아웃</a>
- </div>
- <div class="searchSpace" data-role="content">
- <div data-role="fieldcontain">
- <form id="sbSearch">
-  <input type="search" id="searchValue" />
- </form><hr>
- </div>
- <div data-role="fieldcontain">
- <div id="searchImage"></div>
- </div>
- </div>
- </div>
- 
- <div id="detail-items" data-role="page">
-  <div data-role="header" data-theme="b" data-position="fixed">
-  <a href="#" data-icon="plus" class="ui-btn-left">검색</a>
-  <h1><a href="#list-items">Must</a></h1>
-  <a href="#" data-icon="minus" class="ui-btn-right" id="logout">로그아웃</a>
-  </div>
-  <div data-role="content">
-  <div data-role="fieldcontain">
-    <h1 id="detailTitle"></h1>
-    <img src="#" id="detailImage"/>
-    <h3>현재 가격 :</h3>
-    <input type="text" id="detailLow" readonly="readonly"/><br>
-    <h3>희망 가격 :</h3>
-    <input type="number" id="detailWish" placeholder="가격을 입력하세요."/><br>
-    <input type="button" value="등록" id="regButton"><br>
-    <h1><a href="#" id="detailLink">사러가기</a></h1>
-    </div>
-  </div>
- </div>
- 
+	<!-- 리스트 division -->
+	<div id="list-items" data-role="page">
+		<div data-role="header" data-theme="b" data-position="fixed">
+			<a href="#" class="ui-btn-left ui-btn ui-shadow ui-corner-all ui-icon-search ui-btn-icon-notext">search</a>
+			<h1>
+				<a href="#list-items" class="headerTitle">MUST</a>
+			</h1>
+			<a href="#" class="ui-btn-right ui-btn ui-shadow ui-corner-all ui-icon-forbidden ui-btn-icon-notext" id="logout"></a>
+		</div>
+		<div data-role="content" id="listBox">
+			<ul class="items" data-inset="true"></ul>
+		</div>
+	</div>
+
+	<!-- 리스트에서 아이템 눌렀을 때 상세 division -->
+	<div id="select-items" data-role="page">
+		<div data-role="header" data-theme="b" data-position="fixed">
+			<a href="#" data-icon="search" class="ui-btn-left">_</a>
+			<h1>
+				<a href="#list-items" class="headerTitle">MUST</a>
+			</h1>
+			<a href="#" data-icon="minus" class="ui-btn-right" id="logout">_</a>
+		</div>
+		<div class="moreInfo" data-role="content">
+			<h3 style="margin: 0 auto" class="selectTitle"></h3>
+			<img src="#" class="selectImage" /><br> 
+			<span style="color: #4a494a; text-shadow: none !important; font-weight: 800;">Min Price: 
+			<input type="text" readonly="readonly" id="lPrice" /></span> 
+				<span style="color: #4a494a; text-shadow: none !important; font-weight: 800;">Wish Price: 
+				<input type="text" id="wPrice" /> 
+				<input type="button" value="Change" id="wish_update" /></span><br>
+				<div id="selectLinkPosition"><a href="#" id="selectLink">사러가기</a></div>
+			<div id="chartPosition"><img src="images/day.jpg" id="chartImg"/></div>
+		</div>
+	</div>
+
+	<div id="search-items" data-role="page">
+		<div data-role="header" data-theme="b" data-position="fixed">
+			<a href="#" data-icon="search" class="ui-btn-left">_</a>
+			<h1>
+				<a href="#list-items" class="headerTitle">MUST</a>
+			</h1>
+			<a href="#" data-icon="minus" class="ui-btn-right" id="logout">_</a>
+		</div>
+		<div class="searchSpace" data-role="content">
+			<div data-role="fieldcontain" class="searchSpace" >
+				<form id="sbSearch">
+					<input type="search" id="searchValue" />
+				</form>
+			</div>
+			<div data-role="fieldcontain" class="searchSpace" >
+				<div id="searchImage"></div>
+			</div>
+		</div>
+	</div>
+
+	<div id="detail-items" data-role="page">
+		<div data-role="header" data-theme="b" data-position="fixed">
+			<a href="#" data-icon="search" class="ui-btn-left">_</a>
+			<h1>
+				<a href="#list-items" class="headerTitle">MUST</a>
+			</h1>
+			<a href="#" data-icon="minus" class="ui-btn-right" id="logout">_</a>
+		</div>
+		<div data-role="content">
+			<div data-role="fieldcontain">
+				<h1 id="detailTitle"></h1>
+				<img src="#" id="detailImage" />
+				<h3>현재 가격 :</h3>
+				<input type="text" id="detailLow" readonly="readonly" /><br>
+				<h3>희망 가격 :</h3>
+				<input type="text" id="detailWish" placeholder="가격을 입력하세요." /><br>
+				<div id="insertButton"><input type="button" value="등록" id="regButton"></div>
+				<div id="detailLinkPosition">
+					<a href="#" id="detailLink">사러가기</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
 </body>
 </html>
 

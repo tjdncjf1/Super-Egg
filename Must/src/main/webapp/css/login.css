@@ -1,0 +1,44 @@
+@CHARSET "UTF-8";
+
+#loginPage{
+ background-image:url("../images/join_image.jpg");
+ background-size:cover;
+ background-repeat:no-repeat;
+ }
+.loginForm {
+  background-color: #edeff1;
+  padding: 24px 23px 20px;
+  position: relative;
+  border-radius: 6px;   
+  border: no;  
+}
+#userLogin {
+  color: #ffffff;
+  background-color: #90EE90;
+  border-color: #90EE90;
+  margin: 0 auto;
+  font-weight: 900 !important;
+}
+#btnJoin {
+  color: #ffffff;
+  font-size: 90%;
+}
+.reBtn {
+	margin-left: 38%;
+}
+#textBox{
+	border-width: 0;
+  overflow: visible;
+  overflow: hidden;
+  padding: 1em;
+  padding-top: 210px;
+}
+#inputStyle{
+	opacity:0.5;
+}
+.ui-grid-a {
+	color: blue;
+}
+.ui-btn-loginB {
+	color: green;
+}

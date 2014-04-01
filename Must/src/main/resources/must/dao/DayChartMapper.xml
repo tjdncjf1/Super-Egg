@@ -20,6 +20,16 @@
      where PROD_ID = #{pId};
 	</select>
 	
+  <select id="selectListInfo" parameterType="int" resultMap="chartResultMap">
+    select DAY_CHANGES.PROD_ID, DAY_CHANGES.DPRICE, DAY_CHANGES.DTIME 
+    from DAY_CHANGES
+    left join ITEMS 
+    on DAY_CHANGES.PROD_ID = ITEMS.PROD_ID
+    left join USER_ITEM_LIST 
+    on ITEMS.PROD_ID = USER_ITEM_LIST.PROD_ID
+    where USER_ITEM_LIST.UNO = #{uNo};
+	</select>
+	
   <delete id="delete" parameterType="int">
 		delete from DAY_CHANGES
 		where DNO=#{no}

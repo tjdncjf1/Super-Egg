@@ -1,0 +1,43 @@
+@CHARSET "UTF-8";
+
+#joinPage {
+	 background-image:url("../images/join_image.jpg");
+	 background-size: cover;
+	 background-repeat: no-repeat;
+}
+
+#email, #password, #pwchk {
+	color: #4a494a !important;
+	font-weight: 900 !important;
+	text-shadow: none !important;
+	/* background-color: white; */
+}
+
+.ui-input-btn {
+	opacity: none !important;
+}
+
+#regEmail, #regPassword, #regPwchk {
+	color: #4a494a !important;
+	font-weight: 900 !important;
+	text-shadow: none !important;
+	/* margin-top: 8%; */
+}
+
+.ui-input-text {
+	margin-bottom: 10% !important;
+	border: 0;
+}
+
+.ui-input-btn {
+	background-color: #90EE90;
+	opacity: none !important;
+}
+.ui-page-theme-a .ui-btn {
+	background-color: none !important;
+	color: white;
+	text-shadow: none !important;
+}
+#submitPosition {
+	margin-top: 40%;
+}
