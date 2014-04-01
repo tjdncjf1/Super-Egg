@@ -163,10 +163,6 @@ $(function(){
 						var userNo = parseInt(localStorage.getItem('no'));
 						viewItemList(userNo);
 						$.mobile.changePage('#list-items');
-						$('#chartPosition').on('swiperight', function(){
-//							$('#chartImg').attr('src', 'images/week.jpg');
-							alert('우헤헤');
-						});
 					}
 				}
 			});

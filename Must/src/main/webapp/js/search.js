@@ -88,7 +88,6 @@ function detail(title, image, min_price, link, pId) {
 	$('#detailTitle').html(title);
 	$('#detailImage').attr('src', image);
 	$('#detailLow').val(commaNum(min_price));
-	$('#detailLink').attr('href', link);
 
 	$('#regButton').click(function() {
 		$(this).unbind('click');

@@ -2,7 +2,7 @@ $(function(){
 
 	$.validator.addMethod("password",function(value,element){ 
 		return this.optional(element) || /^(?=.*\d)(?=.*[a-z])/i.test(value); 
-	},"알파벳과 숫자만 사용가능합니다."); 
+	},"Choose a stronger password."); 
 
 	$.validator.addMethod('emailCheck', function(email) {
 		$.ajax({

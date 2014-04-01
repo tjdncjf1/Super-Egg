@@ -160,18 +160,21 @@ input.error,textarea.error {
 			</h1>
 			<a href="#" class="ui-btn-right ui-btn ui-shadow ui-corner-all ui-icon-forbidden ui-btn-icon-notext" id="logout"></a>
 		</div>
-		<div data-role="content">
+		<div data-role="content" id="detailInfo">
 			<div data-role="fieldcontain">
 				<h1 id="detailTitle"></h1>
 				<img src="#" id="detailImage" />
-				<h3>현재 가격 :</h3>
-				<input type="text" id="detailLow" readonly="readonly" /><br>
-				<h3>희망 가격 :</h3>
-				<input type="text" id="detailWish" placeholder="가격을 입력하세요." /><br>
-				<div id="insertButton"><input type="button" value="등록" id="regButton"></div>
-				<div id="detailLinkPosition">
-					<a href="#" id="detailLink">사러가기</a>
+				<div id="priceTag">
+				<div id="nowPriceTag">
+					<span class="priceLabel">Now Price</span>
+					<input type="text" id="detailLow" data-role="none" readonly="readonly" />
 				</div>
+				<div id="wishPriceTag">
+					<span class="priceLabel">Wish Price</span>
+					<input type="text" id="detailWish" data-role="none"/><br>
+				</div>
+				</div>
+				<div id="insertButton"><a href="#" id="regButton" data-role="button">Item Add</a></div>
 			</div>
 		</div>
 	</div>

@@ -1,22 +1,27 @@
 @CHARSET "UTF-8";
 
 #detail-items {
-	background-color: #C9BFA8;
+	background-color: #DDDDDD;
 }
+
+#detailInfo {
+  position: relative;
+  margin-top: -4%;
+} 
 
 #detail-items img {
   width: 100%;
-  border-radius: 7%;
+  border-radius: 3%;
   margin-top: 5%;
-  margin-bottom: 13%;
+  margin-bottom: 5%;
 }
 
-#detail-items h1 {
+#detailTitle {
   text-shadow: none !important;
   margin: 0 auto;
   font-weight: 900;
-  font-size: 100%;
-  color: #4a494a;
+  font-size: 2em;
+  color: #995145;
   overflow: hidden;
   text-overflow: ellipsis;
   -o-text-overflow: ellipsis;
@@ -25,18 +30,21 @@
   position: relative;
   width: 60%;
   height: auto;
-  
 }
 
-#detail-items h3 {
+.priceLabel {
   margin :  auto 10px;
-  color: black;
-  font-size: 100%;
+  color: #995145;
+  font-size: 1.6em;
+  font-weight: bolder;
 }
 
-#detail-items input {
+#detailLow, #detailWish {
   font-weight: 900;
-  background-color: #C9BFA8 !important;
+  font-size: 1.4em;
+  text-align: right;
+  width: 40%;
+  background-color: #DDDDDD !important;
   box-shadow: none !important;
   color: #4a494a !important;
   text-shadow: none !important;
@@ -45,6 +53,10 @@
   border-top:0px !important; 
   boder-left:0px !important; 
   boder-bottom:0px !important;
+}
+
+#detailWish {
+	background-color: #E5E5E5 !important;
 }
 
 h1.ui_title {
@@ -60,4 +72,9 @@ h1.ui_title {
 
 #insertButton {
 	margin-top: -12%;
+}
+
+#regButton {
+	background-color: #90EE90;
+	margin-top: 16%;
 }

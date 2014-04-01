@@ -1,5 +1,22 @@
+.searchSpace {
+	padding-top: 0 !important;
+	
+}
+
+.ui-input-search {
+	margin-top: 6% !important;
+}
+
 #search-items {
-  background-color: #C9BFA8;
+  background-color: #DDDDDD;
+}
+
+.ui-input-search input {
+	font-size: 1.5em !important;
+}
+
+.ui-icon-delete {
+	top: 40% !important;
 }
 
 #searchImage img {
@@ -11,27 +28,28 @@
 
 figure, figcaption {
   display: block;
+  font-size: 1.2em;
 }
 
 #searchImage {
 	width:100%;
 	overflow:hidden;
-	padding:20px 10px;
+	/* padding:20px 10px; */
 }
 
 #searchImage figure{
 	float:left;
 	position:relative;
-	width:180px;
-	height: 210px;
-	margin: 5% 11%;        
+	width:90%;
+	height: 50%;
+	margin-left: 3%;        
 	padding: 6px 8px 10px 8px;
 	-webkit-box-shadow: 4px 4px 8px -4px rgba(0, 0, 0, .75);
 	-moz-box-shadow: 4px 4px 8px -4px rgba(0, 0, 0, .75);
 	box-shadow: 4px 4px 8px -4px rgba(0, 0, 0, .75);
 	background: white;
 	-webkit-backface-visibility:hidden; /*prevent rotated text being jagged in Chrome and Safari*/
-	border-radius: 6%;
+	border-radius: 3%;
 }
 
 #searchImage figure:nth-child(even) {
