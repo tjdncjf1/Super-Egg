@@ -1,12 +1,16 @@
 .moreInfo {
-	background-color: #C9BFA8;
+	background-color: #DDDDDD;
+	position: relative;
+	margin-top: -4%;
 }
 
 #lPrice {
 	font-weight: 900;
-	background-color: #C9BFA8 !important;
+	font-size: 1.2em;
+	margin-top: -9%;
+	background-color: #DDDDDD !important;
 	box-shadow: none !important;
-	color: #4a494a !important;
+	color: #995145 !important;
 	text-shadow: none !important;
 	border:none !important;
 	border-right:0px !important; 
@@ -17,9 +21,11 @@
 
 #wPrice {
 	font-weight: 900;
-	background-color: #C9BFA8 !important;
+	font-size: 1.2em;
+	margin-top: -9%;
+	background-color: #DDDDDD !important;
 	box-shadow: none !important;
-	color: #4a494a !important;
+	color: #995145 !important;
 	text-shadow: none !important;
 	border:none !important;
 	border-right:0px !important; 
@@ -31,7 +37,8 @@
 .selectTitle {
 	text-shadow: none !important;
 	font-weight: 900;
-	color: #4a494a;
+	font-size: 2em;
+	color: #995145;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	-o-text-overflow: ellipsis;
@@ -43,9 +50,9 @@
 }
 
 .selectImage {
-	width: 100%;
-	border-radius: 7%;
-	margin-top: 5%;
+	width: 50%;
+	border-radius: 3%;
+	margin-top: 1%;
 	margin-bottom: 5%;
 }
 
@@ -55,12 +62,46 @@
 }
 
 #wish_update {
-  font-weight: 900;
+  width: 33%;
+  background-color: #43B5E7;
+  border: none !important;
 }
 
-#selectLinkPosition {
-	margin-top: -4%;
-  margin-bottom: 5%;
-  margin-left: 38%;
-  font-size: 100%;
+#selectLink {
+  width: 33%;
+  background-color: #90EE90;
+  border: none !important;
+  margin-right: 4%;
+}
+
+#buttonPosition a{
+	display: inline-block;
+}
+
+#buttonPosition {
+	margin-top: -6%;
+}
+
+#npPosition {
+	float: right;
+	margin: -55% 0 0 55%;
+}
+
+#wpPosition {
+	float: right;
+	margin: -30% 0 0 55%;
+}
+
+#npTitle {
+	color: #43B5E7;
+	text-shadow: none !important;
+	font-weight: bolder;
+	font-size: 1.6em;
+}
+
+#wpTitle {
+	color: #43B5E7;
+	text-shadow: none !important;
+	font-weightn: bolder;
+	font-size: 1.6em;
 }

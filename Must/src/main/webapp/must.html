@@ -53,13 +53,10 @@ input.error,textarea.error {
 	<div id="loginPage" data-role="page">
 		<!-- <div data-role="header" data-theme="b" data-position="fixed"></div> -->
 		<div data-role="content" id="textBox">
-		<div id="logoPosition"><img src="images/321.png" style="width:60%; height: 60%"></div>
-			<h1 style="color: white; font-size: 4em; padding-bottom: 10px;">
-				<center>MUST</center>
-			</h1>
+		<div id="logoPosition"><img src="images/1221.png" id="logo"></div>
 			<div id="inputStyle">
-				<input id="loginEmail" type="text" name="loginEmail" placeholder="이메일 입력"/>
-				<input id="loginPassword" type="password" name="loginPassword" placeholder="패스워드 입력"/>
+				<input id="loginEmail" type="text" name="loginEmail" placeholder="Enter Email"/>
+				<input id="loginPassword" type="password" name="loginPassword" placeholder="Enter Password"/>
 			</div>
 			<div class="loginBtn"><a href="#" data-role="button" id="userLogin" >Login</a></div>     
       <span class="reBtn"><a href="#joinPage" id="btnJoin">Sign Up</a></span>
@@ -107,32 +104,41 @@ input.error,textarea.error {
 	<!-- 리스트에서 아이템 눌렀을 때 상세 division -->
 	<div id="select-items" data-role="page">
 		<div data-role="header" data-theme="b" data-position="fixed">
-			<a href="#" data-icon="search" class="ui-btn-left">_</a>
+			<a href="#" class="ui-btn-left ui-btn ui-shadow ui-corner-all ui-icon-search ui-btn-icon-notext">search</a>
 			<h1>
 				<a href="#list-items" class="headerTitle">MUST</a>
 			</h1>
-			<a href="#" data-icon="minus" class="ui-btn-right" id="logout">_</a>
+			<a href="#"  class="ui-btn-right ui-btn ui-shadow ui-corner-all ui-icon-forbidden ui-btn-icon-notext" id="logout"></a>
 		</div>
 		<div class="moreInfo" data-role="content">
 			<h3 style="margin: 0 auto" class="selectTitle"></h3>
 			<img src="#" class="selectImage" /><br> 
-			<span style="color: #4a494a; text-shadow: none !important; font-weight: 800;">Min Price: 
-			<input type="text" readonly="readonly" id="lPrice" /></span> 
-				<span style="color: #4a494a; text-shadow: none !important; font-weight: 800;">Wish Price: 
-				<input type="text" id="wPrice" /> 
-				<input type="button" value="Change" id="wish_update" /></span><br>
-				<div id="selectLinkPosition"><a href="#" id="selectLink">사러가기</a></div>
-			<div id="chartPosition"><img src="images/day.jpg" id="chartImg"/></div>
+			<div id="npPosition">
+				<!-- <span style="color: #995145; text-shadow: none !important; font-weight: bolder;">Min Price:  -->
+				<span id="npTitle">Now Price:</span> 
+				<input type="text" readonly="readonly" id="lPrice" />
+			</div>
+			<div id="wpPosition">
+<!-- 				<span style="color: #995145; text-shadow: none !important; font-weight: 800;">Wish Price:  -->
+				<span id="wpTitle">Wish Price:</span>
+				<input type="text" id="wPrice" />
+			</div>
+				<!-- <input type="button" value="Wish Price Change" id="wish_update" /><br> -->
+				<div id="buttonPosition">
+					<a href="#"  data-role="button" id="selectLink">Buy</a>
+					<a href="#"  data-role="button" id="wish_update">Change</a>
+				</div>
+			<div id="chartPosition"><img src="images/weekday.jpg" id="chartImg"/></div>
 		</div>
 	</div>
 
 	<div id="search-items" data-role="page">
 		<div data-role="header" data-theme="b" data-position="fixed">
-			<a href="#" data-icon="search" class="ui-btn-left">_</a>
+			<a href="#" class="ui-btn-left ui-btn ui-shadow ui-corner-all ui-icon-search ui-btn-icon-notext">search</a>
 			<h1>
 				<a href="#list-items" class="headerTitle">MUST</a>
 			</h1>
-			<a href="#" data-icon="minus" class="ui-btn-right" id="logout">_</a>
+			<a href="#" class="ui-btn-right ui-btn ui-shadow ui-corner-all ui-icon-forbidden ui-btn-icon-notext" id="logout"></a>
 		</div>
 		<div class="searchSpace" data-role="content">
 			<div data-role="fieldcontain" class="searchSpace" >
@@ -148,11 +154,11 @@ input.error,textarea.error {
 
 	<div id="detail-items" data-role="page">
 		<div data-role="header" data-theme="b" data-position="fixed">
-			<a href="#" data-icon="search" class="ui-btn-left">_</a>
+			<a href="#" class="ui-btn-left ui-btn ui-shadow ui-corner-all ui-icon-search ui-btn-icon-notext">search</a>
 			<h1>
 				<a href="#list-items" class="headerTitle">MUST</a>
 			</h1>
-			<a href="#" data-icon="minus" class="ui-btn-right" id="logout">_</a>
+			<a href="#" class="ui-btn-right ui-btn ui-shadow ui-corner-all ui-icon-forbidden ui-btn-icon-notext" id="logout"></a>
 		</div>
 		<div data-role="content">
 			<div data-role="fieldcontain">

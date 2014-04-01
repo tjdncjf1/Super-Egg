@@ -16,12 +16,13 @@
   color: #ffffff;
   background-color: #90EE90;
   border-color: #90EE90;
-  margin: 0 auto;
-  font-weight: 900 !important;
+  font-weight: bolder !important;
+  font-size: 1.5em;
+  margin-top: -6%;
 }
 #btnJoin {
   color: #ffffff;
-  font-size: 90%;
+  margin-left: 4%;
 }
 .reBtn {
 	margin-left: 38%;
@@ -31,7 +32,7 @@
   overflow: visible;
   overflow: hidden;
   padding: 1em;
-  padding-top: 210px;
+  padding-top: 25%;
 }
 #inputStyle{
 	opacity:0.5;
@@ -41,4 +42,12 @@
 }
 .ui-btn-loginB {
 	color: green;
+}
+#logo {
+	width: 30%;
+	margin-left: 35%;
+	margin-bottom: 40%;
+}
+#loginPassword {
+	margin-top: -7%;
 }

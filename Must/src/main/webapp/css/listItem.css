@@ -1,73 +1,73 @@
+#list-items {
+  background-color: #DDDDDD;
+}
+
 ul.items {
-	list-style-type: none;
-	border-radius : 5px;
+  list-style-type: none;
+  border-radius : 5px;
 }
 
 .viewImg {
-	background: #F5F5F4;
-	margin-top: -2%;
-	margin-right:10%;
-	max-height: 90%;
-	max-width: 100%;
-	box-shadow: 1px 1px 2px black;
-	border-radius: 5px;
+  background: white;
+  margin-top: 3%;
+  margin-right:10%;
+  max-height: 90%;
+  max-width: 100%;
+  box-shadow: 1px 1px 2px #BBBBBB;
+  border-radius: 5px;
 }
 
 .itemSpace {
-	margin-top: 0.6em;
-	width: 137%;
-	margin-left: -20%;
+  margin-top: 0.6em;
+  width: 120%;
+  margin-left: -10%;
 }
 
 #titlePosition {
-	font-weight: 800;
-	margin: 7% 12% 0% 0%;
-	color: #443D36;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	-o-text-overflow: ellipsis;
-	-ms-text-overflow: ellipsis;
-	/* white-space: nowrap; */
-	/* position: relative; */
-	float: right;
-	width: 57%;
-	font-size:90%;
+  font-weight: 400;
+  margin: 10% 15% 0% 0%;
+  color: #995145;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  -ms-text-overflow: ellipsis;
+  /* white-space: nowrap; */
+  /* position: relative; */
+  float: right;
+  width: 50%;
+  font-size:1.3em;
   height: auto; 
-	display:-webkit-box;
-	-webkit-box-orient:vertical;
-	-webkit-line-clamp:2;
-	word-wrap:break-word;
-	
+  display:-webkit-box;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2;
+  word-wrap:break-word;
+  
 }
 
 .image {
-	position: relative;
-	width: 4em;
-	height: 4em;
-	border-radius: 5px 0 0 5px;
-}
-#listBox {
-	background-color: #C9BFA8;
-	margin-top: -25;
+  position: relative;
+  width: 30%;
+  /* height: 30%; */
+  border-radius: 5px 0 0 5px;
 }
 .ui-bar-b {
-	background-color: #90EE90;
-	border-color: #41E241; 
-	/* text-shadow: 0 1px 0 #111; */
+  background-color: #DC7563;
+  border-color: #D66F5C; 
+  /* text-shadow: 0 1px 0 #111; */
 }
 .ui-bar-b .ui-btn {
-	background-color: #90EE90 !important;
+  background-color: #DC7563 !important;
   border: none !important;
-  color: #90EE90 !important;
   text-shadow: none !important;
 }
 #list-items {
   text-shadow: none !important;
-  background-color: #C9BFA8;
+  background-color: #F7F6F6;
   /* border-color: #313431; */
   color: #313431;
 }
 .headerTitle {
-	text-shadow: none !important;
-	font-weight: 900 !important;
+  text-shadow: none !important;
+  font-weight: 900 !important;
+  font-size: 1.5em !important;
 }
