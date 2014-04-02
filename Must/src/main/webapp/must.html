@@ -58,7 +58,7 @@ input.error,textarea.error {
 				<input id="loginEmail" type="text" name="loginEmail" placeholder="Enter Email"/>
 				<input id="loginPassword" type="password" name="loginPassword" placeholder="Enter Password"/>
 			</div>
-			<div class="loginBtn"><a href="#" data-role="button" id="userLogin" >Login</a></div>     
+			<div class="loginBtn"><a href="#popupBasic" data-role="button" id="userLogin" >Login</a></div>     
       <span class="reBtn"><a href="#joinPage" id="btnJoin">Sign Up</a></span>
 		</div>
 	</div>
@@ -111,7 +111,7 @@ input.error,textarea.error {
 			<a href="#"  class="ui-btn-right ui-btn ui-shadow ui-corner-all ui-icon-forbidden ui-btn-icon-notext" id="logout"></a>
 		</div>
 		<div class="moreInfo" data-role="content">
-			<h3 style="margin: 0 auto" class="selectTitle"></h3>
+			<h3 style="margin: 0" class="selectTitle"></h3>
 			<img src="#" class="selectImage" /><br> 
 			<div id="npPosition">
 				<!-- <span style="color: #995145; text-shadow: none !important; font-weight: bolder;">Min Price:  -->
@@ -165,11 +165,11 @@ input.error,textarea.error {
 				<h1 id="detailTitle"></h1>
 				<img src="#" id="detailImage" />
 				<div id="priceTag">
-				<div id="nowPriceTag">
+				<div class="tags">
 					<span class="priceLabel">Now Price</span>
 					<input type="text" id="detailLow" data-role="none" readonly="readonly" />
 				</div>
-				<div id="wishPriceTag">
+				<div class="tags">
 					<span class="priceLabel">Wish Price</span>
 					<input type="text" id="detailWish" data-role="none"/><br>
 				</div>

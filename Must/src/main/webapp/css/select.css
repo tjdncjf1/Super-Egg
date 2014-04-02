@@ -37,7 +37,7 @@
 .selectTitle {
 	text-shadow: none !important;
 	font-weight: 900;
-	font-size: 2em;
+	font-size: 1.7em;
 	color: #995145;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -45,7 +45,7 @@
 	-ms-text-overflow: ellipsis;
 	white-space: nowrap;
 	position: relative;
-	width: 60%;
+	width: 70%;
 	height: auto;
 }
 

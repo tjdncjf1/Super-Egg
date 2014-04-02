@@ -73,7 +73,7 @@ function viewItemList(userNo) {
 										wish_price: parseInt($('#wPrice').val())
 									},
 									success: function() {
-										alert('변경 성공했습니다.');
+										/*alert('변경 성공했습니다.');*/
 //										$(this).unbind('click');
 										$.mobile.changePage('#list-items');
 									},
@@ -153,7 +153,7 @@ $(function(){
 				success: function(no){
 					console.log(no);
 					if (no.jsonResult.data.length == 0) {
-						alert('로그인 정보가 일치하지 않습니다.'); 
+						/*alert('로그인 정보가 일치하지 않습니다.');*/
 						return false; 
 					} else {
 						localStorage.setItem('email', $('#loginEmail').val());
