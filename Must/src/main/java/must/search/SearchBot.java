@@ -28,7 +28,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 
-@Service
+
 public class SearchBot {
 
 	@Autowired(required=false)
@@ -210,7 +210,7 @@ public class SearchBot {
 	
 	//fixedDelay=1000
 // cron="0 0 * * * *"
-	@Scheduled(cron="0 0 * * * *")
+	@Scheduled(fixedDelay=1000)
 	public void doHourSchedule() throws ParserConfigurationException, SAXException, IOException {
 
 		try {

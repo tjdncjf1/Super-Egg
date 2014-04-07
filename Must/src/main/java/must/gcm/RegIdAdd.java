@@ -8,8 +8,7 @@ import com.google.android.gcm.server.Sender;
 
 public class RegIdAdd {
 
-	private static final String REGISTRATION_ID = "APA91bEAgmOxGQUp66s0Eg5Wp34edYQuyCRSwtmMEvXB7nAVwO5cVJ3SINeMXjtOP51JzeZUC5gLjbgDQsZTw65jacafHcJ2x5OmV_C6DY9W"
-			+ "CN4s11lPsYfq4iC9sI0QjJjoigsJBKhqIL8kMWaer02-WLx3121Eh2KM91U6v9e9ppU8e-jarY0";
+	private static final String REGISTRATION_ID = "APA91bEmptbpPtLfP64LL3X1rjoguGN-MzKmgDB2LFxbCW6o1E41YLxOPL-v3sT5e3u8ukuykvL2OiNfBqHbAA4tfGtbniPmJ5LUNHiCtftQk5fGWWLYiAg9mn7WTMvw7Ur9MQKMZl7jgkGFsP5BdrSr5FY5qDqYSbJfg74kJ3Y8Sd9bFHHlm9g";
 	private static final String APIKEY = "AIzaSyAB2TrQNCtZJXBOSkKc0RyGO9J8LdB4blg"; //GCM에서 발급받은 ApiKey를 입력
 
 	public static void main(String[] args) throws Exception {
