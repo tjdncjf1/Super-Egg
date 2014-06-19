@@ -38,7 +38,7 @@ function viewItemList(userNo) {
 				listItem += '<img src="' + item.image + '" class="image" />';
 				listItem += '</div></div></li>';
 
-				$(listItem).click(function(){
+				$(listItem).on('touchstart', function(){
 					$.ajax({
 						url: baseUrl + 'item/choiceUserItem.do',
 //						url: 'item/choiceUserItem.do',
@@ -49,7 +49,7 @@ function viewItemList(userNo) {
 							prodId : item.pId
 						},
 						success: function(d){
-//							console.log(d.jsonResult.data[0]);
+							console.log(d.jsonResult.data[0]);
 							var choiceItem = d.jsonResult.data[0];
 //							$.mobile.changePage('#select-items');
 							$('.selectTitle').html(choiceItem.title);
@@ -57,11 +57,11 @@ function viewItemList(userNo) {
 							$('#lPrice').val(commaNum(choiceItem.min_price));
 							$('#wPrice').val(commaNum(choiceItem.loginUserItem.wPrice));
 							$('#selectLink').attr('href', choiceItem.link);
-							console.log(typeof commaNum(choiceItem.loginUserItem.wPrice));
+//							console.log(typeof commaNum(choiceItem.loginUserItem.wPrice));
 
 							$.mobile.changePage('#select-items');
 
-							$('#wish_update').click(function(){
+							$('#wish_update').on('touchstart', function(){
 								$(this).unbind('click');
 								$.ajax({
 									url: baseUrl + 'item/wishUpdate.do',
@@ -82,7 +82,6 @@ function viewItemList(userNo) {
 									}
 								}); 
 							}); // end of wish_update click
-
 						}
 					}); // choiceUserItem ajax 끝
 
@@ -115,7 +114,7 @@ function viewItemList(userNo) {
 					}
 				}).appendTo('.items');
 
-				$('#list-items').click(function(event){
+				$('#list-items').on('touchmove', function(event){
 					$('#swipeItem').removeClass('swipe');
 				});
 
@@ -127,12 +126,12 @@ function viewItemList(userNo) {
 $(function(){
 //	if (localStorage.getItem('no'))
 //	console.log(localStorage.getItem('no') == null);
-	$('.ui-btn-right').click(function(){
+	$('.ui-btn-right').on('touchstart', function(){
 		localStorage.clear();
 		location.href= "must.html";
 	});
 
-	$('.ui-btn-left').click(function(){
+	$('.ui-btn-left').on('touchstart', function(){
 		$('#searchImage').empty();
 		$('#searchValue').val(null);
 		$('#detailWish').val(null);
@@ -140,7 +139,7 @@ $(function(){
 	});
 
 	if (localStorage.getItem('no') == null) {
-		$('#userLogin').click(function(){
+		$('#userLogin').on('touchstart', function(){
 			$.ajax({
 				url: baseUrl + "user/login.do",
 //				url: "user/login.do",
@@ -148,7 +147,6 @@ $(function(){
 				data : {
 					email:$('#loginEmail').val(),
 					password:$('#loginPassword').val()
-
 				},
 				success: function(no){
 					console.log(no);
@@ -172,7 +170,7 @@ $(function(){
 		$('#loginEmail').val(localStorage.getItem('email'));
 		$('#loginPassword').val(localStorage.getItem('password'));
 
-		$('#userLogin').click(function(){
+		$('#userLogin').on('touchstart', function(){
 			$.ajax({
 				url: baseUrl + "user/login.do",
 //				url: "user/login.do",
@@ -180,7 +178,6 @@ $(function(){
 				data : {
 					email:$('#loginEmail').val(),
 					password:$('#loginPassword').val()
-
 				},
 				success: function(no){
 					var userNo = parseInt(localStorage.getItem('no'));

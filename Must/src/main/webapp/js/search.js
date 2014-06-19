@@ -1,10 +1,10 @@
 $(function(){
-	$('.ui-btn-right').click(function(){
+	$('.ui-btn-right').on('touchstart', function(){
 		localStorage.clear();
 		location.href= "must.html";
 	});
 
-	$('.ui-btn-left').click(function(){
+	$('.ui-btn-left').on('touchstart', function(){
 		$('#searchImage').empty();
 		$('#searchValue').val(null);
 		$('#detailWish').val(null);
@@ -48,7 +48,7 @@ $(function(){
 					output += '<figcaption> '+ title + '</figcaption><br>';
 					output += '<figcaption style = "float: right;">'+ commaNum(min_price) + '원</figcaption>';
 					output += '</figure> ';
-					$(output).click(function(){
+					$(output).on('touchstart', function(){
 //						alert('okok');
 						$.mobile.changePage('#detail-items');
 						// detail 쪽 div에 아이템 상세정보 표시
@@ -89,7 +89,7 @@ function detail(title, image, min_price, link, pId) {
 	$('#detailImage').attr('src', image);
 	$('#detailLow').val(commaNum(min_price));
 
-	$('#regButton').click(function() {
+	$('#regButton').on('touchstart', function() {
 		$(this).unbind('click');
 		$.ajax({
 			url: baseUrl + 'item/userItemCheck.do',

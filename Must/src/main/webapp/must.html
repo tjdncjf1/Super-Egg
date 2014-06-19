@@ -3,22 +3,26 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport"
-	content="width=device-width, initial-scale=1.0,maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, 
+	minimum-scale=1.0, user-scalable=no" />
 <title>Must</title>
 <style>
+
 input.error,textarea.error {
 	border: 1px dashed red;
 }
-
+ 
 .error {
 	display: inline;
 	color: red;
 	font-weight: bolder;
 	text-shadow: none !important;
 }
+
 </style>
 <link rel="stylesheet" type="text/css"
 	href="css/jquery.mobile-1.4.2.min.css" />
+<link class="include" rel="stylesheet" type="text/css" href="jquery.jqplot.css"/>
 <link rel="stylesheet" type="text/css" href="css/select.css" />
 <link rel="stylesheet" type="text/css" href="css/search.css" />
 <link rel="stylesheet" type="text/css" href="css/detail.css" />
@@ -27,25 +31,26 @@ input.error,textarea.error {
 <link rel="stylesheet" type="text/css" href="css/common.css" />
 <link rel="stylesheet" type="text/css" href="css/listItem.css" />
 <style type="text/css">
+
 .ui-link {
 	text-decoration: none;
 }
 
-.ui-page-theme-b a:visited,html .ui-bar-b a:visited,html .ui-body-b a:visited,html body .ui-group-theme-b a:visited
-	{
+.ui-page-theme-b a:visited,html .ui-bar-b a:visited,html .ui-body-b a:visited,
+html body .ui-group-theme-b a:visited	{
 	color: white;
 }
+
 </style>
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/jquery.mobile-1.4.2.js"></script>
+<script type="text/javascript" src="js/jquery.jqplot.js"></script>
+<script type="text/javascript" src="js/jqplot.dateAxisRenderer.js"></script>
+<script type="text/javascript" src="js/jqplot.canvasAxisLabelRenderer.js"></script>
 <script type="text/javascript" src="js/jquery.validate.js"></script>
 <script type="text/javascript" src="js/login.js"></script>
 <script type="text/javascript" src="js/check.js"></script>
 <script type="text/javascript" src="js/search.js"></script>
-<script type="text/javascript" src="js/jquery.jqplot.js"></script>
-<!-- <script type="text/javascript" src="jqplot.dateAxisRenderer.min.js"></script> -->
-<script type="text/javascript" src="js/jqplot.highlighter.js"></script>
-<link rel="stylesheet" type="text/css" href="css/jquery.jqplot.min.css">
 </head>
 <body>
 
@@ -128,7 +133,7 @@ input.error,textarea.error {
 					<a href="#"  data-role="button" id="selectLink">Buy</a>
 					<a href="#"  data-role="button" id="wish_update">Change</a>
 				</div>
-			<div id="chartPosition"><img src="images/weekday.jpg" id="chartImg"/></div>
+			<!-- <div id="chartPosition"></div> -->
 		</div>
 	</div>
 
@@ -181,5 +186,3 @@ input.error,textarea.error {
 
 </body>
 </html>
-
-
