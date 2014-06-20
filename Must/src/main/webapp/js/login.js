@@ -83,20 +83,28 @@ function viewItemList(userNo) {
 								}); 
 							}); // end of wish_update click
 							
-							var line = [['2008-06-30 8:00AM',4], ['2008-07-14 8:00AM',6.5], ['2008-07-28 8:00AM',8.1], ['2008-08-11 8:00AM',8.9], ['2008-08-25 8:00AM',9.5]];
-							console.log(line);
-							var plot = $.jqplot('#chartPosition', [line], {
-								title: 'Custom',
-								axes: {
-									xaxis: {
-										renderer: $.jqplot.DateAxisRenderer,
-										tickOptions: {formatString: '%b %#d, %#I %p'},
-										min: 'June 16, 2008 8:00AM',
-										tickInterval: '2 weeks'
-									}
-								},
-								series: [{lineWidth:4, markerOptions:{style:'square'}}]
-							});	
+							var userPoints = [10, 23, 28, 50]; 	//임시 데이타
+							var jobPoints = [2, 5, 6, 18];	//임시 데이타
+							//var userPoints = [];//실제 데이타는 아래와 같이 처리하세요.
+							//for (var i=0; i<2*Math.PI; i+=0.1){ 
+							//   cosPoints.push([i, Math.cos(i)]); 
+							//} 
+							plot = $.jqplot('chartPosition', [userPoints, jobPoints], {  
+								legend:{show:true, location:'ne'}, 
+						    	title:'Activity', 
+							    series:[{label:'사용자'},{label:'직업'}],
+							    axes:{
+							      xaxis:{
+							        label:'date',
+							        autoscale: true
+							      },
+							      yaxis:{
+							        label:'count',
+							        autoscale: true
+							      }
+							    }
+							});
+							
 							
 							
 						}

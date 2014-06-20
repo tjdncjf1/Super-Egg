@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="css/jquery.jqplot.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jqplot/jquery.jqplot.js"></script>
+<script type="text/javascript" src="js/jqplot/jqplot.dateAxisRenderer.js"></script>
+<script type="text/javascript" src="js/jqplot/excanvas.js"></script>
+</head>
+<body>
+
+<div id="chart" style="height:300px; width:300px;"></div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  var line1=[['2008-09-30 4:00PM',4], ['2008-10-30 4:00PM',6.5], ['2008-11-30 4:00PM',5.7], ['2008-12-30 4:00PM',9], ['2009-01-30 4:00PM',8.2]];
+  var plot1 = $.jqplot('chart', [line1], {
+    title:'Default Date Axis',
+    axes:{xaxis:{renderer:$.jqplot.DateAxisRenderer}},
+    series:[{lineWidth:4, markerOptions:{style:'square'}}]
+  });
+});
+</script>
+
+</body>
+</html>
