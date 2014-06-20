@@ -3,26 +3,68 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="css/jquery.jqplot.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jqplot/excanvas.min.js"></script>
 <script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/jqplot/jquery.jqplot.js"></script>
-<script type="text/javascript" src="js/jqplot/jqplot.dateAxisRenderer.js"></script>
-<script type="text/javascript" src="js/jqplot/excanvas.js"></script>
+<script type="text/javascript" src="js/jqplot/jquery.jqplot.min.js"></script>
+<script type="text/javascript" src="js/jqplot/jqplot.highlighter.min.js"></script>
+<script type="text/javascript" src="js/jqplot/jqplot.cursor.min.js"></script>
+<script type="text/javascript" src="js/jqplot/jqplot.dateAxisRenderer.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/jquery.jqplot.min.css"/>
+
+<script type="text/javascript" src="js/jqplot/jqplot.logAxisRenderer.min.js"></script>
+<script type="text/javascript" src="js/jqplot/jqplot.canvasTextRenderer.min.js"></script>
+<script type="text/javascript" src="js/jqplot/jqplot.canvasAxisLabelRenderer.min.js"></script>
+<script type="text/javascript" src="js/jqplot/jqplot.canvasAxisTickRenderer.min.js"></script>
+<script type="text/javascript" src="js/jqplot/jqplot.categoryAxisRenderer.min.js"></script>
+<script type="text/javascript" src="js/jqplot/jqplot.barRenderer.min.js"></script>
+
 </head>
 <body>
-
-<div id="chart" style="height:300px; width:300px;"></div>
-
 <script type="text/javascript">
-$(document).ready(function(){
-  var line1=[['2008-09-30 4:00PM',4], ['2008-10-30 4:00PM',6.5], ['2008-11-30 4:00PM',5.7], ['2008-12-30 4:00PM',9], ['2009-01-30 4:00PM',8.2]];
-  var plot1 = $.jqplot('chart', [line1], {
-    title:'Default Date Axis',
-    axes:{xaxis:{renderer:$.jqplot.DateAxisRenderer}},
-    series:[{lineWidth:4, markerOptions:{style:'square'}}]
-  });
-});
+	$(document).ready(function(){
+	  for(var i=1; i <= 10; i++) {
+	  	$('#data').append('<th>' + i + '</th><tt>' + (i * 10) + '</tt>');
+	  }
+	  var labels = [], data = [], line = [];
+	  $('#data th').each(function(){labels.push($(this).html());});
+	  $('#data tt').each(function(){data.push(Number($(this).html()));});
+	  for(var i = 0; i < data.length && i < labels.length; i++) {
+	  	line[i] = [labels[i], data[i]];
+	  }
+	  var plot1 = $.jqplot("chart1", [line], {
+	  	animate: true,
+	  	series: [
+	  	   {
+	  	  	 color: "rgb(78, 135, 194)",
+	  	  	 showMarker: false
+	  	   }         
+	  	],
+	  	axes: {
+	  		xaxis: {
+	  			tickOptions: {
+	  				formatString: "%'d",
+	  				fontSize: '10pt'
+	  			}
+	        ,drawMajorGridlines: true
+	        ,min : 1
+	        ,max : 10
+	  		},
+	  		yaxis: {
+          tickOptions: {
+            formatString: "%'d",
+            fontSize: '10pt'
+          }
+          ,drawMajorGridlines: true
+          ,min : 0
+          ,max : 100
+          ,numberTicks : 11
+	  		}
+	  	}
+	  });
+	});
 </script>
+<table id="data" style="display: none"></table>
+<div id="chart1" style="width: 1000px; height: 450px"></div>
 
 </body>
 </html>
