@@ -83,20 +83,20 @@ function viewItemList(userNo) {
 								}); 
 							}); // end of wish_update click
 							
-//							var line = [['2008-06-30 8:00AM',4], ['2008-07-14 8:00AM',6.5], ['2008-07-28 8:00AM',8.1], ['2008-08-11 8:00AM',8.9], ['2008-08-25 8:00AM',9.5]];
-//							console.log(line);
-//							var plot = $.jqplot('#chartPosition', [line], {
-//								title: 'Custom',
-//								axes: {
-//									xaxis: {
-//										renderer: $.jqplot.DateAxisRenderer,
-//										tickOptions: {formatString: '%b %#d, %#I %p'},
-//										min: 'June 16, 2008 8:00AM',
-//										tickInterval: '2 weeks'
-//									}
-//								},
-//								series: [{lineWidth:4, markerOptions:{style:'square'}}]
-//							});	
+							var line = [['2008-06-30 8:00AM',4], ['2008-07-14 8:00AM',6.5], ['2008-07-28 8:00AM',8.1], ['2008-08-11 8:00AM',8.9], ['2008-08-25 8:00AM',9.5]];
+							console.log(line);
+							var plot = $.jqplot('#chartPosition', [line], {
+								title: 'Custom',
+								axes: {
+									xaxis: {
+										renderer: $.jqplot.DateAxisRenderer,
+										tickOptions: {formatString: '%b %#d, %#I %p'},
+										min: 'June 16, 2008 8:00AM',
+										tickInterval: '2 weeks'
+									}
+								},
+								series: [{lineWidth:4, markerOptions:{style:'square'}}]
+							});	
 							
 							
 						}

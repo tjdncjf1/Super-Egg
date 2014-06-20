@@ -22,16 +22,15 @@ input.error,textarea.error {
 </style>
 <link rel="stylesheet" type="text/css"
 	href="css/jquery.mobile-1.4.2.min.css" />
-<link rel="stylesheet" type="text/css" href="css/jquery.jqplot.css" />
 <link rel="stylesheet" type="text/css" href="css/select.css" />
 <link rel="stylesheet" type="text/css" href="css/search.css" />
 <link rel="stylesheet" type="text/css" href="css/detail.css" />
 <link rel="stylesheet" type="text/css" href="css/login.css" />
+<link rel="stylesheet" type="text/css" href="css/jquery.jqplot.css" />
 <link rel="stylesheet" type="text/css" href="css/join.css" />
 <link rel="stylesheet" type="text/css" href="css/common.css" />
 <link rel="stylesheet" type="text/css" href="css/listItem.css" />
 <style type="text/css">
-
 .ui-link {
 	text-decoration: none;
 }
@@ -40,13 +39,21 @@ input.error,textarea.error {
 html body .ui-group-theme-b a:visited	{
 	color: white;
 }
-
 </style>
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/jquery.mobile-1.4.2.js"></script>
+<script type="text/javascript" src="js/excanvas.js"></script>
 <script type="text/javascript" src="js/jquery.jqplot.js"></script>
-<script type="text/javascript" src="js/jqplot.highlighter.js"></script>
 <script type="text/javascript" src="js/jqplot.dateAxisRenderer.js"></script>
+<script type="text/javascript" src="js/jqplot.highlighter.js"></script>
+<!-- 축의 데이터의 Label Option을 설정 -->
+<script type="text/javascript" src="js/jqplot.canvasAxisLabelRenderer.js"></script>
+<!-- Legend(Line에대한 간단한 범례)의 Option을 설정 -->
+<script type="text/javascript" src="js/jqplot.enhanceLegendRenderer.js"></script>
+<!-- 축의 데이터를 순서에 상관없이 자동정렬을 설정 -->
+<script type="text/javascript" src="js/jqplot.categoryAxisRenderer.js"></script>
+<!-- 축의 데이터 표현설정과 그래프위의 점의 Option을 설정 -->
+<script type="text/javascript" src="js/jqplot.canvasAxisTickRenderer.js"></script>
 <script type="text/javascript" src="js/jquery.validate.js"></script>
 <script type="text/javascript" src="js/login.js"></script>
 <script type="text/javascript" src="js/check.js"></script>
@@ -133,7 +140,7 @@ html body .ui-group-theme-b a:visited	{
 					<a href="#"  data-role="button" id="selectLink">Buy</a>
 					<a href="#"  data-role="button" id="wish_update">Change</a>
 				</div>
-			<!-- <div id="chartPosition"></div> -->
+			<div id="chartPosition"></div>
 		</div>
 	</div>
 
