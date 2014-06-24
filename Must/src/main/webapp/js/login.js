@@ -83,30 +83,6 @@ function viewItemList(userNo) {
 								}); 
 							}); // end of wish_update click
 							
-							var userPoints = [10, 23, 28, 50]; 	//임시 데이타
-							var jobPoints = [2, 5, 6, 18];	//임시 데이타
-							//var userPoints = [];//실제 데이타는 아래와 같이 처리하세요.
-							//for (var i=0; i<2*Math.PI; i+=0.1){ 
-							//   cosPoints.push([i, Math.cos(i)]); 
-							//} 
-							plot = $.jqplot('chartPosition', [userPoints, jobPoints], {  
-								legend:{show:true, location:'ne'}, 
-						    	title:'Activity', 
-							    series:[{label:'사용자'},{label:'직업'}],
-							    axes:{
-							      xaxis:{
-							        label:'date',
-							        autoscale: true
-							      },
-							      yaxis:{
-							        label:'count',
-							        autoscale: true
-							      }
-							    }
-							});
-							
-							
-							
 						}
 					}); // choiceUserItem ajax 끝
 

@@ -3,26 +3,24 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport"
-	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, 
-	minimum-scale=1.0, user-scalable=no" />
+	content="width=device-width, initial-scale=1.0,maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
 <title>Must</title>
 <style>
-
 input.error,textarea.error {
 	border: 1px dashed red;
 }
- 
+
 .error {
 	display: inline;
 	color: red;
 	font-weight: bolder;
 	text-shadow: none !important;
 }
-
 </style>
 <link rel="stylesheet" type="text/css"
 	href="css/jquery.mobile-1.4.2.min.css" />
-<link rel="stylesheet" type="text/css" href="css/jquery.jqplot.css" />
+<link rel="stylesheet" type="text/css" 
+  href="css/jquery.jqplot.min.css"/>
 <link rel="stylesheet" type="text/css" href="css/select.css" />
 <link rel="stylesheet" type="text/css" href="css/search.css" />
 <link rel="stylesheet" type="text/css" href="css/detail.css" />
@@ -35,23 +33,24 @@ input.error,textarea.error {
 	text-decoration: none;
 }
 
-.ui-page-theme-b a:visited,html .ui-bar-b a:visited,html .ui-body-b a:visited,
-html body .ui-group-theme-b a:visited	{
+.ui-page-theme-b a:visited,html .ui-bar-b a:visited,html .ui-body-b a:visited,html body .ui-group-theme-b a:visited
+	{
 	color: white;
 }
 </style>
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/jquery.mobile-1.4.2.js"></script>
-<script type="text/javascript" src="js/jqplot/jquery.jqplot.js"></script>
-<script type="text/javascript" src="js/jqplot/excanvas.js"></script>
-<!-- 
-<script type="text/javascript" src="js/jqplot/jqplot.dateAxisRenderer.js"></script>
-<script type="text/javascript" src="js/jqplot/jqplot.highlighter.js"></script>
-<script type="text/javascript" src="js/jqplot/jqplot.canvasAxisLabelRenderer.js"></script>
-<script type="text/javascript" src="js/jqplot/jqplot.enhanceLegendRenderer.js"></script>
-<script type="text/javascript" src="js/jqplot/jqplot.categoryAxisRenderer.js"></script>
-<script type="text/javascript" src="js/jqplot/jqplot.canvasAxisTickRenderer.js"></script>
- -->
+<script type="text/javascript" src="js/jqplot/excanvas.min.js"></script>
+<script type="text/javascript" src="js/jqplot/jquery.jqplot.min.js"></script>
+<script type="text/javascript" src="js/jqplot/jqplot.highlighter.min.js"></script>
+<script type="text/javascript" src="js/jqplot/jqplot.cursor.min.js"></script>
+<script type="text/javascript" src="js/jqplot/jqplot.dateAxisRenderer.min.js"></script>
+<script type="text/javascript" src="js/jqplot/jqplot.logAxisRenderer.min.js"></script>
+<script type="text/javascript" src="js/jqplot/jqplot.canvasTextRenderer.min.js"></script>
+<script type="text/javascript" src="js/jqplot/jqplot.canvasAxisLabelRenderer.min.js"></script>
+<script type="text/javascript" src="js/jqplot/jqplot.canvasAxisTickRenderer.min.js"></script>
+<script type="text/javascript" src="js/jqplot/jqplot.categoryAxisRenderer.min.js"></script>
+<script type="text/javascript" src="js/jqplot/jqplot.barRenderer.min.js"></script>
 <script type="text/javascript" src="js/jquery.validate.js"></script>
 <script type="text/javascript" src="js/login.js"></script>
 <script type="text/javascript" src="js/check.js"></script>
@@ -68,7 +67,7 @@ html body .ui-group-theme-b a:visited	{
 				<input id="loginEmail" type="text" name="loginEmail" placeholder="Enter Email"/>
 				<input id="loginPassword" type="password" name="loginPassword" placeholder="Enter Password"/>
 			</div>
-			<div class="loginBtn"><a href="#popupBasic" data-role="button" id="userLogin" >Login</a></div>     
+			<div class="loginBtn"><a href="#" data-role="button" id="userLogin" >Login</a></div>     
       <span class="reBtn"><a href="#joinPage" id="btnJoin">Sign Up</a></span>
 		</div>
 	</div>
@@ -108,7 +107,16 @@ html body .ui-group-theme-b a:visited	{
 		</div>
 		<div data-role="content" id="listBox">
 			<ul class="items" data-inset="true"></ul>
-		</div>
+		</div> 
+		<script type="text/javascript">
+        $(document).ready(function() {
+           //X,Y 쌍으로 배열의 형태로 차례대로 값을 넣습니다.
+           var line =[[1,3],[2,7],[3,9],[4,1],[5,4],[6,6],[7,8],[8,2],[9,5]];
+           //id가 graphDiv인 곳에 그래프로 나타낼 Line을 넣어 표현한다.
+           var plot = $.jqplot('chartPosition', [line]);
+        });
+      </script>
+      <div id="chartPosition"></div>
 	</div>
 
 	<!-- 리스트에서 아이템 눌렀을 때 상세 division -->
@@ -138,7 +146,15 @@ html body .ui-group-theme-b a:visited	{
 					<a href="#"  data-role="button" id="selectLink">Buy</a>
 					<a href="#"  data-role="button" id="wish_update">Change</a>
 				</div>
-			<div id="chartPosition" style="height:300px; width:300px;"></div>
+			<!-- <script type="text/javascript">
+				$(document).ready(function() {
+			     //X,Y 쌍으로 배열의 형태로 차례대로 값을 넣습니다.
+			     var line =[[1,3],[2,7],[3,9],[4,1],[5,4],[6,6],[7,8],[8,2],[9,5]];
+			     //id가 graphDiv인 곳에 그래프로 나타낼 Line을 넣어 표현한다.
+			     var plot = $.jqplot('chartPosition', [line]);
+			  });
+			</script>
+			<div id="chartPosition"></div> -->
 		</div>
 	</div>
 
@@ -191,3 +207,5 @@ html body .ui-group-theme-b a:visited	{
 
 </body>
 </html>
+
+
