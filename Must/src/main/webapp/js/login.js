@@ -38,7 +38,7 @@ function viewItemList(userNo) {
 				listItem += '<img src="' + item.image + '" class="image" />';
 				listItem += '</div></div></li>';
 
-				$(listItem).on('touchstart', function(){
+				$(listItem).on('touchend', function(){
 					$.ajax({
 						url: baseUrl + 'item/choiceUserItem.do',
 //						url: 'item/choiceUserItem.do',
@@ -88,7 +88,6 @@ function viewItemList(userNo) {
 
 				}).bind('swiperight', function(event){
 					$(event.target).addClass('swipe');
-					$.mobile.changePage('#list-items', {transition:'slide', reverse: false}, true, true);
 					var answer = confirm('삭제하시겠습니까?');
 					if (answer) {
 						$.ajax({
@@ -108,6 +107,7 @@ function viewItemList(userNo) {
 //								});
 								$('.items').empty();
 								viewItemList(parseInt(localStorage.getItem('no')));
+								$.mobile.changePage('#list-items', {transition:'slide', reverse: false}, true, true);
 							}
 						});
 					} else {
